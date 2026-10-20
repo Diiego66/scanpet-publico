@@ -4,40 +4,378 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1769aa">
   <title>ScanPet | Identificación de mascotas</title>
-  <meta name="description" content="ScanPet ayuda a identificar mascotas mediante un código QR o NFC.">
+
   <style>
-    * { box-sizing: border-box; }
+    :root {
+      --azul: #1769aa;
+      --azul-oscuro: #104b7a;
+      --fondo: #f2f6fa;
+      --texto: #203040;
+      --gris: #65758b;
+      --borde: #e1e8ef;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      font-family: Arial, sans-serif;
-      background: #f0f7ff;
-      color: #183153;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--fondo);
+      color: var(--texto);
     }
-    main {
-      max-width: 520px;
-      width: 100%;
-      padding: 36px 24px;
+
+    header {
       background: white;
-      border-radius: 20px;
+      border-bottom: 1px solid var(--borde);
+      padding: 18px 20px;
       text-align: center;
-      box-shadow: 0 8px 30px #18315312;
     }
-    .paw { font-size: 58px; }
-    h1 { color: #1769aa; margin-bottom: 12px; }
-    p { line-height: 1.6; color: #53657b; }
+
+    .marca {
+      color: var(--azul);
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .submarca {
+      margin-top: 5px;
+      color: var(--gris);
+      font-size: 13px;
+    }
+
+    main {
+      width: min(100% - 28px, 480px);
+      margin: 28px auto;
+    }
+
+    .tarjeta {
+      background: white;
+      border: 1px solid var(--borde);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(26, 57, 86, 0.07);
+    }
+
+    .franja {
+      height: 9px;
+      background: var(--azul);
+    }
+
+    .contenido {
+      padding: 24px;
+    }
+
+    .foto {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #e7f2fc;
+      display: block;
+      margin: 0 auto 18px;
+      background: var(--fondo);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 30px;
+      margin: 0 0 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .especie {
+      text-align: center;
+      color: var(--gris);
+      margin-bottom: 22px;
+    }
+
+    .etiqueta {
+      color: var(--azul);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      margin: 20px 0 6px;
+    }
+
+    .dato {
+      font-size: 15px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .acciones {
+      display: grid;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .boton {
+      display: block;
+      padding: 14px 16px;
+      text-align: center;
+      border-radius: 11px;
+      text-decoration: none;
+      font-weight: 700;
+      color: white;
+      background: var(--azul);
+    }
+
+    .boton.whatsapp {
+      background: #16834a;
+    }
+
+    .boton.llamar {
+      background: var(--azul-oscuro);
+    }
+
+    .oculto {
+      display: none !important;
+    }
+
+    .estado {
+      text-align: center;
+      padding: 36px 20px;
+      line-height: 1.6;
+      color: var(--gris);
+    }
+
+    .estado strong {
+      display: block;
+      color: var(--texto);
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--gris);
+      font-size: 12px;
+      padding: 22px 10px 30px;
+    }
   </style>
 </head>
+
 <body>
+  <header>
+    <div class="marca">🐾 ScanPet</div>
+    <div class="submarca">Identificación y protección de mascotas</div>
+  </header>
+
   <main>
-    <div class="paw">🐾</div>
-    <h1>ScanPet</h1>
-    <p>Identificación inteligente para tu mascota.</p>
-    <p>Estamos preparando un espacio para que puedas ayudar a tu mascota a regresar a casa si se pierde.</p>
+    <section id="cargando" class="tarjeta">
+      <div class="estado">
+        <strong>Buscando ficha...</strong>
+        Estamos consultando la información de la mascota.
+      </div>
+    </section>
+
+    <section id="error" class="tarjeta oculto">
+      <div class="estado">
+        <strong id="errorTitulo">Ficha no disponible</strong>
+        <span id="errorMensaje">
+          No fue posible encontrar la información.
+        </span>
+      </div>
+    </section>
+
+    <section id="ficha" class="tarjeta oculto">
+      <div class="franja"></div>
+
+      <div class="contenido">
+        <img id="foto" class="foto oculto" alt="Foto de la mascota">
+
+        <h1 id="nombre"></h1>
+        <div id="especie" class="especie"></div>
+
+        <div id="bloqueRaza" class="oculto">
+          <div class="etiqueta">Raza</div>
+          <div id="raza" class="dato"></div>
+        </div>
+
+        <div id="bloqueAnio" class="oculto">
+          <div class="etiqueta">Año de nacimiento</div>
+          <div id="anio" class="dato"></div>
+        </div>
+
+        <div id="bloqueColor" class="oculto">
+          <div class="etiqueta">Color y señas particulares</div>
+          <div id="color" class="dato"></div>
+        </div>
+
+        <div id="bloqueZona" class="oculto">
+          <div class="etiqueta">Municipio o zona</div>
+          <div id="zona" class="dato"></div>
+        </div>
+
+        <div id="bloqueCuidados" class="oculto">
+          <div class="etiqueta">Cuidados especiales</div>
+          <div id="cuidados" class="dato"></div>
+        </div>
+
+        <div id="bloqueMensaje" class="oculto">
+          <div class="etiqueta">Mensaje de su familia</div>
+          <div id="mensaje" class="dato"></div>
+        </div>
+
+        <div id="bloqueContacto" class="oculto">
+          <div class="etiqueta">Contacto responsable</div>
+          <div id="contacto" class="dato"></div>
+        </div>
+
+        <div class="acciones">
+          <a id="botonWhatsApp"
+             class="boton whatsapp oculto"
+             target="_blank"
+             rel="noopener noreferrer">Contactar por WhatsApp</a>
+
+          <a id="botonLlamar"
+             class="boton llamar oculto">Llamar al contacto</a>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    ScanPet · Una forma sencilla de ayudar a que tu mascota regrese a casa.
+  </footer>
+
+  <script>
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbzATMQtjZESamxhWbHJSKAtkPtRRkugwWrlWp01OOdvsSCMl9CLtwjB84EAooCn1mEGlA/exec";
+
+    function mostrarError(titulo, mensaje) {
+      document.getElementById("cargando").classList.add("oculto");
+      document.getElementById("ficha").classList.add("oculto");
+      document.getElementById("error").classList.remove("oculto");
+      document.getElementById("errorTitulo").textContent = titulo;
+      document.getElementById("errorMensaje").textContent = mensaje;
+    }
+
+    function mostrarDato(bloqueId, datoId, valor) {
+      const texto = String(valor || "").trim();
+
+      if (!texto) return;
+
+      document.getElementById(datoId).textContent = texto;
+      document.getElementById(bloqueId).classList.remove("oculto");
+    }
+
+    function mostrarMascota(respuesta) {
+      document.getElementById("cargando").classList.add("oculto");
+
+      if (!respuesta || !respuesta.ok || !respuesta.mascota) {
+        mostrarError(
+          "Ficha no disponible",
+          respuesta && respuesta.mensaje
+            ? respuesta.mensaje
+            : "No fue posible consultar esta ficha."
+        );
+        return;
+      }
+
+      const m = respuesta.mascota;
+
+      document.getElementById("ficha").classList.remove("oculto");
+      document.getElementById("nombre").textContent = m.nombre || "Mascota";
+
+      const especieRaza = [m.especie, m.raza]
+        .filter(Boolean)
+        .join(" · ");
+
+      document.getElementById("especie").textContent =
+        especieRaza || "Ficha de identificación";
+
+      mostrarDato("bloqueRaza", "raza", m.raza);
+      mostrarDato("bloqueAnio", "anio", m.anioNacimiento);
+      mostrarDato("bloqueColor", "color", m.colorSenas);
+      mostrarDato("bloqueZona", "zona", m.municipioZona);
+      mostrarDato("bloqueCuidados", "cuidados", m.cuidadosEspeciales);
+      mostrarDato("bloqueMensaje", "mensaje", m.mensajePersonal);
+      mostrarDato("bloqueContacto", "contacto", m.nombreContacto);
+
+      if (m.fotoUrl) {
+        const foto = document.getElementById("foto");
+        foto.onload = () => foto.classList.remove("oculto");
+        foto.onerror = () => foto.classList.add("oculto");
+        foto.src = m.fotoUrl;
+      }
+
+      const telefono = String(m.telefono || "").replace(/[^\d+]/g, "");
+
+      if (telefono) {
+        const boton = document.getElementById("botonLlamar");
+        boton.href = "tel:" + telefono;
+        boton.classList.remove("oculto");
+      }
+
+      let numeroWhatsApp = String(m.whatsapp || "").replace(/\D/g, "");
+
+      // Para números colombianos de 10 dígitos, agrega el indicativo 57.
+      if (numeroWhatsApp.length === 10) {
+        numeroWhatsApp = "57" + numeroWhatsApp;
+      }
+
+      if (numeroWhatsApp.length >= 12 && numeroWhatsApp.length <= 13) {
+        const boton = document.getElementById("botonWhatsApp");
+        boton.href =
+          "https://wa.me/" + numeroWhatsApp +
+          "?text=" + encodeURIComponent(
+            "Hola, encontré la ficha de " + (m.nombre || "tu mascota") +
+            " en ScanPet y quisiera comunicarme contigo."
+          );
+        boton.classList.remove("oculto");
+      }
+    }
+
+    function iniciar() {
+      const coincidencia = window.location.pathname.match(
+        /\/p\/(SP-[A-Z0-9]{8})\/?$/i
+      );
+
+      // Permite probar también desde la página principal con ?codigo=...
+      const parametros = new URLSearchParams(window.location.search);
+      const codigo = (
+        coincidencia ? coincidencia[1] : parametros.get("codigo") || ""
+      ).trim().toUpperCase();
+
+      if (!/^SP-[A-Z0-9]{8}$/.test(codigo)) {
+        mostrarError(
+          "Escanea el código de tu llavero",
+          "Este enlace no contiene un código de mascota válido."
+        );
+        return;
+      }
+
+      window.scanpetRespuesta = function(respuesta) {
+        mostrarMascota(respuesta);
+        delete window.scanpetRespuesta;
+      };
+
+      const script = document.createElement("script");
+      script.src =
+        API_URL +
+        "?api=mascota" +
+        "&codigo=" + encodeURIComponent(codigo) +
+        "&callback=scanpetRespuesta";
+
+      script.onerror = function() {
+        mostrarError(
+          "No pudimos cargar la ficha",
+          "Comprueba tu conexión e inténtalo de nuevo."
+        );
+      };
+
+      document.body.appendChild(script);
+    }
+
+    iniciar();
+  </script>
 </body>
 </html>
