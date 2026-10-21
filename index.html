@@ -234,13 +234,114 @@
           </p>
         </form>
 
-        <div id="activacionCorrecta" class="oculto">
-          <div class="estado" style="padding:20px 0;">
-            <strong>¡Código validado!</strong>
-            La validación fue correcta. Próximamente podrás continuar
-            con el formulario de registro de tu mascota.
-          </div>
-        </div>
+        
+<div id="activacionCorrecta" class="oculto">
+  <div class="contenido">
+    <h1 style="font-size:24px;">Registra tu mascota</h1>
+    <p style="text-align:center;line-height:1.6;color:var(--gris);">
+      Completa los datos para crear su ficha de identificación.
+      Tu registro será revisado antes de publicarse.
+    </p>
+
+    <form id="formRegistroMascota">
+      <div class="etiqueta">Información de la mascota</div>
+
+      <label for="nombreMascota">Nombre *</label>
+      <input id="nombreMascota" name="nombre" required maxlength="100"
+        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+
+      <label for="especieMascota">Especie *</label>
+      <select id="especieMascota" name="especie" required
+        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+        <option value="">Selecciona una especie</option>
+        <option value="Perro">Perro</option>
+        <option value="Gato">Gato</option>
+        <option value="Otra">Otra</option>
+      </select>
+
+      <label for="razaMascota">Raza</label>
+      <input id="razaMascota" name="raza" maxlength="100"
+        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+
+      <label for="anioMascota">Año de nacimiento</label>
+      <input id="anioMascota" name="anioNacimiento" type="number"
+        min="1900" max="2100"
+        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+
+      <label for="colorMascota">Color y señas particulares</label>
+      <textarea id="colorMascota" name="colorSenas" rows="2" maxlength="1000"
+        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;"></textarea>
+
+      <label for="zonaMascota">Municipio o zona</label>
+      <input id="zonaMascota" name="municipioZona" maxlength="150"
+        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+
+      <label for="cuidadosMascota">Cuidados especiales</label>
+      <textarea id="cuidadosMascota" name="cuidadosEspeciales" rows="2" maxlength="1500"
+        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;"></textarea>
+
+      <label for="mensajeMascota">Mensaje de su familia</label>
+      <textarea id="mensajeMascota" name="mensajePersonal" rows="2" maxlength="1500"
+        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;"></textarea>
+
+      <label for="fotoMascota">Fotografía de la mascota</label>
+      <input id="fotoMascota" type="file" accept="image/jpeg,image/png,image/webp"
+        style="display:block;width:100%;margin:8px 0 14px;">
+      <p style="font-size:12px;color:var(--gris);">
+        Opcional. Se recomienda una imagen clara de hasta 2 MB.
+      </p>
+
+      <div class="etiqueta">Datos de contacto</div>
+
+      <label for="nombreContacto">Nombre del responsable *</label>
+      <input id="nombreContacto" name="nombreContacto" required maxlength="120"
+        autocomplete="name"
+        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+
+      <label for="telefonoContacto">Teléfono *</label>
+      <input id="telefonoContacto" name="telefono" type="tel" required maxlength="30"
+        autocomplete="tel"
+        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+
+      <label for="whatsappContacto">WhatsApp</label>
+      <input id="whatsappContacto" name="whatsapp" type="tel" maxlength="30"
+        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+
+      <label for="correoContacto">Correo electrónico *</label>
+      <input id="correoContacto" name="correoPropietario" type="email"
+        required maxlength="254" autocomplete="email"
+        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+
+      <label style="display:flex;gap:10px;align-items:flex-start;margin:18px 0;">
+        <input id="consentimientoRegistro" type="checkbox" required
+          style="margin-top:4px;flex-shrink:0;">
+        <span style="font-size:13px;line-height:1.5;">
+          Autorizo el tratamiento de los datos personales suministrados
+          para gestionar la identificación y el registro de mi mascota.
+          He leído la política de tratamiento de datos de ScanPet.
+        </span>
+      </label>
+
+      <button id="botonEnviarRegistro" class="boton" type="submit"
+        style="width:100%;border:0;cursor:pointer;">
+        Enviar solicitud
+      </button>
+
+      <p id="mensajeRegistro" role="status" aria-live="polite"
+        style="margin-top:14px;text-align:center;line-height:1.5;"></p>
+    </form>
+
+    <div id="registroExitoso" class="oculto">
+      <div class="estado" style="padding:20px 0;">
+        <strong>¡Solicitud recibida!</strong>
+        Tu registro quedó pendiente de revisión. Guarda este número
+        de solicitud:
+        <p id="numeroSolicitud" style="font-weight:bold;"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
       </div>
     </section>
 
@@ -401,6 +502,8 @@ const API_URL =
     
     const ACTIVACION_URL = "/api/activacion";
 
+    let tokenAutorizacionScanPet = "";
+
     function mostrarActivacion() {
       document.getElementById("cargando").classList.add("oculto");
       document.getElementById("error").classList.add("oculto");
@@ -463,8 +566,17 @@ const API_URL =
           return;
         }
 
-        document.getElementById("formActivacion").classList.add("oculto");
-        resultado.classList.remove("oculto");
+tokenAutorizacionScanPet = datos.tokenAutorizacion || "";
+
+if (!/^[a-fA-F0-9]{64}$/.test(tokenAutorizacionScanPet)) {
+  tokenAutorizacionScanPet = "";
+  mensaje.textContent =
+    "El servidor no entregó una autorización válida. Inténtalo nuevamente.";
+  return;
+}
+
+document.getElementById("formActivacion").classList.add("oculto");
+resultado.classList.remove("oculto");
 
       } catch (error) {
         mensaje.textContent =
@@ -533,6 +645,200 @@ const API_URL =
 
       document.body.appendChild(scriptEstado);
     }
+
+
+    
+async function prepararFotoScanPet(archivo) {
+  if (!archivo) return null;
+
+  const tiposPermitidos = [
+    "image/jpeg",
+    "image/png",
+    "image/webp"
+  ];
+
+  if (!tiposPermitidos.includes(archivo.type)) {
+    throw new Error("Selecciona una fotografía JPG, PNG o WebP.");
+  }
+
+  // Limitar el tamaño original para evitar archivos excesivos.
+  if (archivo.size > 8 * 1024 * 1024) {
+    throw new Error("La fotografía original no puede superar 8 MB.");
+  }
+
+  const imagen = await createImageBitmap(archivo);
+
+  try {
+    const maximo = 1200;
+    const escala = Math.min(
+      1,
+      maximo / Math.max(imagen.width, imagen.height)
+    );
+
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.max(1, Math.round(imagen.width * escala));
+    canvas.height = Math.max(1, Math.round(imagen.height * escala));
+
+    const contexto = canvas.getContext("2d");
+
+    if (!contexto) {
+      throw new Error("No se pudo procesar la fotografía.");
+    }
+
+    contexto.drawImage(imagen, 0, 0, canvas.width, canvas.height);
+
+    const blob = await new Promise(function(resolve) {
+      canvas.toBlob(resolve, "image/jpeg", 0.80);
+    });
+
+    if (!blob) {
+      throw new Error("No se pudo comprimir la fotografía.");
+    }
+
+    if (blob.size > 2 * 1024 * 1024) {
+      throw new Error(
+        "La fotografía comprimida supera 2 MB. Prueba con otra imagen."
+      );
+    }
+
+    const base64 = await new Promise(function(resolve, reject) {
+      const lector = new FileReader();
+
+      lector.onload = function() {
+        const resultado = String(lector.result || "");
+        resolve(resultado.split(",")[1] || "");
+      };
+
+      lector.onerror = function() {
+        reject(new Error("No se pudo leer la fotografía."));
+      };
+
+      lector.readAsDataURL(blob);
+    });
+
+    return {
+      tipo: "image/jpeg",
+      base64: base64
+    };
+
+  } finally {
+    imagen.close();
+  }
+}
+
+
+document.getElementById("formRegistroMascota")
+  .addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const formulario = this;
+    const boton = document.getElementById("botonEnviarRegistro");
+    const mensaje = document.getElementById("mensajeRegistro");
+    const campoFoto = document.getElementById("fotoMascota");
+
+    if (!tokenAutorizacionScanPet) {
+      mensaje.textContent =
+        "La autorización no está disponible. Valida nuevamente tu llavero.";
+      return;
+    }
+
+    const coincidencia = window.location.pathname.match(
+      /\/p\/(SP-[A-Z0-9]{8})\/?$/i
+    );
+
+    const parametros = new URLSearchParams(window.location.search);
+
+    const codigo = (
+      coincidencia
+        ? coincidencia[1]
+        : parametros.get("codigo") || ""
+    ).trim().toUpperCase();
+
+    if (!/^SP-[A-Z0-9]{8}$/.test(codigo)) {
+      mensaje.textContent = "El enlace del llavero no es válido.";
+      return;
+    }
+
+    boton.disabled = true;
+    boton.textContent = "Enviando solicitud...";
+    mensaje.textContent = "";
+
+    try {
+      let foto = null;
+
+      if (campoFoto.files && campoFoto.files.length > 0) {
+        foto = await prepararFotoScanPet(campoFoto.files[0]);
+      }
+
+      const mascota = {
+        nombre: document.getElementById("nombreMascota").value.trim(),
+        especie: document.getElementById("especieMascota").value,
+        raza: document.getElementById("razaMascota").value.trim(),
+        anioNacimiento: document.getElementById("anioMascota").value,
+        colorSenas: document.getElementById("colorMascota").value.trim(),
+        municipioZona: document.getElementById("zonaMascota").value.trim(),
+        cuidadosEspeciales: document.getElementById("cuidadosMascota").value.trim(),
+        mensajePersonal: document.getElementById("mensajeMascota").value.trim(),
+        nombreContacto: document.getElementById("nombreContacto").value.trim(),
+        telefono: document.getElementById("telefonoContacto").value.trim(),
+        whatsapp: document.getElementById("whatsappContacto").value.trim(),
+        correoPropietario: document.getElementById("correoContacto").value.trim()
+      };
+
+      const respuesta = await fetch(ACTIVACION_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          operacion: "registrarMascota",
+          codigo: codigo,
+          tokenAutorizacion: tokenAutorizacionScanPet,
+          mascota: mascota,
+          consentimiento:
+            document.getElementById("consentimientoRegistro").checked,
+          foto: foto
+        })
+      });
+
+      const datos = await respuesta.json();
+
+      if (!respuesta.ok || !datos.ok) {
+        // El servidor puede haber consumido el token antes del error.
+        tokenAutorizacionScanPet = "";
+
+        document.getElementById("activacionCorrecta")
+          .classList.add("oculto");
+
+        document.getElementById("formActivacion")
+          .classList.remove("oculto");
+
+        document.getElementById("mensajeActivacion").textContent =
+          (datos.mensaje || "No fue posible registrar la solicitud.") +
+          " Valida nuevamente el código antes de intentarlo otra vez.";
+
+        return;
+      }
+
+      tokenAutorizacionScanPet = "";
+
+      formulario.classList.add("oculto");
+
+      document.getElementById("numeroSolicitud").textContent =
+        datos.idSolicitud || "Solicitud recibida";
+
+      document.getElementById("registroExitoso")
+        .classList.remove("oculto");
+
+    } catch (error) {
+      mensaje.textContent =
+        error.message ||
+        "No fue posible enviar la solicitud. Inténtalo nuevamente.";
+    } finally {
+      boton.disabled = false;
+      boton.textContent = "Enviar solicitud";
+    }
+  });
 
 
     function iniciar() {
