@@ -610,14 +610,14 @@ resultado.classList.remove("oculto");
           return;
         }
 
-        const mensajes = {
-          Pendiente: "El registro de esta mascota está en revisión.",
-          Activo: "Este llavero ya está activado, pero no pudimos cargar su ficha.",
-          Bloqueado: "Este llavero está bloqueado. Contacta con ScanPet.",
-          Baja: "Este llavero ya no está disponible.",
-          NoEncontrado: "No se encontró este llavero."
-        };
-
+const mensajes = {
+  Pendiente: "El registro de esta mascota está en revisión.",
+  Rechazado: "La solicitud de registro de esta mascota no fue aprobada. Comunícate con ScanPet para obtener más información.",
+  Activo: "Este llavero ya está activado, pero no pudimos cargar su ficha.",
+  Bloqueado: "Este llavero está bloqueado. Contacta con ScanPet.",
+  Baja: "Este llavero ya no está disponible.",
+  NoEncontrado: "No se encontró este llavero."
+};
         mostrarError(
           "Llavero no disponible",
           mensajes[respuesta.estado] ||
