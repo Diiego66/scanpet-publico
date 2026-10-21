@@ -185,6 +185,66 @@
       </div>
     </section>
 
+    
+    <section id="activacion" class="tarjeta oculto">
+      <div class="franja"></div>
+
+      <div class="contenido">
+        <h1 style="font-size: 24px;">Activa tu llavero</h1>
+
+        <p style="text-align: center; line-height: 1.6;">
+          Este llavero está disponible. Introduce el código de activación
+          que recibiste con tu producto para continuar con el registro
+          de tu mascota.
+        </p>
+
+        <form id="formActivacion">
+          <label for="codigoActivacion"
+                 style="display:block; font-weight:700; margin:20px 0 8px;">
+            Código de activación
+          </label>
+
+          <input
+            id="codigoActivacion"
+            name="codigoActivacion"
+            type="text"
+            placeholder="XXXX-XXXX"
+            maxlength="9"
+            autocomplete="off"
+            autocapitalize="characters"
+            required
+            style="width:100%; padding:14px; border:1px solid var(--borde);
+                   border-radius:10px; font-size:18px; text-align:center;
+                   letter-spacing:2px;"
+          >
+
+          <button
+            id="botonValidar"
+            type="submit"
+            class="boton"
+            style="width:100%; border:0; cursor:pointer; margin-top:14px;"
+          >
+            Validar código
+          </button>
+
+          <p id="mensajeActivacion"
+             role="status"
+             aria-live="polite"
+             style="margin:16px 0 0; text-align:center; line-height:1.5;">
+          </p>
+        </form>
+
+        <div id="activacionCorrecta" class="oculto">
+          <div class="estado" style="padding:20px 0;">
+            <strong>¡Código validado!</strong>
+            La validación fue correcta. Próximamente podrás continuar
+            con el formulario de registro de tu mascota.
+          </div>
+        </div>
+      </div>
+    </section>
+
+
     <section id="ficha" class="tarjeta oculto">
       <div class="franja"></div>
 
@@ -338,6 +398,143 @@ const API_URL =
       }
     }
 
+    
+    const ACTIVACION_URL = "/api/activacion";
+
+    function mostrarActivacion() {
+      document.getElementById("cargando").classList.add("oculto");
+      document.getElementById("error").classList.add("oculto");
+      document.getElementById("ficha").classList.add("oculto");
+      document.getElementById("activacion").classList.remove("oculto");
+    }
+
+    document.getElementById("formActivacion").addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const campo = document.getElementById("codigoActivacion");
+      const boton = document.getElementById("botonValidar");
+      const mensaje = document.getElementById("mensajeActivacion");
+      const resultado = document.getElementById("activacionCorrecta");
+
+      const codigoActivacion = campo.value.trim().toUpperCase();
+
+      const coincidencia = window.location.pathname.match(
+        /\/p\/(SP-[A-Z0-9]{8})\/?$/i
+      );
+
+      const parametros = new URLSearchParams(window.location.search);
+
+      const codigo = (
+        coincidencia ? coincidencia[1] : parametros.get("codigo") || ""
+      ).trim().toUpperCase();
+
+      if (!/^SP-[A-Z0-9]{8}$/.test(codigo)) {
+        mensaje.textContent = "El enlace del llavero no es válido.";
+        return;
+      }
+
+      if (!/^[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(codigoActivacion)) {
+        mensaje.textContent = "Introduce el código en el formato XXXX-XXXX.";
+        return;
+      }
+
+      boton.disabled = true;
+      boton.textContent = "Validando...";
+      mensaje.textContent = "";
+      resultado.classList.add("oculto");
+
+      try {
+        const respuesta = await fetch(ACTIVACION_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            codigo: codigo,
+            codigoActivacion: codigoActivacion
+          })
+        });
+
+        const datos = await respuesta.json();
+
+        if (!respuesta.ok || !datos.ok || !datos.autorizado) {
+          mensaje.textContent = datos.mensaje ||
+            "No fue posible validar el código.";
+          return;
+        }
+
+        document.getElementById("formActivacion").classList.add("oculto");
+        resultado.classList.remove("oculto");
+
+      } catch (error) {
+        mensaje.textContent =
+          "No pudimos conectar con el servidor. Inténtalo nuevamente.";
+      } finally {
+        boton.disabled = false;
+        boton.textContent = "Validar código";
+      }
+    });
+
+
+    
+    function consultarEstadoLlavero(codigo) {
+      const callback = "scanpetEstadoRespuesta";
+
+      window[callback] = function(respuesta) {
+        delete window[callback];
+
+        if (!respuesta || !respuesta.ok) {
+          mostrarError(
+            "No pudimos consultar el llavero",
+            respuesta && respuesta.mensaje
+              ? respuesta.mensaje
+              : "Inténtalo nuevamente más tarde."
+          );
+          return;
+        }
+
+        if (respuesta.estado === "Disponible") {
+          mostrarActivacion();
+          return;
+        }
+
+        const mensajes = {
+          Pendiente: "El registro de esta mascota está en revisión.",
+          Activo: "Este llavero ya está activado, pero no pudimos cargar su ficha.",
+          Bloqueado: "Este llavero está bloqueado. Contacta con ScanPet.",
+          Baja: "Este llavero ya no está disponible.",
+          NoEncontrado: "No se encontró este llavero."
+        };
+
+        mostrarError(
+          "Llavero no disponible",
+          mensajes[respuesta.estado] ||
+            respuesta.mensaje ||
+            "No fue posible consultar el llavero."
+        );
+      };
+
+      const scriptEstado = document.createElement("script");
+
+      scriptEstado.src =
+        API_URL +
+        "?api=estadoLlavero" +
+        "&codigo=" + encodeURIComponent(codigo) +
+        "&callback=" + callback;
+
+      scriptEstado.onerror = function() {
+        delete window[callback];
+
+        mostrarError(
+          "No pudimos consultar el llavero",
+          "Comprueba tu conexión e inténtalo nuevamente."
+        );
+      };
+
+      document.body.appendChild(scriptEstado);
+    }
+
+
     function iniciar() {
       const coincidencia = window.location.pathname.match(
         /\/p\/(SP-[A-Z0-9]{8})\/?$/i
@@ -357,10 +554,17 @@ const API_URL =
         return;
       }
 
+
       window.scanpetRespuesta = function(respuesta) {
-        mostrarMascota(respuesta);
+        if (respuesta && respuesta.ok && respuesta.mascota) {
+          mostrarMascota(respuesta);
+        } else {
+          consultarEstadoLlavero(codigo);
+        }
+
         delete window.scanpetRespuesta;
       };
+
 
       const script = document.createElement("script");
       script.src =
