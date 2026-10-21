@@ -820,15 +820,40 @@ document.getElementById("formRegistroMascota")
         return;
       }
 
-      tokenAutorizacionScanPet = "";
+  
+tokenAutorizacionScanPet = "";
 
-      formulario.classList.add("oculto");
+// Ocultar el encabezado y el mensaje de activación.
+document.querySelector("#activacion > .contenido > h1")
+  .classList.add("oculto");
 
-      document.getElementById("numeroSolicitud").textContent =
-        datos.idSolicitud || "Solicitud recibida";
+document.querySelector("#activacion > .contenido > p")
+  .classList.add("oculto");
 
-      document.getElementById("registroExitoso")
-        .classList.remove("oculto");
+// Ocultar el formulario de activación.
+document.getElementById("formActivacion")
+  .classList.add("oculto");
+
+// Ocultar el formulario de registro.
+formulario.classList.add("oculto");
+
+// Ocultar el título y la descripción del registro.
+const contenedorRegistro = document
+  .getElementById("activacionCorrecta");
+
+contenedorRegistro.querySelector("h1")
+  .classList.add("oculto");
+
+contenedorRegistro.querySelector("p")
+  .classList.add("oculto");
+
+// Mostrar el número y la confirmación.
+document.getElementById("numeroSolicitud").textContent =
+  datos.idSolicitud || "Solicitud recibida";
+
+document.getElementById("registroExitoso")
+  .classList.remove("oculto");
+
 
     } catch (error) {
       mensaje.textContent =
