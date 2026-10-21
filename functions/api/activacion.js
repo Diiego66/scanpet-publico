@@ -2,34 +2,27 @@
 export async function onRequestPost(context) {
   const { request, env } = context;
 
-  // Solo aceptar solicitudes desde la página pública de ScanPet.
   const origen = request.headers.get("Origin");
 
   if (origen && origen !== "https://scanpet-publico.pages.dev") {
-    return respuesta({
-      ok: false,
-      mensaje: "Origen no permitido."
-    }, 403);
+    return respuesta({ ok: false, mensaje: "Origen no permitido." }, 403);
+  }
+
+  const tipoContenido = request.headers.get("content-type") || "";
+
+  if (!tipoContenido.toLowerCase().includes("application/json")) {
+    return respuesta({ ok: false, mensaje: "Tipo de solicitud no válido." }, 415);
   }
 
   let datos;
 
   try {
-    const tipoContenido = request.headers.get("content-type") || "";
-
-    if (!tipoContenido.toLowerCase().includes("application/json")) {
-      return respuesta({
-        ok: false,
-        mensaje: "Tipo de solicitud no válido."
-      }, 415);
-    }
-
     const texto = await request.text();
 
-    if (texto.length > 5000) {
+    if (!texto || texto.length > 4500000) {
       return respuesta({
         ok: false,
-        mensaje: "La solicitud es demasiado grande."
+        mensaje: "La solicitud está vacía o es demasiado grande."
       }, 413);
     }
 
@@ -42,25 +35,120 @@ export async function onRequestPost(context) {
   }
 
   const codigo = String(datos.codigo || "").trim().toUpperCase();
-  const codigoActivacion = String(datos.codigoActivacion || "")
-    .trim()
-    .toUpperCase();
 
-  if (
-    !/^SP-[A-Z0-9]{8}$/.test(codigo) ||
-    !/^[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(codigoActivacion)
-  ) {
+  if (!/^SP-[A-Z0-9]{8}$/.test(codigo)) {
     return respuesta({
       ok: false,
-      mensaje: "Verifica el código del llavero y el código de activación."
+      mensaje: "El código del llavero no es válido."
+    }, 400);
+  }
+
+  // Mantener compatibilidad con el formulario de activación actual.
+  const operacion = datos.operacion ||
+    (datos.codigoActivacion ? "validarActivacion" : "");
+
+  let solicitudServidor;
+
+  if (operacion === "validarActivacion") {
+    const codigoActivacion = String(datos.codigoActivacion || "")
+      .trim()
+      .toUpperCase();
+
+    if (!/^[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(codigoActivacion)) {
+      return respuesta({
+        ok: false,
+        mensaje: "Verifica el código de activación."
+      }, 400);
+    }
+
+    solicitudServidor = {
+      api: "validarActivacion",
+      codigo: codigo,
+      codigoActivacion: codigoActivacion
+    };
+
+  } else if (operacion === "registrarMascota") {
+    const token = String(datos.tokenAutorizacion || "");
+
+    if (!/^[a-fA-F0-9]{64}$/.test(token)) {
+      return respuesta({
+        ok: false,
+        mensaje: "La autorización no es válida. Valida nuevamente tu llavero."
+      }, 400);
+    }
+
+    if (
+      !datos.mascota ||
+      typeof datos.mascota !== "object" ||
+      Array.isArray(datos.mascota) ||
+      datos.consentimiento !== true
+    ) {
+      return respuesta({
+        ok: false,
+        mensaje: "Faltan los datos del registro o el consentimiento."
+      }, 400);
+    }
+
+    // Solo aceptar los campos esperados del formulario.
+    const m = datos.mascota;
+
+    const mascota = {
+      nombre: m.nombre,
+      especie: m.especie,
+      raza: m.raza,
+      anioNacimiento: m.anioNacimiento,
+      colorSenas: m.colorSenas,
+      municipioZona: m.municipioZona,
+      cuidadosEspeciales: m.cuidadosEspeciales,
+      mensajePersonal: m.mensajePersonal,
+      nombreContacto: m.nombreContacto,
+      telefono: m.telefono,
+      whatsapp: m.whatsapp,
+      correoPropietario: m.correoPropietario
+    };
+
+    let foto = null;
+
+    if (datos.foto != null) {
+      if (
+        typeof datos.foto !== "object" ||
+        typeof datos.foto.base64 !== "string" ||
+        typeof datos.foto.tipo !== "string"
+      ) {
+        return respuesta({
+          ok: false,
+          mensaje: "El archivo de fotografía no es válido."
+        }, 400);
+      }
+
+      foto = {
+        tipo: datos.foto.tipo,
+        base64: datos.foto.base64
+      };
+    }
+
+    solicitudServidor = {
+      api: "registrarMascota",
+      codigo: codigo,
+      tokenAutorizacion: token,
+      mascota: mascota,
+      consentimiento: true,
+      foto: foto
+    };
+
+  } else {
+    return respuesta({
+      ok: false,
+      mensaje: "Operación no permitida."
     }, 400);
   }
 
   if (!env.SCANPET_API_SECRET) {
     console.error("Falta configurar SCANPET_API_SECRET.");
+
     return respuesta({
       ok: false,
-      mensaje: "El servicio de activación no está configurado."
+      mensaje: "El servicio no está configurado."
     }, 500);
   }
 
@@ -74,10 +162,8 @@ export async function onRequestPost(context) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        api: "validarActivacion",
-        apiSecret: env.SCANPET_API_SECRET,
-        codigo: codigo,
-        codigoActivacion: codigoActivacion
+        ...solicitudServidor,
+        apiSecret: env.SCANPET_API_SECRET
       }),
       redirect: "follow"
     });
@@ -90,9 +176,10 @@ export async function onRequestPost(context) {
       resultado = JSON.parse(contenido);
     } catch (error) {
       console.error("Apps Script devolvió una respuesta no JSON.");
+
       return respuesta({
         ok: false,
-        mensaje: "No fue posible validar el código en este momento."
+        mensaje: "No fue posible procesar la respuesta del servidor."
       }, 502);
     }
 
