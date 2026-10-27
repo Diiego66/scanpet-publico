@@ -463,6 +463,16 @@ const API_URL =
 
       const m = respuesta.mascota;
 
+      codigoLlaveroFichaScanPet = String(m.codigo || "")
+  .trim()
+  .toUpperCase();
+
+const botonEncontrada = document.getElementById("botonEncontrada");
+
+if (botonEncontrada) {
+  botonEncontrada.classList.remove("oculto");
+}
+
       document.getElementById("ficha").classList.remove("oculto");
       document.getElementById("nombre").textContent = m.nombre || "Mascota";
 
@@ -518,7 +528,11 @@ const API_URL =
     
     const ACTIVACION_URL = "/api/activacion";
 
+    const REPORTAR_ENCONTRADA_URL = "/api/reportar-encontrada";
+
     let tokenAutorizacionScanPet = "";
+
+    let codigoLlaveroFichaScanPet = "";
 
     function mostrarActivacion() {
       document.getElementById("cargando").classList.add("oculto");
@@ -931,6 +945,131 @@ document.getElementById("registroExitoso")
     }
 
     iniciar();
+
+    
+const botonEncontradaScanPet =
+  document.getElementById("botonEncontrada");
+
+const estadoReporteEncontradaScanPet =
+  document.getElementById("estadoReporteEncontrada");
+
+async function enviarReporteEncontradaScanPet(latitud, longitud) {
+  const codigo = codigoLlaveroFichaScanPet;
+
+  if (!/^SP-[A-Z0-9]{8}$/.test(codigo)) {
+    throw new Error("No se pudo identificar el llavero.");
+  }
+
+  const respuesta = await fetch(REPORTAR_ENCONTRADA_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      codigo: codigo,
+      latitud: latitud,
+      longitud: longitud
+    })
+  });
+
+  let resultado;
+
+  try {
+    resultado = await respuesta.json();
+  } catch (error) {
+    throw new Error("El servidor devolvió una respuesta no válida.");
+  }
+
+  if (!respuesta.ok || !resultado.ok) {
+    throw new Error(
+      resultado.mensaje || "No fue posible enviar el aviso."
+    );
+  }
+
+  return resultado;
+}
+
+function solicitarUbicacionEncontradaScanPet() {
+  return new Promise(function(resolve, reject) {
+    if (!navigator.geolocation) {
+      reject(new Error("ubicacion_no_disponible"));
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      function(posicion) {
+        resolve({
+          latitud: posicion.coords.latitude,
+          longitud: posicion.coords.longitude
+        });
+      },
+      function(error) {
+        reject(new Error("ubicacion_no_disponible"));
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 12000,
+        maximumAge: 0
+      }
+    );
+  });
+}
+
+if (botonEncontradaScanPet) {
+  botonEncontradaScanPet.addEventListener("click", async function() {
+    if (!codigoLlaveroFichaScanPet) {
+      return;
+    }
+
+    botonEncontradaScanPet.disabled = true;
+
+    estadoReporteEncontradaScanPet.classList.remove("oculto");
+    estadoReporteEncontradaScanPet.textContent =
+      "Solicitando permiso de ubicación…";
+
+    try {
+      let ubicacion;
+
+      try {
+        ubicacion = await solicitarUbicacionEncontradaScanPet();
+      } catch (errorUbicacion) {
+        const continuarSinUbicacion = window.confirm(
+          "No fue posible obtener tu ubicación. " +
+          "¿Quieres enviar el aviso sin incluirla?"
+        );
+
+        if (!continuarSinUbicacion) {
+          estadoReporteEncontradaScanPet.textContent =
+            "No se envió el aviso.";
+          return;
+        }
+
+        ubicacion = {
+          latitud: null,
+          longitud: null
+        };
+      }
+
+      estadoReporteEncontradaScanPet.textContent =
+        "Enviando aviso al propietario…";
+
+      const resultado = await enviarReporteEncontradaScanPet(
+        ubicacion.latitud,
+        ubicacion.longitud
+      );
+
+      estadoReporteEncontradaScanPet.textContent =
+        resultado.mensaje || "Aviso enviado correctamente.";
+
+    } catch (error) {
+      estadoReporteEncontradaScanPet.textContent =
+        error.message || "No fue posible enviar el aviso.";
+    } finally {
+      botonEncontradaScanPet.disabled = false;
+    }
+  });
+}
+
   </script>
 </body>
 </html>
