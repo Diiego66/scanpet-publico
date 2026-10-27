@@ -953,6 +953,7 @@ const botonEncontradaScanPet =
 const estadoReporteEncontradaScanPet =
   document.getElementById("estadoReporteEncontrada");
 
+
 async function enviarReporteEncontradaScanPet(latitud, longitud) {
   const codigo = codigoLlaveroFichaScanPet;
 
@@ -977,17 +978,35 @@ async function enviarReporteEncontradaScanPet(latitud, longitud) {
   try {
     resultado = await respuesta.json();
   } catch (error) {
+    console.error(
+      "ScanPet: respuesta no válida del servidor.",
+      "Estado HTTP:",
+      respuesta.status
+    );
     throw new Error("El servidor devolvió una respuesta no válida.");
   }
 
+  console.log("ScanPet: resultado del reporte", {
+    estadoHTTP: respuesta.status,
+    resultado: resultado
+  });
+
   if (!respuesta.ok || !resultado.ok) {
+    console.error(
+      "ScanPet: error al enviar el aviso.",
+      resultado.errorTecnico || resultado.mensaje || "Sin detalle técnico"
+    );
+
     throw new Error(
-      resultado.mensaje || "No fue posible enviar el aviso."
+      resultado.errorTecnico ||
+      resultado.mensaje ||
+      "No fue posible enviar el aviso."
     );
   }
 
   return resultado;
 }
+
 
 function solicitarUbicacionEncontradaScanPet() {
   return new Promise(function(resolve, reject) {
