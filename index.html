@@ -204,19 +204,47 @@
             Código de activación
           </label>
 
-          <input
-            id="codigoActivacion"
-            name="codigoActivacion"
-            type="text"
-            placeholder="XXXX-XXXX"
-            maxlength="9"
-            autocomplete="off"
-            autocapitalize="characters"
-            required
-            style="width:100%; padding:14px; border:1px solid var(--borde);
-                   border-radius:10px; font-size:18px; text-align:center;
-                   letter-spacing:2px;"
-          >
+         
+<div style="display:flex; align-items:center; gap:10px; margin-top:8px;">
+  <input
+    id="bloqueCodigo1"
+    type="text"
+    placeholder="XXXX"
+    maxlength="4"
+    autocomplete="off"
+    autocapitalize="characters"
+    required
+    aria-label="Primer bloque del código de activación"
+    style="width:100%; min-width:0; padding:14px 8px;
+    border:1px solid var(--borde); border-radius:10px;
+    font-size:18px; text-align:center; letter-spacing:2px;
+    text-transform:uppercase;"
+  >
+
+  <span style="font-size:22px; font-weight:700;">-</span>
+
+  <input
+    id="bloqueCodigo2"
+    type="text"
+    placeholder="XXXX"
+    maxlength="4"
+    autocomplete="off"
+    autocapitalize="characters"
+    required
+    aria-label="Segundo bloque del código de activación"
+    style="width:100%; min-width:0; padding:14px 8px;
+    border:1px solid var(--borde); border-radius:10px;
+    font-size:18px; text-align:center; letter-spacing:2px;
+    text-transform:uppercase;"
+  >
+</div>
+
+<input type="hidden" id="codigoActivacion" name="codigoActivacion">
+
+<p style="font-size:13px; color:var(--gris); line-height:1.5; margin:8px 0 0;">
+  Escribe los 4 caracteres de cada bloque. El guion ya está incluido.
+</p>
+
 
           <button
             id="botonValidar"
