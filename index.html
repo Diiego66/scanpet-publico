@@ -241,10 +241,6 @@
 
 <input type="hidden" id="codigoActivacion" name="codigoActivacion">
 
-<p style="font-size:13px; color:var(--gris); line-height:1.5; margin:8px 0 0;">
-  Escribe los 4 caracteres de cada bloque. El guion ya está incluido.
-</p>
-
 
           <button
             id="botonValidar"
@@ -572,12 +568,23 @@ if (botonEncontrada) {
     document.getElementById("formActivacion").addEventListener("submit", async function(event) {
       event.preventDefault();
 
-      const campo = document.getElementById("codigoActivacion");
-      const boton = document.getElementById("botonValidar");
-      const mensaje = document.getElementById("mensajeActivacion");
-      const resultado = document.getElementById("activacionCorrecta");
 
-      const codigoActivacion = campo.value.trim().toUpperCase();
+const campo = document.getElementById("codigoActivacion");
+const boton = document.getElementById("botonValidar");
+const mensaje = document.getElementById("mensajeActivacion");
+const resultado = document.getElementById("activacionCorrecta");
+
+const bloque1 = document.getElementById("bloqueCodigo1")
+  .value.trim().toUpperCase();
+
+const bloque2 = document.getElementById("bloqueCodigo2")
+  .value.trim().toUpperCase();
+
+const codigoActivacion = bloque1 + "-" + bloque2;
+
+// Guardar el código completo en el campo oculto.
+campo.value = codigoActivacion;
+
 
       const coincidencia = window.location.pathname.match(
         /\/p\/(SP-[A-Z0-9]{8})\/?$/i
