@@ -309,8 +309,12 @@
 
 
       <label for="colorMascota">Características físicas y señas particulares</label>
-      <textarea id="colorMascota" name="colorSenas" rows="2" maxlength="1000"  placeholder="Describe su color, manchas, cicatrices u otras características que ayuden a identificarla."
+      <textarea id="colorMascota" name="colorSenas" rows="2" maxlength="1000"  placeholder="Ej. Pelaje blanco con manchas negras, una mancha en la oreja derecha y una cicatriz en la pata."
         style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;"></textarea>
+
+      <p style="margin:0 0 14px;font-size:12px;color:var(--gris);line-height:1.5;">
+ Describe su color, manchas, cicatrices u otras características que ayuden a identificarla.
+</p>
 
 
 <label for="zonaMascota">Ubicación de referencia</label>
@@ -351,36 +355,51 @@
         Opcional. Se recomienda una imagen clara de hasta 2 MB.
       </p>
 
-      <div class="etiqueta">Datos de contacto</div>
+     
+<div class="etiqueta">Datos de contacto</div>
 
-      <label for="nombreContacto">Nombre del responsable *</label>
-      <input id="nombreContacto" name="nombreContacto" required maxlength="120"
-        autocomplete="name"
-        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+<label for="nombreContacto">Nombre del responsable *</label>
+<input id="nombreContacto" name="nombreContacto" required maxlength="120"
+  autocomplete="name"
+  style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
 
-      <label for="telefonoContacto">Teléfono *</label>
-      <input id="telefonoContacto" name="telefono" type="tel" required maxlength="30"
-        autocomplete="tel"
-        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+<label for="telefonoContacto">Teléfono *</label>
+<input id="telefonoContacto" name="telefono" type="tel" required
+  maxlength="15" inputmode="numeric" pattern="[0-9]{7,15}"
+  title="Ingresa únicamente números, entre 7 y 15 dígitos."
+  autocomplete="tel"
+  oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+  style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
 
-      <label for="whatsappContacto">WhatsApp</label>
-      <input id="whatsappContacto" name="whatsapp" type="tel" maxlength="30"
-        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+<label for="whatsappContacto">WhatsApp</label>
+<input id="whatsappContacto" name="whatsapp" type="tel"
+  maxlength="15" inputmode="numeric" pattern="[0-9]{7,15}"
+  title="Ingresa únicamente números, entre 7 y 15 dígitos."
+  oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+  style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
 
-      <label for="correoContacto">Correo electrónico *</label>
-      <input id="correoContacto" name="correoPropietario" type="email"
-        required maxlength="254" autocomplete="email"
-        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+<label for="correoContacto">Correo electrónico *</label>
+<input id="correoContacto" name="correoPropietario" type="email"
+  required maxlength="254" autocomplete="email"
+  style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
 
-      <label style="display:flex;gap:10px;align-items:flex-start;margin:18px 0;">
-        <input id="consentimientoRegistro" type="checkbox" required
-          style="margin-top:4px;flex-shrink:0;">
-        <span style="font-size:13px;line-height:1.5;">
-          Autorizo el tratamiento de los datos personales suministrados
-          para gestionar la identificación y el registro de mi mascota.
-          He leído la política de tratamiento de datos de ScanPet.
-        </span>
-      </label>
+
+
+<label style="display:flex;gap:10px;align-items:flex-start;margin:18px 0;">
+  <input id="consentimientoRegistro" type="checkbox" required
+    style="margin-top:4px;flex-shrink:0;">
+
+  <span style="font-size:13px;line-height:1.5;">
+    Autorizo el tratamiento de mis datos personales para gestionar
+    el registro y la identificación de mi mascota, de acuerdo con la
+    <a href="/politica-datos.html" target="_blank" rel="noopener noreferrer">
+      Política de Tratamiento de Datos Personales de ScanPet
+    </a>.
+    Declaro que he leído la información sobre el uso de mis datos
+    y mis derechos como titular.
+  </span>
+</label>
+
 
       <button id="botonEnviarRegistro" class="boton" type="submit"
         style="width:100%;border:0;cursor:pointer;">
