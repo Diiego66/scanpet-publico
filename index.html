@@ -295,10 +295,18 @@
 <datalist id="opcionesRazaMascota"></datalist>
 
 
-      <label for="anioMascota">Año de nacimiento</label>
-      <input id="anioMascota" name="anioNacimiento" type="number"
-        min="1900" max="2100"
-        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+     
+<label for="anioMascota">Año de nacimiento</label>
+<input id="anioMascota" name="anioNacimiento" type="number"
+  min="1990" max="2100" step="1"
+  placeholder="Ej. 2022"
+  style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 6px;">
+
+<p id="edadCalculada" aria-live="polite"
+  style="margin:0 0 14px;font-size:13px;color:var(--gris);">
+  La edad aparecerá aquí al ingresar el año de nacimiento.
+</p>
+
 
       <label for="colorMascota">Color y señas particulares</label>
       <textarea id="colorMascota" name="colorSenas" rows="2" maxlength="1000"
@@ -1215,6 +1223,49 @@ especieMascota.addEventListener("change", function() {
 
 // Configura las sugerencias iniciales sin borrar el campo.
 actualizarRazasMascota();
+
+
+    
+const anioMascota = document.getElementById("anioMascota");
+const edadCalculada = document.getElementById("edadCalculada");
+
+function calcularEdadMascota() {
+  const valor = anioMascota.value.trim();
+  const anioActual = new Date().getFullYear();
+
+  if (valor === "") {
+    edadCalculada.textContent =
+      "La edad aparecerá aquí al ingresar el año de nacimiento.";
+    return;
+  }
+
+  const anioNacimiento = Number(valor);
+
+  if (
+    !Number.isInteger(anioNacimiento) ||
+    anioNacimiento < 1900 ||
+    anioNacimiento > anioActual
+  ) {
+    edadCalculada.textContent =
+      "Ingresa un año válido, entre 1900 y " + anioActual + ".";
+    return;
+  }
+
+  const edad = anioActual - anioNacimiento;
+
+  if (edad === 0) {
+    edadCalculada.textContent =
+      "Edad aproximada: menos de 1 año (nació este año).";
+  } else if (edad === 1) {
+    edadCalculada.textContent = "Edad aproximada: 1 año.";
+  } else {
+    edadCalculada.textContent =
+      "Edad aproximada: " + edad + " años.";
+  }
+}
+
+anioMascota.addEventListener("input", calcularEdadMascota);
+calcularEdadMascota();
 
   </script>
 </body>
