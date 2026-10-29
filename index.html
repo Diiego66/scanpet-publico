@@ -254,7 +254,7 @@
           <p id="mensajeActivacion"
              role="status"
              aria-live="polite"
-             style="margin:16px 0 0; text-align:center; line-height:1.5;">
+             style="margin:16px 0 0; text-align:center; line-height:1.5; color: #dc3545;">
           </p>
         </form>
 
@@ -410,14 +410,35 @@
         style="margin-top:14px;text-align:center;line-height:1.5;"></p>
     </form>
 
-    <div id="registroExitoso" class="oculto">
-      <div class="estado" style="padding:20px 0;">
-        <strong>¡Solicitud recibida!</strong>
-        Tu registro quedó pendiente de revisión. Guarda este número
-        de solicitud:
-        <p id="numeroSolicitud" style="font-weight:bold;"></p>
-      </div>
-    </div>
+<div id="registroExitoso" class="oculto">
+  <div class="estado" style="padding:20px 0;">
+    <strong>¡Solicitud recibida correctamente!</strong>
+
+    <p style="margin:10px 0;">
+      Hemos recibido la información de tu mascota y tu solicitud
+      se encuentra en proceso de revisión.
+    </p>
+
+    <p style="margin:10px 0;">
+      Revisaremos tu solicitud lo antes posible. Nuestro objetivo
+      es aprobarla en un plazo máximo de 24 horas, siempre que
+      la información proporcionada esté completa.
+    </p>
+
+    <p style="margin:10px 0 5px;">
+      **Número de solicitud:**
+    </p>
+
+    <p id="numeroSolicitud"
+       style="font-weight:bold;font-size:20px;margin:5px 0;">
+    </p>
+
+    <p style="font-size:13px;margin-top:12px;">
+      Una vez aprobada, la ficha de tu mascota estará disponible
+      al escanear su llavero ScanPet.
+    </p>
+  </div>
+</div>
   </div>
 </div>
 
