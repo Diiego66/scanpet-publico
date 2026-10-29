@@ -304,12 +304,12 @@
 
 <p id="edadCalculada" aria-live="polite"
   style="margin:0 0 14px;font-size:13px;color:var(--gris);">
-  La edad aparecerá aquí al ingresar el año de nacimiento.
+ Edad aproximada:
 </p>
 
 
-      <label for="colorMascota">Color y señas particulares</label>
-      <textarea id="colorMascota" name="colorSenas" rows="2" maxlength="1000"
+      <label for="colorMascota">Características físicas y señas particulares</label>
+      <textarea id="colorMascota" name="colorSenas" rows="2" maxlength="1000"  placeholder="Describe su color, manchas, cicatrices u otras características que ayuden a identificarla."
         style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;"></textarea>
 
       <label for="zonaMascota">Municipio o zona</label>
@@ -1247,7 +1247,7 @@ function calcularEdadMascota() {
     anioNacimiento > anioActual
   ) {
     edadCalculada.textContent =
-      "Ingresa un año válido, entre 1900 y " + anioActual + ".";
+      "Ingresa un año válido, entre 1990 y " + anioActual + ".";
     return;
   }
 
@@ -1255,7 +1255,7 @@ function calcularEdadMascota() {
 
   if (edad === 0) {
     edadCalculada.textContent =
-      "Edad aproximada: menos de 1 año (nació este año).";
+      "Edad aproximada: menos de 1 año.";
   } else if (edad === 1) {
     edadCalculada.textContent = "Edad aproximada: 1 año.";
   } else {
