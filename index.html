@@ -274,14 +274,27 @@
       <input id="nombreMascota" name="nombre" required maxlength="100"
         style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
 
-      <label for="especieMascota">Especie *</label>
-      <select id="especieMascota" name="especie" required
-        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
-        <option value="">Selecciona una especie</option>
-        <option value="Perro">Perro</option>
-        <option value="Gato">Gato</option>
-        <option value="Otra">Otra</option>
-      </select>
+<label for="especie">Especie</label>
+<input
+  type="text"
+  id="especie"
+  name="especie"
+  list="opcionesEspecie"
+  placeholder="Selecciona o escribe la especie"
+  required
+  autocomplete="off"
+>
+
+<datalist id="opcionesEspecie">
+  <option value="Perro">
+  <option value="Gato">
+  <option value="Ave">
+  <option value="Conejo">
+  <option value="Hámster">
+  <option value="Tortuga">
+  <option value="Pez">
+  <option value="Otro">
+</datalist>
 
       <label for="razaMascota">Raza</label>
       <input id="razaMascota" name="raza" maxlength="100"
