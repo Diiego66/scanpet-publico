@@ -312,17 +312,37 @@
       <textarea id="colorMascota" name="colorSenas" rows="2" maxlength="1000"  placeholder="Describe su color, manchas, cicatrices u otras características que ayuden a identificarla."
         style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;"></textarea>
 
-      <label for="zonaMascota">Municipio o zona</label>
-      <input id="zonaMascota" name="municipioZona" maxlength="150"
-        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
 
-      <label for="cuidadosMascota">Cuidados especiales</label>
-      <textarea id="cuidadosMascota" name="cuidadosEspeciales" rows="2" maxlength="1500"
-        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;"></textarea>
+<label for="zonaMascota">Ubicación de referencia</label>
+<input id="zonaMascota" name="municipioZona" maxlength="150"
+  placeholder="Ciudad, municipio, sector o barrio "
+  style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 6px;">
 
-      <label for="mensajeMascota">Mensaje de su familia</label>
-      <textarea id="mensajeMascota" name="mensajePersonal" rows="2" maxlength="1500"
-        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;"></textarea>
+<p style="margin:0 0 14px;font-size:12px;color:var(--gris);line-height:1.5;">
+  Indica una zona general donde suele estar tu mascota.
+  No escribas tu dirección exacta ni datos de ubicación de tu vivienda.
+</p>
+
+
+<label for="cuidadosMascota">Cuidados e información importante</label>
+<textarea id="cuidadosMascota" name="cuidadosEspeciales"
+  rows="2" maxlength="1500"
+  placeholder="Ej. Es alérgico a ciertos alimentos, necesita medicamentos..."
+  style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 6px;"></textarea>
+<p style="margin:0 0 14px;font-size:12px;color:var(--gris);line-height:1.5;">
+  Incluye alergias, medicamentos, necesidades especiales u otras recomendaciones importantes para su bienestar.
+</p>
+
+
+<label for="mensajeMascota">Un mensaje para quien encuentre a tu mascota</label>
+<textarea id="mensajeMascota" name="mensajePersonal"
+  rows="2" maxlength="1500"
+  placeholder="Ej. Soy muy querido por mi familia. Si me encuentras, por favor comunícate con ellos..."
+  style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 6px;"></textarea>
+<p style="margin:0 0 14px;font-size:12px;color:var(--gris);line-height:1.5;">
+  Puedes escribir un mensaje personal, explicar cómo ayudar a tu mascota o pedir que contacten a tu familia.
+</p>
+
 
       <label for="fotoMascota">Fotografía de la mascota</label>
       <input id="fotoMascota" type="file" accept="image/jpeg,image/png,image/webp"
@@ -1235,7 +1255,7 @@ function calcularEdadMascota() {
 
   if (valor === "") {
     edadCalculada.textContent =
-      "La edad aparecerá aquí al ingresar el año de nacimiento.";
+      "Edad aproximada:";
     return;
   }
 
