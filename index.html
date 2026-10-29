@@ -274,31 +274,26 @@
       <input id="nombreMascota" name="nombre" required maxlength="100"
         style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
 
-<label for="especie">Especie</label>
-<input
-  type="text"
-  id="especie"
-  name="especie"
-  list="opcionesEspecie"
-  placeholder="Selecciona o escribe la especie"
-  required
+
+
+<label for="especieMascota">Especie *</label>
+<select id="especieMascota" name="especie" required
+  style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+  <option value="">Selecciona una especie</option>
+  <option value="Perro">Perro</option>
+  <option value="Gato">Gato</option>
+  <option value="Otra">Otra</option>
+</select>
+
+<label for="razaMascota">Raza</label>
+<input id="razaMascota" name="raza" type="text"
+  list="opcionesRazaMascota" maxlength="100"
+  placeholder="Selecciona o escribe la raza"
   autocomplete="off"
->
+  style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
 
-<datalist id="opcionesEspecie">
-  <option value="Perro">
-  <option value="Gato">
-  <option value="Ave">
-  <option value="Conejo">
-  <option value="Hámster">
-  <option value="Tortuga">
-  <option value="Pez">
-  <option value="Otro">
-</datalist>
+<datalist id="opcionesRazaMascota"></datalist>
 
-      <label for="razaMascota">Raza</label>
-      <input id="razaMascota" name="raza" maxlength="100"
-        style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
 
       <label for="anioMascota">Año de nacimiento</label>
       <input id="anioMascota" name="anioNacimiento" type="number"
@@ -1121,6 +1116,105 @@ if (botonEncontradaScanPet) {
     }
   });
 }
+
+    
+const especieMascota = document.getElementById("especieMascota");
+const razaMascota = document.getElementById("razaMascota");
+const opcionesRazaMascota = document.getElementById("opcionesRazaMascota");
+
+const razasPerros = [
+  "Criollo",
+  "Labrador Retriever",
+  "Golden Retriever",
+  "Poodle (Caniche)",
+  "Pastor Alemán",
+  "Bulldog Francés",
+  "Bulldog Inglés",
+  "Schnauzer",
+  "Beagle",
+  "Rottweiler",
+  "Pug",
+  "Chihuahua",
+  "Shih Tzu",
+  "Yorkshire Terrier",
+  "Cocker Spaniel",
+  "Husky Siberiano",
+  "Pomerania",
+  "Dachshund (Salchicha)",
+  "Border Collie",
+  "Pitbull",
+  "American Bully",
+  "Pinscher",
+  "Bóxer",
+  "Dóberman",
+  "Gran Danés",
+  "Maltés",
+  "Bichón Frisé",
+  "Akita",
+  "Chow Chow",
+  "San Bernardo"
+];
+
+const razasGatos = [
+  "Criollo (Gato doméstico)",
+  "Persa",
+  "Siamés",
+  "Angora Turco",
+  "Maine Coon",
+  "Bengalí",
+  "British Shorthair",
+  "Ragdoll",
+  "Sphynx",
+  "Azul Ruso",
+  "Himalayo",
+  "Scottish Fold",
+  "Bosque de Noruega",
+  "Abisinio",
+  "Birmano",
+  "Exótico de pelo corto"
+];
+
+function actualizarRazasMascota(limpiarRaza = false) {
+  const especie = especieMascota.value;
+
+  opcionesRazaMascota.replaceChildren();
+
+  if (especie === "Perro") {
+    razasPerros.forEach(function(raza) {
+      const opcion = document.createElement("option");
+      opcion.value = raza;
+      opcionesRazaMascota.appendChild(opcion);
+    });
+
+    razaMascota.setAttribute("list", "opcionesRazaMascota");
+    razaMascota.placeholder = "Selecciona o escribe la raza";
+
+  } else if (especie === "Gato") {
+    razasGatos.forEach(function(raza) {
+      const opcion = document.createElement("option");
+      opcion.value = raza;
+      opcionesRazaMascota.appendChild(opcion);
+    });
+
+    razaMascota.setAttribute("list", "opcionesRazaMascota");
+    razaMascota.placeholder = "Selecciona o escribe la raza";
+
+  } else {
+    razaMascota.removeAttribute("list");
+    razaMascota.placeholder = "Escribe la raza o variedad";
+  }
+
+  if (limpiarRaza) {
+    razaMascota.value = "";
+  }
+}
+
+especieMascota.addEventListener("change", function() {
+  actualizarRazasMascota(true);
+});
+
+// Configura las sugerencias iniciales sin borrar el campo.
+actualizarRazasMascota();
 
   </script>
 </body>
