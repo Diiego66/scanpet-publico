@@ -267,7 +267,8 @@
       Tu registro será revisado antes de publicarse.
     </p>
 
-    <form id="formRegistroMascota">
+ <form id="formRegistroMascota"
+  onsubmit="return confirm('¿Estás seguro de enviar la solicitud? Verifica que toda la información sea correcta. Una vez enviada, no podrás modificarla hasta que sea aprobada. Si necesitas realizar algún cambio, deberás comunicarte con ScanPet.');">
       <div class="etiqueta">Información de la mascota</div>
 
       <label for="nombreMascota">Nombre *</label>
