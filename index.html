@@ -267,8 +267,7 @@
       Tu registro será revisado antes de publicarse.
     </p>
 
- <form id="formRegistroMascota"
-  onsubmit="return confirm('¿Estás seguro de enviar la solicitud? Verifica que toda la información sea correcta. Una vez enviada, no podrás modificarla hasta que sea aprobada. Si necesitas realizar algún cambio, deberás comunicarte con ScanPet.');">
+<form id="formRegistroMascota">
       <div class="etiqueta">Información de la mascota</div>
 
       <label for="nombreMascota">Nombre *</label>
@@ -411,6 +410,45 @@
         style="margin-top:14px;text-align:center;line-height:1.5;"></p>
     </form>
 
+   <!-- Modal de confirmación antes de enviar -->
+<div id="modalConfirmacionRegistro" class="oculto"
+     style="position:fixed;inset:0;background:rgba(0,0,0,0.6);
+     z-index:9999;display:flex;align-items:center;justify-content:center;
+     padding:20px;">
+
+  <div role="dialog" aria-modal="true"
+       aria-labelledby="tituloConfirmacionRegistro"
+       style="background:white;width:100%;max-width:420px;
+       padding:24px;border-radius:14px;text-align:center;
+       box-shadow:0 5px 25px rgba(0,0,0,0.2);">
+
+    <h2 id="tituloConfirmacionRegistro"
+        style="font-size:21px;margin:0 0 14px;color:#1769aa;">
+      ¿Confirmas el envío?
+    </h2>
+
+    <p style="font-size:14px;line-height:1.6;margin-bottom:20px;">
+      Antes de continuar, verifica que toda la información sea correcta.
+      Una vez enviada, no podrás modificarla hasta que sea aprobada.
+      Si necesitas realizar algún cambio, deberás comunicarte con ScanPet.
+    </p>
+
+    <div style="display:flex;gap:10px;">
+      <button id="cancelarEnvioRegistro" type="button"
+        style="flex:1;padding:12px;border:1px solid #ccc;
+        border-radius:9px;background:white;cursor:pointer;">
+        Revisar datos
+      </button>
+
+      <button id="confirmarEnvioRegistro" type="button"
+        class="boton"
+        style="flex:1;padding:12px;border:0;cursor:pointer;">
+        Confirmar y enviar
+      </button>
+    </div>
+
+  </div>
+</div> 
 <div id="registroExitoso" class="oculto">
   <div class="estado" style="padding:20px 0;">
     <strong>¡Solicitud recibida correctamente!</strong>
@@ -856,11 +894,34 @@ async function prepararFotoScanPet(archivo) {
 }
 
 
-document.getElementById("formRegistroMascota")
-  .addEventListener("submit", async function(event) {
-    event.preventDefault();
+let confirmacionRegistroScanPet = false;
 
-    const formulario = this;
+const formularioRegistroScanPet =
+  document.getElementById("formRegistroMascota");
+
+const modalConfirmacionRegistro =
+  document.getElementById("modalConfirmacionRegistro");
+
+const botonCancelarEnvio =
+  document.getElementById("cancelarEnvioRegistro");
+
+const botonConfirmarEnvio =
+  document.getElementById("confirmarEnvioRegistro");
+
+// Mostrar el modal al intentar enviar el formulario.
+formularioRegistroScanPet.addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  // Primera entrada: mostrar confirmación y detener el envío.
+  if (!confirmacionRegistroScanPet) {
+    modalConfirmacionRegistro.classList.remove("oculto");
+    return;
+  }
+
+  // Segunda entrada: el usuario confirmó el envío.
+  confirmacionRegistroScanPet = false;
+
+  const formulario = this;
     const boton = document.getElementById("botonEnviarRegistro");
     const mensaje = document.getElementById("mensajeRegistro");
     const campoFoto = document.getElementById("fotoMascota");
@@ -993,6 +1054,20 @@ document.getElementById("registroExitoso")
       boton.textContent = "Enviar solicitud";
     }
   });
+
+    // Cancelar: cerrar el modal y permitir revisar los datos.
+botonCancelarEnvio.addEventListener("click", function() {
+  modalConfirmacionRegistro.classList.add("oculto");
+  confirmacionRegistroScanPet = false;
+});
+
+// Confirmar: iniciar el envío real del formulario.
+botonConfirmarEnvio.addEventListener("click", function() {
+  modalConfirmacionRegistro.classList.add("oculto");
+
+  confirmacionRegistroScanPet = true;
+  formularioRegistroScanPet.requestSubmit();
+});
 
 
     function iniciar() {
