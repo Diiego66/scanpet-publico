@@ -70,16 +70,16 @@
       padding: 24px;
     }
 
-    .foto {
-      width: 160px;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 5px solid #e7f2fc;
-      display: block;
-      margin: 0 auto 18px;
-      background: var(--fondo);
-    }
+.foto {
+  width: 230px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #e7f2fc;
+  display: block;
+  margin: 0 auto 18px;
+  background: var(--fondo);
+}
 
     h1 {
       text-align: center;
@@ -88,11 +88,24 @@
       overflow-wrap: anywhere;
     }
 
-    .especie {
-      text-align: center;
-      color: var(--gris);
-      margin-bottom: 22px;
-    }
+.datosPrincipales {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.especie {
+  text-align: center;
+  color: var(--azul);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.datoPrincipal {
+  font-size: 14px;
+  color: var(--gris);
+  margin-top: 5px;
+}
 
     .etiqueta {
       color: var(--azul);
@@ -476,20 +489,17 @@
       <div class="franja"></div>
 
       <div class="contenido">
-        <img id="foto" class="foto oculto" alt="Foto de la mascota">
+      <img id="foto" class="foto oculto" alt="Foto de la mascota">
 
-        <h1 id="nombre"></h1>
-        <div id="especie" class="especie"></div>
+<h1 id="nombre"></h1>
 
-        <div id="bloqueRaza" class="oculto">
-          <div class="etiqueta">Raza</div>
-          <div id="raza" class="dato"></div>
-        </div>
+<div class="datosPrincipales">
+  <div id="especie" class="especie"></div>
 
-        <div id="bloqueAnio" class="oculto">
-          <div class="etiqueta">Año de nacimiento</div>
-          <div id="anio" class="dato"></div>
-        </div>
+  <div id="razaPrincipal" class="datoPrincipal oculto"></div>
+
+  <div id="edad" class="datoPrincipal oculto"></div>
+</div>
 
         <div id="bloqueColor" class="oculto">
           <div class="etiqueta">Color y señas particulares</div>
@@ -602,15 +612,42 @@ if (botonEncontrada) {
       document.getElementById("ficha").classList.remove("oculto");
       document.getElementById("nombre").textContent = m.nombre || "Mascota";
 
-      const especieRaza = [m.especie, m.raza]
-        .filter(Boolean)
-        .join(" · ");
-
+          // Mostrar la especie debajo del nombre.
       document.getElementById("especie").textContent =
-        especieRaza || "Ficha de identificación";
+        m.especie || "Ficha de identificación";
 
-      mostrarDato("bloqueRaza", "raza", m.raza);
-      mostrarDato("bloqueAnio", "anio", m.anioNacimiento);
+      // Mostrar la raza debajo de la especie.
+      const elementoRaza = document.getElementById("razaPrincipal");
+      const raza = String(m.raza || "").trim();
+
+      if (raza) {
+        elementoRaza.textContent = "Raza: " + raza;
+        elementoRaza.classList.remove("oculto");
+      }
+
+      // Calcular la edad a partir del año de nacimiento.
+      const elementoEdad = document.getElementById("edad");
+      const anioNacimiento = Number(m.anioNacimiento);
+      const anioActual = new Date().getFullYear();
+
+      if (
+        m.anioNacimiento &&
+        Number.isInteger(anioNacimiento) &&
+        anioNacimiento >= 1900 &&
+        anioNacimiento <= anioActual
+      ) {
+        const edad = anioActual - anioNacimiento;
+
+        if (edad === 0) {
+          elementoEdad.textContent = "Edad: Menos de 1 año";
+        } else if (edad === 1) {
+          elementoEdad.textContent = "Edad: 1 año";
+        } else {
+          elementoEdad.textContent = "Edad: " + edad + " años";
+        }
+
+        elementoEdad.classList.remove("oculto");
+      }
       mostrarDato("bloqueColor", "color", m.colorSenas);
       mostrarDato("bloqueZona", "zona", m.municipioZona);
       mostrarDato("bloqueCuidados", "cuidados", m.cuidadosEspeciales);
