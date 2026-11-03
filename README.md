@@ -1,2 +1,2 @@
-# scanpet-publico
-Página pública de ScanPet para QR y NFC de mascotas
+# VincuPaw-publico
+Página pública de VincuPaw para QR y NFC de mascotas
