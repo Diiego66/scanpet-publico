@@ -5,7 +5,7 @@ export async function onRequestPost(context) {
   // Validar el origen de la solicitud.
   const origen = request.headers.get("Origin");
 
-  if (origen && origen !== "https://scanpet-publico.pages.dev") {
+  if (origen && origen !== "https://vincupaw.pages.dev") { 
     return respuesta({
       ok: false,
       mensaje: "Origen no permitido."
@@ -42,7 +42,7 @@ export async function onRequestPost(context) {
     }, 400);
   }
 
-  // Validar el código del llavero ScanPet.
+  // Validar el código del llavero VincuPaw.
   const codigo = String(datos.codigo || "")
     .trim()
     .toUpperCase();
