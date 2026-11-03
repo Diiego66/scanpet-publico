@@ -47,7 +47,7 @@ export async function onRequestPost(context) {
     .trim()
     .toUpperCase();
 
-  if (!/^VP-[A-Z0-9]{8}$/.test(codigo)) {
+  if (!/^SP-[A-Z0-9]{8}$/.test(codigo)) {
     return respuesta({
       ok: false,
       mensaje: "El código del llavero no es válido."
