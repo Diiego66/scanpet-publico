@@ -735,7 +735,7 @@ campo.value = codigoActivacion;
         coincidencia ? coincidencia[1] : parametros.get("codigo") || ""
       ).trim().toUpperCase();
 
-      if (!/^SP-[A-Z0-9]{8}$/.test(codigo)) {
+      if (!/^VP-[A-Z0-9]{8}$/.test(codigo)) {
         mensaje.textContent = "El enlace del llavero no es válido.";
         return;
       }
@@ -981,7 +981,7 @@ formularioRegistroScanPet.addEventListener("submit", async function(event) {
         : parametros.get("codigo") || ""
     ).trim().toUpperCase();
 
-    if (!/^SP-[A-Z0-9]{8}$/.test(codigo)) {
+    if (!/^VP-[A-Z0-9]{8}$/.test(codigo)) {
       mensaje.textContent = "El enlace del llavero no es válido.";
       return;
     }
@@ -1118,7 +1118,7 @@ botonConfirmarEnvio.addEventListener("click", function() {
         coincidencia ? coincidencia[1] : parametros.get("codigo") || ""
       ).trim().toUpperCase();
 
-      if (!/^SP-[A-Z0-9]{8}$/.test(codigo)) {
+      if (!/^VP-[A-Z0-9]{8}$/.test(codigo)) {
         mostrarError(
           "Escanea el código de tu llavero",
           "Este enlace no contiene un código de mascota válido."
@@ -1169,7 +1169,7 @@ const estadoReporteEncontradaScanPet =
 async function enviarReporteEncontradaScanPet(latitud, longitud) {
   const codigo = codigoLlaveroFichaScanPet;
 
-  if (!/^SP-[A-Z0-9]{8}$/.test(codigo)) {
+  if (!/^VP-[A-Z0-9]{8}$/.test(codigo)) {
     throw new Error("No se pudo identificar el llavero.");
   }
 
