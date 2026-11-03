@@ -726,7 +726,7 @@ campo.value = codigoActivacion;
 
 
       const coincidencia = window.location.pathname.match(
-        /\/p\/(SP-[A-Z0-9]{8})\/?$/i
+        /\/p\/(VP-[A-Z0-9]{8})\/?$/i
       );
 
       const parametros = new URLSearchParams(window.location.search);
@@ -970,7 +970,7 @@ formularioRegistroScanPet.addEventListener("submit", async function(event) {
     }
 
     const coincidencia = window.location.pathname.match(
-      /\/p\/(SP-[A-Z0-9]{8})\/?$/i
+      /\/p\/(VP-[A-Z0-9]{8})\/?$/i
     );
 
     const parametros = new URLSearchParams(window.location.search);
@@ -1109,7 +1109,7 @@ botonConfirmarEnvio.addEventListener("click", function() {
 
     function iniciar() {
       const coincidencia = window.location.pathname.match(
-        /\/p\/(SP-[A-Z0-9]{8})\/?$/i
+        /\/p\/(VP-[A-Z0-9]{8})\/?$/i
       );
 
       // Permite probar también desde la página principal con ?codigo=...
