@@ -42,7 +42,7 @@ export async function onRequestPost(context) {
     }, 400);
   }
 
-  // Validar el código del llavero VincuPaw.
+  // Validar el código del llavero NexoPaws.
   const codigo = String(datos.codigo || "")
     .trim()
     .toUpperCase();
