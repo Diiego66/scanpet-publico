@@ -4,7 +4,7 @@ export async function onRequestPost(context) {
 
   const origen = request.headers.get("Origin");
 
-  if (origen && origen !== "https://vincupaw.pages.dev") {
+  if (origen && origen !== "https://nexopaws.pages.dev/") {
     return respuesta({ ok: false, mensaje: "Origen no permitido." }, 403);
   }
 
