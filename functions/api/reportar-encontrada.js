@@ -103,7 +103,7 @@ export async function onRequestPost(context) {
   }
 
   const urlAppsScript =
-    "https://script.google.com/macros/s/AKfycbzenco16D4UUZlx-kW7QVxgkdVLwsQtyz7kD3WlW5e7k0PB_zheUyN_l_d3WGWXaYYAmg/exec";
+    "https://script.google.com/macros/s/AKfycbzpXhfLZPz6LgW0qKVCK6zrQmtDJlzzucwecAR59jqCyzOSi2F4FYEWnUpWFcVYjv3k/exec";
 
   try {
     const respuestaServidor = await fetch(urlAppsScript, {
