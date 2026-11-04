@@ -5,7 +5,7 @@ export async function onRequestPost(context) {
   // Validar el origen de la solicitud.
   const origen = request.headers.get("Origin");
 
-  if (origen && origen !== "https://vincupaw.pages.dev") { 
+  if (origen && origen !== "https://nexopaws.pages.dev") { 
     return respuesta({
       ok: false,
       mensaje: "Origen no permitido."
