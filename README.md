@@ -1,2 +1,2 @@
-# VincuPaw-publico
-Página pública de VincuPaw para QR y NFC de mascotas
+# NexoPaws-publico
+Página pública de NexoPaws para QR y NFC de mascotas
