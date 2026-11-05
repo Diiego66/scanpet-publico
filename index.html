@@ -1486,36 +1486,17 @@ function mostrarProcesandoReporte(mensaje, icono) {
 
 
 // Mostrar error al obtener la ubicación.
-function mostrarErrorUbicacionReporte(tipoError) {
+function mostrarErrorUbicacionReporte() {
 
   tituloModalReporte.textContent =
     "No pudimos obtener tu ubicación";
 
-  if (tipoError === "ubicacion_gps_desactivada") {
-
-    mensajeModalReporte.textContent =
-  "No pudimos obtener tu ubicación. Verifica que el GPS " +
-  "o los servicios de ubicación de tu celular estén activados. " +
-  "Después, vuelve a intentarlo. Si el navegador te solicita " +
-  "permiso para acceder a tu ubicación, selecciona Permitir. " +
-  "También puedes enviar el aviso sin compartirla.";
-
-  } else if (tipoError === "ubicacion_permiso_denegado") {
-
-    mensajeModalReporte.textContent =
-      "No autorizaste el acceso a tu ubicación. Revisa los permisos " +
-      "de ubicación de tu navegador desde los ajustes del teléfono " +
-      "y vuelve a intentarlo. También puedes enviar el aviso sin ubicación.";
-
-  } else {
-
-    mensajeModalReporte.textContent =
-      "No fue posible determinar tu ubicación. Verifica que los " +
-      "servicios de ubicación estén activados y que tu navegador " +
-      "tenga permiso para utilizarlos. Puedes intentarlo nuevamente " +
-      "o enviar el aviso sin compartir tu ubicación.";
-
-  }
+  mensajeModalReporte.textContent =
+    "Para compartir tu ubicación, activa el GPS o los servicios " +
+    "de ubicación de tu celular y autoriza a tu navegador " +
+    "el acceso a la ubicación cuando te lo solicite. " +
+    "Después, vuelve a intentarlo. Si lo prefieres, " +
+    "puedes enviar el aviso sin compartir tu ubicación.";
 
   iconoModalReporte.textContent = "📍";
 
@@ -1621,12 +1602,12 @@ async function compartirUbicacionYEnviarReporte() {
 
   } catch (error) {
     // Si falla la geolocalización, permitir continuar sin ubicación.
-   if (
+if (
   error.message === "ubicacion_no_disponible" ||
   error.message === "ubicacion_gps_desactivada" ||
   error.message === "ubicacion_permiso_denegado"
 ) {
-  mostrarErrorUbicacionReporte(error.message);
+  mostrarErrorUbicacionReporte();
   return;
 }
 
