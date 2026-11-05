@@ -172,6 +172,88 @@
       font-size: 12px;
       padding: 22px 10px 30px;
     }
+
+    /* Ventana de reporte de mascota encontrada */
+.modal-reporte {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 35, 55, 0.65);
+}
+
+.contenido-modal-reporte {
+  width: 100%;
+  max-width: 420px;
+  padding: 26px 22px;
+  border-radius: 18px;
+  background: white;
+  text-align: center;
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.2);
+}
+
+.icono-modal-reporte {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e7f2fc;
+  color: var(--azul);
+  font-size: 28px;
+}
+
+.contenido-modal-reporte h2 {
+  margin: 0 0 12px;
+  color: var(--texto);
+  font-size: 21px;
+}
+
+.contenido-modal-reporte p {
+  margin: 0 0 20px;
+  color: var(--gris);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.acciones-modal-reporte {
+  display: grid;
+  gap: 10px;
+}
+
+.acciones-modal-reporte button {
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.boton-secundario-reporte {
+  padding: 13px 15px;
+  border: 1px solid var(--borde) !important;
+  border-radius: 11px;
+  background: white;
+  color: var(--texto);
+  font-weight: 700;
+}
+
+.boton-cancelar-reporte {
+  padding: 10px;
+  background: transparent;
+  color: var(--gris);
+  font-weight: 600;
+}
+
+.acciones-modal-reporte button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
   </style>
 </head>
 
@@ -550,6 +632,65 @@
   role="status"
   aria-live="polite">
 </p>
+
+          <!-- Modal para reportar mascota encontrada -->
+<div id="modalReporteEncontrada"
+     class="modal-reporte oculto">
+
+  <div class="contenido-modal-reporte"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="tituloModalReporte"
+       aria-describedby="mensajeModalReporte">
+
+    <div id="iconoModalReporte" class="icono-modal-reporte">
+      📍
+    </div>
+
+    <h2 id="tituloModalReporte">
+      Ayuda a que vuelva a casa
+    </h2>
+
+    <p id="mensajeModalReporte">
+      Si compartes tu ubicación, ayudarás a la familia a saber
+      dónde fue encontrada su mascota. Compartirla es opcional.
+    </p>
+
+    <div class="acciones-modal-reporte">
+
+      <button id="btnCompartirUbicacion"
+              type="button"
+              class="boton">
+        Compartir ubicación y enviar aviso
+      </button>
+
+      <button id="btnEnviarSinUbicacion"
+              type="button"
+              class="boton-secundario-reporte">
+        Enviar aviso sin ubicación
+      </button>
+
+      <button id="btnReintentarUbicacion"
+              type="button"
+              class="boton oculto">
+        Intentar obtener ubicación nuevamente
+      </button>
+
+      <button id="btnCerrarReporte"
+              type="button"
+              class="boton oculto">
+        Cerrar
+      </button>
+
+      <button id="btnCancelarReporte"
+              type="button"
+              class="boton-cancelar-reporte">
+        Cancelar
+      </button>
+
+    </div>
+  </div>
+</div>
 
         </div>
       </div>
@@ -1231,60 +1372,235 @@ function solicitarUbicacionEncontradaScanPet() {
   });
 }
 
-if (botonEncontradaScanPet) {
-  botonEncontradaScanPet.addEventListener("click", async function() {
-    if (!codigoLlaveroFichaScanPet) {
+// Elementos del modal de reporte.
+const modalReporteEncontrada =
+  document.getElementById("modalReporteEncontrada");
+
+const tituloModalReporte =
+  document.getElementById("tituloModalReporte");
+
+const mensajeModalReporte =
+  document.getElementById("mensajeModalReporte");
+
+const iconoModalReporte =
+  document.getElementById("iconoModalReporte");
+
+const btnCompartirUbicacion =
+  document.getElementById("btnCompartirUbicacion");
+
+const btnEnviarSinUbicacion =
+  document.getElementById("btnEnviarSinUbicacion");
+
+const btnReintentarUbicacion =
+  document.getElementById("btnReintentarUbicacion");
+
+const btnCerrarReporte =
+  document.getElementById("btnCerrarReporte");
+
+const btnCancelarReporte =
+  document.getElementById("btnCancelarReporte");
+
+
+// Mostrar el modal.
+function abrirModalReporteEncontrada() {
+  tituloModalReporte.textContent = "Ayuda a que vuelva a casa";
+
+  mensajeModalReporte.textContent =
+    "Si compartes tu ubicación, ayudarás a la familia a saber " +
+    "dónde fue encontrada su mascota. Compartirla es opcional.";
+
+  iconoModalReporte.textContent = "📍";
+
+  btnCompartirUbicacion.classList.remove("oculto");
+  btnEnviarSinUbicacion.classList.remove("oculto");
+
+  btnReintentarUbicacion.classList.add("oculto");
+  btnCerrarReporte.classList.add("oculto");
+  btnCancelarReporte.classList.remove("oculto");
+
+  modalReporteEncontrada.classList.remove("oculto");
+
+  btnCompartirUbicacion.focus();
+}
+
+
+// Mostrar el estado mientras se obtiene la ubicación o se envía el aviso.
+function mostrarProcesandoReporte(mensaje, icono) {
+  tituloModalReporte.textContent = "Procesando aviso";
+
+  mensajeModalReporte.textContent = mensaje;
+
+  iconoModalReporte.textContent = icono;
+
+  btnCompartirUbicacion.classList.add("oculto");
+  btnEnviarSinUbicacion.classList.add("oculto");
+  btnReintentarUbicacion.classList.add("oculto");
+  btnCerrarReporte.classList.add("oculto");
+  btnCancelarReporte.classList.add("oculto");
+}
+
+
+// Mostrar error al obtener la ubicación.
+function mostrarErrorUbicacionReporte() {
+  tituloModalReporte.textContent =
+    "No pudimos obtener tu ubicación";
+
+  mensajeModalReporte.textContent =
+    "No fue posible acceder a tu ubicación. Puedes intentarlo " +
+    "nuevamente o enviar el aviso sin compartirla.";
+
+  iconoModalReporte.textContent = "📍";
+
+  btnCompartirUbicacion.classList.add("oculto");
+  btnEnviarSinUbicacion.classList.remove("oculto");
+
+  btnReintentarUbicacion.classList.remove("oculto");
+  btnCerrarReporte.classList.add("oculto");
+  btnCancelarReporte.classList.remove("oculto");
+}
+
+
+// Mostrar resultado exitoso.
+function mostrarExitoReporteEncontrada() {
+  tituloModalReporte.textContent = "¡Gracias por ayudar!";
+
+  mensajeModalReporte.textContent =
+    "El aviso fue enviado correctamente a la familia de esta mascota. " +
+    "Gracias por contribuir a que pueda regresar a casa.";
+
+  iconoModalReporte.textContent = "🐾";
+
+  btnCompartirUbicacion.classList.add("oculto");
+  btnEnviarSinUbicacion.classList.add("oculto");
+  btnReintentarUbicacion.classList.add("oculto");
+  btnCancelarReporte.classList.add("oculto");
+
+  btnCerrarReporte.classList.remove("oculto");
+}
+
+
+// Mostrar error del servidor.
+function mostrarErrorReporteEncontrada(mensaje) {
+  tituloModalReporte.textContent =
+    "No fue posible enviar el aviso";
+
+  mensajeModalReporte.textContent =
+    mensaje || "Inténtalo nuevamente más tarde.";
+
+  iconoModalReporte.textContent = "⚠️";
+
+  btnCompartirUbicacion.classList.add("oculto");
+  btnEnviarSinUbicacion.classList.add("oculto");
+  btnReintentarUbicacion.classList.add("oculto");
+  btnCancelarReporte.classList.add("oculto");
+
+  btnCerrarReporte.classList.remove("oculto");
+}
+
+
+// Enviar el aviso al propietario.
+async function ejecutarEnvioReporteEncontrada(latitud, longitud) {
+  botonEncontradaScanPet.disabled = true;
+
+  mostrarProcesandoReporte(
+    "Estamos enviando el aviso a la familia de esta mascota...",
+    "✉️"
+  );
+
+  try {
+    const resultado = await enviarReporteEncontradaScanPet(
+      latitud,
+      longitud
+    );
+
+    // Solo se muestra el agradecimiento si el servidor confirma el envío.
+    if (resultado && resultado.ok) {
+      mostrarExitoReporteEncontrada();
+    } else {
+      mostrarErrorReporteEncontrada(
+        resultado && resultado.mensaje
+          ? resultado.mensaje
+          : "No fue posible enviar el aviso."
+      );
+    }
+
+  } catch (error) {
+    mostrarErrorReporteEncontrada(
+      error.message || "No fue posible enviar el aviso."
+    );
+
+  } finally {
+    botonEncontradaScanPet.disabled = false;
+  }
+}
+
+
+// Solicitar ubicación y enviar el aviso.
+async function compartirUbicacionYEnviarReporte() {
+  mostrarProcesandoReporte(
+    "Estamos intentando obtener tu ubicación. Por favor, espera...",
+    "📍"
+  );
+
+  try {
+    const ubicacion =
+      await solicitarUbicacionEncontradaScanPet();
+
+    await ejecutarEnvioReporteEncontrada(
+      ubicacion.latitud,
+      ubicacion.longitud
+    );
+
+  } catch (error) {
+    // Si falla la geolocalización, permitir continuar sin ubicación.
+    if (error.message === "ubicacion_no_disponible") {
+      mostrarErrorUbicacionReporte();
       return;
     }
 
-    botonEncontradaScanPet.disabled = true;
+    mostrarErrorReporteEncontrada(
+      error.message || "No fue posible obtener tu ubicación."
+    );
+  }
+}
 
-    estadoReporteEncontradaScanPet.classList.remove("oculto");
-    estadoReporteEncontradaScanPet.textContent =
-      "Solicitando permiso de ubicación…";
 
-    try {
-      let ubicacion;
+// Abrir las opciones cuando se pulsa el botón principal.
+if (botonEncontradaScanPet) {
+  botonEncontradaScanPet.addEventListener("click", function() {
+    if (!codigoLlaveroFichaScanPet) return;
 
-      try {
-        ubicacion = await solicitarUbicacionEncontradaScanPet();
-      } catch (errorUbicacion) {
-        const continuarSinUbicacion = window.confirm(
-          "No fue posible obtener tu ubicación. " +
-          "¿Quieres enviar el aviso sin incluirla?"
-        );
-
-        if (!continuarSinUbicacion) {
-          estadoReporteEncontradaScanPet.textContent =
-            "No se envió el aviso.";
-          return;
-        }
-
-        ubicacion = {
-          latitud: null,
-          longitud: null
-        };
-      }
-
-      estadoReporteEncontradaScanPet.textContent =
-        "Enviando aviso al propietario…";
-
-      const resultado = await enviarReporteEncontradaScanPet(
-        ubicacion.latitud,
-        ubicacion.longitud
-      );
-
-      estadoReporteEncontradaScanPet.textContent =
-        resultado.mensaje || "Aviso enviado correctamente.";
-
-    } catch (error) {
-      estadoReporteEncontradaScanPet.textContent =
-        error.message || "No fue posible enviar el aviso.";
-    } finally {
-      botonEncontradaScanPet.disabled = false;
-    }
+    abrirModalReporteEncontrada();
   });
 }
+
+
+// Opción 1: compartir ubicación.
+btnCompartirUbicacion.addEventListener("click", function() {
+  compartirUbicacionYEnviarReporte();
+});
+
+
+// Opción 2: enviar directamente sin ubicación.
+btnEnviarSinUbicacion.addEventListener("click", function() {
+  ejecutarEnvioReporteEncontrada(null, null);
+});
+
+
+// Volver a intentar obtener la ubicación.
+btnReintentarUbicacion.addEventListener("click", function() {
+  compartirUbicacionYEnviarReporte();
+});
+
+
+// Cerrar el modal.
+function cerrarModalReporteEncontrada() {
+  modalReporteEncontrada.classList.add("oculto");
+}
+
+btnCerrarReporte.addEventListener("click", cerrarModalReporteEncontrada);
+
+btnCancelarReporte.addEventListener("click", cerrarModalReporteEncontrada);
 
     
 const especieMascota = document.getElementById("especieMascota");
