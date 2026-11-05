@@ -1349,39 +1349,70 @@ async function enviarReporteEncontradaScanPet(latitud, longitud) {
 
 
 
-function solicitarUbicacionEncontradaScanPet() {
+async function solicitarUbicacionEncontradaScanPet() {
+
+  if (!navigator.geolocation) {
+    throw new Error("ubicacion_no_disponible");
+  }
+
   return new Promise(function(resolve, reject) {
-    if (!navigator.geolocation) {
-      reject(new Error("ubicacion_no_disponible"));
-      return;
-    }
 
     navigator.geolocation.getCurrentPosition(
+
       function(posicion) {
         resolve({
           latitud: posicion.coords.latitude,
           longitud: posicion.coords.longitude
         });
       },
-      function(error) {
 
-  if (error.code === 1) {
-    reject(new Error("ubicacion_permiso_denegado"));
+      async function(error) {
 
-  } else if (error.code === 2) {
-    reject(new Error("ubicacion_gps_desactivada"));
+        // Consultar el estado actual del permiso del navegador.
+        let permiso = "desconocido";
 
-  } else {
-    reject(new Error("ubicacion_no_disponible"));
-  }
+        if (navigator.permissions &&
+            navigator.permissions.query) {
 
-},
+          try {
+            const resultado = await navigator.permissions.query({
+              name: "geolocation"
+            });
+
+            permiso = resultado.state;
+
+          } catch (e) {
+            permiso = "desconocido";
+          }
+        }
+
+        if (error.code === 1 && permiso === "denied") {
+
+          reject(new Error("ubicacion_permiso_denegado"));
+
+        } else if (
+          error.code === 1 ||
+          error.code === 2
+        ) {
+
+          reject(new Error("ubicacion_gps_desactivada"));
+
+        } else {
+
+          reject(new Error("ubicacion_no_disponible"));
+
+        }
+
+      },
+
       {
         enableHighAccuracy: true,
         timeout: 12000,
         maximumAge: 0
       }
+
     );
+
   });
 }
 
@@ -1463,11 +1494,11 @@ function mostrarErrorUbicacionReporte(tipoError) {
   if (tipoError === "ubicacion_gps_desactivada") {
 
     mensajeModalReporte.textContent =
-      "Parece que la ubicación de tu celular está desactivada. " +
-      "Activa el GPS o los servicios de ubicación desde los ajustes " +
-      "del teléfono y vuelve a intentarlo. También verifica que " +
-      "tu navegador tenga permiso para acceder a tu ubicación. " +
-      "Si lo prefieres, puedes enviar el aviso sin compartirla.";
+  "No pudimos obtener tu ubicación. Verifica que el GPS " +
+  "o los servicios de ubicación de tu celular estén activados. " +
+  "Después, vuelve a intentarlo. Si el navegador te solicita " +
+  "permiso para acceder a tu ubicación, selecciona Permitir. " +
+  "También puedes enviar el aviso sin compartirla.";
 
   } else if (tipoError === "ubicacion_permiso_denegado") {
 
