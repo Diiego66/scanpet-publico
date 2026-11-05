@@ -741,6 +741,8 @@ const API_URL =
 
       const m = respuesta.mascota;
 
+      nombreMascotaFichaScanPet = String(m.nombre || "esta mascota").trim();
+
       codigoLlaveroFichaScanPet = String(m.codigo || "")
   .trim()
   .toUpperCase();
@@ -838,6 +840,7 @@ if (botonEncontrada) {
     let tokenAutorizacionScanPet = "";
 
     let codigoLlaveroFichaScanPet = "";
+    let nombreMascotaFichaScanPet = "";
 
     function mostrarActivacion() {
       document.getElementById("cargando").classList.add("oculto");
@@ -1361,8 +1364,18 @@ function solicitarUbicacionEncontradaScanPet() {
         });
       },
       function(error) {
-        reject(new Error("ubicacion_no_disponible"));
-      },
+
+  if (error.code === 1) {
+    reject(new Error("ubicacion_permiso_denegado"));
+
+  } else if (error.code === 2) {
+    reject(new Error("ubicacion_gps_desactivada"));
+
+  } else {
+    reject(new Error("ubicacion_no_disponible"));
+  }
+
+},
       {
         enableHighAccuracy: true,
         timeout: 12000,
@@ -1403,7 +1416,8 @@ const btnCancelarReporte =
 
 // Mostrar el modal.
 function abrirModalReporteEncontrada() {
-  tituloModalReporte.textContent = "Ayuda a que vuelva a casa";
+  tituloModalReporte.textContent =
+  "¡Ayuda a " + nombreMascotaFichaScanPet + " a volver a casa!";
 
   mensajeModalReporte.textContent =
     "Si compartes tu ubicación, ayudarás a la familia a saber " +
@@ -1441,13 +1455,36 @@ function mostrarProcesandoReporte(mensaje, icono) {
 
 
 // Mostrar error al obtener la ubicación.
-function mostrarErrorUbicacionReporte() {
+function mostrarErrorUbicacionReporte(tipoError) {
+
   tituloModalReporte.textContent =
     "No pudimos obtener tu ubicación";
 
-  mensajeModalReporte.textContent =
-    "No fue posible acceder a tu ubicación. Puedes intentarlo " +
-    "nuevamente o enviar el aviso sin compartirla.";
+  if (tipoError === "ubicacion_gps_desactivada") {
+
+    mensajeModalReporte.textContent =
+      "Parece que la ubicación de tu celular está desactivada. " +
+      "Activa el GPS o los servicios de ubicación desde los ajustes " +
+      "del teléfono y vuelve a intentarlo. También verifica que " +
+      "tu navegador tenga permiso para acceder a tu ubicación. " +
+      "Si lo prefieres, puedes enviar el aviso sin compartirla.";
+
+  } else if (tipoError === "ubicacion_permiso_denegado") {
+
+    mensajeModalReporte.textContent =
+      "No autorizaste el acceso a tu ubicación. Revisa los permisos " +
+      "de ubicación de tu navegador desde los ajustes del teléfono " +
+      "y vuelve a intentarlo. También puedes enviar el aviso sin ubicación.";
+
+  } else {
+
+    mensajeModalReporte.textContent =
+      "No fue posible determinar tu ubicación. Verifica que los " +
+      "servicios de ubicación estén activados y que tu navegador " +
+      "tenga permiso para utilizarlos. Puedes intentarlo nuevamente " +
+      "o enviar el aviso sin compartir tu ubicación.";
+
+  }
 
   iconoModalReporte.textContent = "📍";
 
@@ -1553,10 +1590,14 @@ async function compartirUbicacionYEnviarReporte() {
 
   } catch (error) {
     // Si falla la geolocalización, permitir continuar sin ubicación.
-    if (error.message === "ubicacion_no_disponible") {
-      mostrarErrorUbicacionReporte();
-      return;
-    }
+   if (
+  error.message === "ubicacion_no_disponible" ||
+  error.message === "ubicacion_gps_desactivada" ||
+  error.message === "ubicacion_permiso_denegado"
+) {
+  mostrarErrorUbicacionReporte(error.message);
+  return;
+}
 
     mostrarErrorReporteEncontrada(
       error.message || "No fue posible obtener tu ubicación."
