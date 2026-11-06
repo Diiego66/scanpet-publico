@@ -451,6 +451,78 @@
   }
 }
 
+
+
+    /* =========================================
+   SECCIÓN DE CONTACTO DEL PERFIL
+   ========================================= */
+
+#ficha .seccion-contacto {
+  margin-top: 30px;
+  padding: 19px 17px;
+  border: 1px solid #d8e7f3;
+  border-radius: 16px;
+  background: #f0f6fb;
+}
+
+#ficha .titulo-contacto {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 14px;
+  color: #1769aa;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+#ficha .titulo-contacto::before {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 18px;
+  border-radius: 5px;
+  background: #1769aa;
+}
+
+#ficha #bloqueContacto {
+  padding: 13px 14px;
+  border: 1px solid #e0eaf2;
+  border-radius: 11px;
+  background: white;
+}
+
+#ficha #bloqueContacto .etiqueta {
+  margin: 0 0 5px;
+}
+
+#ficha #bloqueContacto .dato {
+  color: #203c55;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* Iconos de los botones */
+#ficha .icono-boton {
+  display: block;
+  flex-shrink: 0;
+  width: 21px;
+  height: 21px;
+}
+
+/* Distribución de icono y texto */
+#ficha .boton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+}
+
+#ficha .acciones {
+  margin-top: 18px;
+}
   </style>
 </head>
 
@@ -811,25 +883,43 @@
       <div id="mensaje" class="dato"></div>
     </div>
 
-    <!-- Contacto -->
-    <div class="etiqueta">Datos de contacto</div>
+      <!-- Sección independiente de contacto -->
+    <div class="seccion-contacto">
 
-    <div id="bloqueContacto" class="oculto">
-      <div class="etiqueta">Nombre del responsable</div>
-      <div id="contacto" class="dato"></div>
+      <div class="titulo-contacto">Datos de contacto</div>
+
+      <div id="bloqueContacto" class="oculto">
+        <div class="etiqueta">Nombre del responsable</div>
+        <div id="contacto" class="dato"></div>
+      </div>
+
     </div>
 
     <div class="acciones">
 
-      <a id="botonWhatsApp"
+           <a id="botonWhatsApp"
          class="boton whatsapp oculto"
          target="_blank"
          rel="noopener noreferrer">
+
+        <svg class="icono-boton" viewBox="0 0 24 24"
+             aria-hidden="true" focusable="false">
+          <path fill="currentColor"
+            d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3ZM12.1 21.5c-1.7 0-3.4-.5-4.8-1.3l-.4-.2-3.9 1 1-3.8-.3-.4a9.7 9.7 0 0 1-1.5-5.1c0-5.4 4.4-9.8 9.8-9.8 2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.8-9.7 9.8Zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.2 3.2c.2.2 2.2 3.4 5.3 4.7.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.4Z"/>
+        </svg>
+
         Contactar por WhatsApp
       </a>
 
       <a id="botonLlamar"
          class="boton llamar oculto">
+
+        <svg class="icono-boton" viewBox="0 0 24 24"
+             aria-hidden="true" focusable="false">
+          <path fill="currentColor"
+            d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11.3 11.3 0 0 0 3.5.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17.9 17.9 0 0 1 3 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.3 11.3 0 0 0 .6 3.5 1 1 0 0 1-.2 1Z"/>
+        </svg>
+
         Llamar por celular
       </a>
 
@@ -837,6 +927,13 @@
         id="botonEncontrada"
         type="button"
         class="boton oculto">
+
+        <svg class="icono-boton" viewBox="0 0 24 24"
+             aria-hidden="true" focusable="false">
+          <path fill="currentColor"
+            d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/>
+        </svg>
+
         Reportar que encontré esta mascota
       </button>
 
