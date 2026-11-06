@@ -256,6 +256,196 @@
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+
+    
+/* =========================================
+   REDISEÑO VISUAL DEL PERFIL NEXOPAWS
+   ========================================= */
+
+/* Identificación principal */
+#ficha .contenido {
+  padding: 26px 22px;
+}
+
+#ficha h1 {
+  color: #183b56;
+  font-size: clamp(26px, 6vw, 32px);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+#ficha .datosPrincipales {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 26px;
+}
+
+#ficha .especie,
+#ficha .datoPrincipal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 0;
+  padding: 7px 13px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#ficha .especie {
+  background: #e8f2fb;
+  color: #1769aa;
+}
+
+#ficha .datoPrincipal {
+  background: #f1f4f7;
+  color: #536477;
+}
+
+#ficha .datoPrincipal.oculto {
+  display: none !important;
+}
+
+/* Etiquetas de las secciones */
+#ficha .etiqueta {
+  margin: 0 0 8px;
+  color: #1769aa;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  line-height: 1.4;
+}
+
+/* Tarjetas de información */
+#ficha #bloqueColor,
+#ficha #bloqueZona,
+#ficha #bloqueCuidados,
+#ficha #bloqueMensaje {
+  margin-top: 13px;
+  padding: 16px;
+  border: 1px solid #e5ebf1;
+  border-radius: 15px;
+  background: #f8fafc;
+}
+
+#ficha .dato {
+  color: #344054;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* Cuidados: información de especial importancia */
+#ficha #bloqueCuidados {
+  background: #fff9ed;
+  border-color: #f2e4c8;
+}
+
+#ficha #bloqueCuidados .etiqueta {
+  color: #a96b19;
+}
+
+/* Mensaje personal de la familia */
+#ficha #bloqueMensaje {
+  background: #eef6fc;
+  border-color: #dceaf6;
+}
+
+#ficha #bloqueMensaje .dato {
+  color: #294b67;
+  font-style: italic;
+}
+
+/* Contacto del responsable */
+#ficha .contenido > .etiqueta {
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+#ficha #bloqueContacto {
+  padding: 14px 16px;
+  border: 1px solid #e5ebf1;
+  border-radius: 13px;
+  background: #f8fafc;
+}
+
+#ficha #bloqueContacto .etiqueta {
+  margin-bottom: 5px;
+}
+
+#ficha #bloqueContacto .dato {
+  font-weight: 700;
+  color: #203c55;
+}
+
+/* Botones de contacto y reporte */
+#ficha .acciones {
+  gap: 11px;
+  margin-top: 20px;
+}
+
+#ficha .boton {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#ficha .boton.whatsapp {
+  background: #16834a;
+}
+
+#ficha .boton.llamar {
+  background: #104b7a;
+}
+
+#ficha .boton:not(:disabled) {
+  cursor: pointer;
+}
+
+#ficha .boton:focus-visible {
+  outline: 3px solid #8ec5f0;
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  #ficha .boton:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+  }
+}
+
+/* Separación y lectura en pantallas pequeñas */
+@media (max-width: 380px) {
+  #ficha .contenido {
+    padding: 22px 16px;
+  }
+
+  #ficha #bloqueColor,
+  #ficha #bloqueZona,
+  #ficha #bloqueCuidados,
+  #ficha #bloqueMensaje {
+    padding: 14px;
+  }
+}
+
+/* Respeto por usuarios que reducen animaciones */
+@media (prefers-reduced-motion: reduce) {
+  #ficha .boton {
+    transition: none;
+  }
+}
+
   </style>
 </head>
 
