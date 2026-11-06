@@ -70,14 +70,16 @@
       padding: 24px;
     }
 
+/* Fotografía principal del perfil */
 .foto {
-  width: 230px;
-  height: 230px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 5px solid #e7f2fc;
   display: block;
-  margin: 0 auto 18px;
+  width: 100%;
+  height: clamp(240px, 62vw, 340px);
+  object-fit: cover;
+  object-position: center;
+  border: none;
+  border-radius: 0;
+  margin: 0;
   background: var(--fondo);
 }
 
@@ -567,134 +569,152 @@
     </section>
 
 
-    <section id="ficha" class="tarjeta oculto">
-      <div class="franja"></div>
+   
+<section id="ficha" class="tarjeta oculto">
 
-      <div class="contenido">
-      <img id="foto" class="foto oculto" alt="Foto de la mascota">
+  <!-- Fotografía protagonista -->
+  <img
+    id="foto"
+    class="foto oculto"
+    alt="Foto de la mascota"
+  >
 
-<h1 id="nombre"></h1>
+  <div class="contenido">
 
-<div class="datosPrincipales">
-  <div id="especie" class="especie"></div>
+    <!-- Identificación principal -->
+    <h1 id="nombre"></h1>
 
-  <div id="razaPrincipal" class="datoPrincipal oculto"></div>
+    <div class="datosPrincipales">
+      <div id="especie" class="especie"></div>
 
-  <div id="edad" class="datoPrincipal oculto"></div>
-</div>
+      <div id="razaPrincipal" class="datoPrincipal oculto"></div>
 
-        <div id="bloqueColor" class="oculto">
-          <div class="etiqueta">¿Cómo puedes reconocerme?</div>
-          <div id="color" class="dato"></div>
-        </div>
-
-        <div id="bloqueZona" class="oculto">
-          <div class="etiqueta">Zona donde suelo estar</div>
-          <div id="zona" class="dato"></div>
-        </div>
-
-        <div id="bloqueCuidados" class="oculto">
-          <div class="etiqueta">Cuidados e información importante.</div>
-          <div id="cuidados" class="dato"></div>
-        </div>
-
-        <div id="bloqueMensaje" class="oculto">
-          <div class="etiqueta">Mensaje de mi familia</div>
-          <div id="mensaje" class="dato"></div>
-        </div>
-
-        <div class="etiqueta">Datos de contacto</div>
-        <div id="bloqueContacto" class="oculto">
-          <div class="etiqueta">Nombre del responsable</div>
-          <div id="contacto" class="dato"></div>
-        </div>
-
-        <div class="acciones">
-          <a id="botonWhatsApp"
-             class="boton whatsapp oculto"
-             target="_blank"
-             rel="noopener noreferrer">Contactar por WhatsApp</a>
-
-          <a id="botonLlamar"
-             class="boton llamar oculto">Llamar por celular</a>
-
-          
-<button
-  id="botonEncontrada"
-  type="button"
-  class="boton oculto">
-  Reportar que encontré esta mascota
-</button>
-
-<p
-  id="estadoReporteEncontrada"
-  class="oculto"
-  role="status"
-  aria-live="polite">
-</p>
-
-          <!-- Modal para reportar mascota encontrada -->
-<div id="modalReporteEncontrada"
-     class="modal-reporte oculto">
-
-  <div class="contenido-modal-reporte"
-       role="dialog"
-       aria-modal="true"
-       aria-labelledby="tituloModalReporte"
-       aria-describedby="mensajeModalReporte">
-
-    <div id="iconoModalReporte" class="icono-modal-reporte">
-      📍
+      <div id="edad" class="datoPrincipal oculto"></div>
     </div>
 
-    <h2 id="tituloModalReporte">
-      Ayuda a que vuelva a casa
-    </h2>
+    <!-- Características físicas -->
+    <div id="bloqueColor" class="oculto">
+      <div class="etiqueta">¿Cómo puedes reconocerme?</div>
+      <div id="color" class="dato"></div>
+    </div>
 
-    <p id="mensajeModalReporte">
-      Si compartes tu ubicación, ayudarás a la familia a saber
-      dónde fue encontrada su mascota. Compartirla es opcional.
-    </p>
+    <!-- Zona de referencia -->
+    <div id="bloqueZona" class="oculto">
+      <div class="etiqueta">Zona donde suelo estar</div>
+      <div id="zona" class="dato"></div>
+    </div>
 
-    <div class="acciones-modal-reporte">
+    <!-- Cuidados -->
+    <div id="bloqueCuidados" class="oculto">
+      <div class="etiqueta">Cuidados e información importante</div>
+      <div id="cuidados" class="dato"></div>
+    </div>
 
-      <button id="btnCompartirUbicacion"
-              type="button"
-              class="boton">
-        Compartir ubicación y enviar aviso
+    <!-- Mensaje personal -->
+    <div id="bloqueMensaje" class="oculto">
+      <div class="etiqueta">Mensaje de mi familia</div>
+      <div id="mensaje" class="dato"></div>
+    </div>
+
+    <!-- Contacto -->
+    <div class="etiqueta">Datos de contacto</div>
+
+    <div id="bloqueContacto" class="oculto">
+      <div class="etiqueta">Nombre del responsable</div>
+      <div id="contacto" class="dato"></div>
+    </div>
+
+    <div class="acciones">
+
+      <a id="botonWhatsApp"
+         class="boton whatsapp oculto"
+         target="_blank"
+         rel="noopener noreferrer">
+        Contactar por WhatsApp
+      </a>
+
+      <a id="botonLlamar"
+         class="boton llamar oculto">
+        Llamar por celular
+      </a>
+
+      <button
+        id="botonEncontrada"
+        type="button"
+        class="boton oculto">
+        Reportar que encontré esta mascota
       </button>
 
-      <button id="btnEnviarSinUbicacion"
-              type="button"
-              class="boton-secundario-reporte">
-        Enviar aviso sin ubicación
-      </button>
+      <p
+        id="estadoReporteEncontrada"
+        class="oculto"
+        role="status"
+        aria-live="polite">
+      </p>
 
-      <button id="btnReintentarUbicacion"
-              type="button"
-              class="boton oculto">
-        Intentar obtener ubicación nuevamente
-      </button>
+      <!-- Modal para reportar mascota encontrada -->
+      <div id="modalReporteEncontrada"
+           class="modal-reporte oculto">
 
-      <button id="btnCerrarReporte"
-              type="button"
-              class="boton oculto">
-        Cerrar
-      </button>
+        <div class="contenido-modal-reporte"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="tituloModalReporte"
+             aria-describedby="mensajeModalReporte">
 
-      <button id="btnCancelarReporte"
-              type="button"
-              class="boton-cancelar-reporte">
-        Cancelar
-      </button>
+          <div id="iconoModalReporte" class="icono-modal-reporte">
+            📍
+          </div>
+
+          <h2 id="tituloModalReporte">
+            Ayuda a que vuelva a casa
+          </h2>
+
+          <p id="mensajeModalReporte">
+            Si compartes tu ubicación, ayudarás a la familia a saber
+            dónde fue encontrada su mascota. Compartirla es opcional.
+          </p>
+
+          <div class="acciones-modal-reporte">
+
+            <button id="btnCompartirUbicacion"
+                    type="button"
+                    class="boton">
+              Compartir ubicación y enviar aviso
+            </button>
+
+            <button id="btnEnviarSinUbicacion"
+                    type="button"
+                    class="boton-secundario-reporte">
+              Enviar aviso sin ubicación
+            </button>
+
+            <button id="btnReintentarUbicacion"
+                    type="button"
+                    class="boton oculto">
+              Intentar obtener ubicación nuevamente
+            </button>
+
+            <button id="btnCerrarReporte"
+                    type="button"
+                    class="boton oculto">
+              Cerrar
+            </button>
+
+            <button id="btnCancelarReporte"
+                    type="button"
+                    class="boton-cancelar-reporte">
+              Cancelar
+            </button>
+
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
-</div>
+</section>
 
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer>
