@@ -929,52 +929,50 @@
       <div id="mensaje" class="dato"></div>
     </div>
 
-      <!-- Sección independiente de contacto -->
-    <div class="seccion-contacto">
+     
+<!-- Sección independiente de contacto -->
+<div class="seccion-contacto">
 
-      <div class="titulo-contacto">Datos de contacto</div>
+  <div class="titulo-contacto">Datos de contacto</div>
 
-      <div id="bloqueContacto" class="oculto">
-        <div class="etiqueta">Nombre del responsable</div>
-        <div id="contacto" class="dato"></div>
-      </div>
+  <div id="bloqueContacto" class="oculto">
+    <div class="etiqueta">Nombre del responsable</div>
+    <div id="contacto" class="dato"></div>
+  </div>
 
-    </div>
+  <!-- Opciones de contacto dentro del borde azul -->
+  <div class="acciones">
 
-   
-<div class="acciones">
+    <a id="botonWhatsApp"
+       class="boton whatsapp oculto"
+       target="_blank"
+       rel="noopener noreferrer">
 
-  <!-- Contacto por WhatsApp -->
-  <a id="botonWhatsApp"
-     class="boton whatsapp oculto"
-     target="_blank"
-     rel="noopener noreferrer">
+      <svg class="icono-boton" viewBox="0 0 24 24"
+           aria-hidden="true" focusable="false">
+        <path fill="currentColor"
+          d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3ZM12.1 21.5c-1.7 0-3.4-.5-4.8-1.3l-.4-.2-3.9 1 1-3.8-.3-.4a9.7 9.7 0 0 1-1.5-5.1c0-5.4 4.4-9.8 9.8-9.8 2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.8-9.7 9.8Zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.2 3.2c.2.2 2.2 3.4 5.3 4.7.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.4Z"/>
+      </svg>
 
-    <svg class="icono-boton" viewBox="0 0 24 24"
-         aria-hidden="true" focusable="false">
-      <path fill="currentColor"
-        d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3ZM12.1 21.5c-1.7 0-3.4-.5-4.8-1.3l-.4-.2-3.9 1 1-3.8-.3-.4a9.7 9.7 0 0 1-1.5-5.1c0-5.4 4.4-9.8 9.8-9.8 2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.8-9.7 9.8Zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.2 3.2c.2.2 2.2 3.4 5.3 4.7.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.4Z"/>
-    </svg>
+      <span>Contactar por WhatsApp</span>
+    </a>
 
-    <span>Contactar por WhatsApp</span>
-  </a>
+    <a id="botonLlamar"
+       class="boton llamar oculto">
 
-  <!-- Llamada telefónica -->
-  <a id="botonLlamar"
-     class="boton llamar oculto">
+      <svg class="icono-boton" viewBox="0 0 24 24"
+           aria-hidden="true" focusable="false">
+        <path fill="currentColor"
+          d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11.3 11.3 0 0 0 3.5.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17.9 17.9 0 0 1 3 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.3 11.3 0 0 0 .6 3.5 1 1 0 0 1-.2 1Z"/>
+      </svg>
 
-    <svg class="icono-boton" viewBox="0 0 24 24"
-         aria-hidden="true" focusable="false">
-      <path fill="currentColor"
-        d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11.3 11.3 0 0 0 3.5.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17.9 17.9 0 0 1 3 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.3 11.3 0 0 0 .6 3.5 1 1 0 0 1-.2 1Z"/>
-    </svg>
+      <span>Llamar por celular</span>
+    </a>
 
-    <span>Llamar por celular</span>
-  </a>
-
+  </div>
 </div>
 
-<!-- Reportar mascota encontrada -->
+<!-- Reportar mascota encontrada: fuera del bloque azul -->
 <button
   id="botonEncontrada"
   type="button"
@@ -988,6 +986,7 @@
 
   <span>Reportar que encontré esta mascota</span>
 </button>
+
 
 
       <p
