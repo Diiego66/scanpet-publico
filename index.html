@@ -165,23 +165,55 @@
       overflow-wrap: anywhere;
     }
 
+/* =========================================
+   ETIQUETAS DE INFORMACIÓN DE LA MASCOTA
+   ========================================= */
+
 .datosPrincipales {
-  text-align: center;
-  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 -10px 26px;
 }
 
-.especie {
-  text-align: center;
-  color: var(--azul);
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
+/* Estilo general de las etiquetas */
+.especie,
 .datoPrincipal {
-  font-size: 14px;
-  color: var(--gris);
-  margin-top: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 8px 13px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* Especie: azul */
+#especie {
+  background: #E7F2FC;
+  color: #1769AA;
+  border: 1px solid #D3E6F7;
+}
+
+/* Raza: lila */
+#razaPrincipal {
+  background: #F1EAFE;
+  color: #8054B8;
+  border: 1px solid #E5D9F8;
+}
+
+/* Edad: verde */
+#edad {
+  background: #E7F5ED;
+  color: #278653;
+  border: 1px solid #D3EBDD;
 }
 
     /* =========================================
