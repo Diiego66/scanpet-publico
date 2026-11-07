@@ -165,81 +165,7 @@
       overflow-wrap: anywhere;
     }
 
-/* =========================================
-   ETIQUETAS DE INFORMACIÓN DE LA MASCOTA
-   ========================================= */
 
-.datosPrincipales {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0 -10px 26px;
-}
-
-/* Estilo general de las etiquetas */
-.especie,
-.datoPrincipal {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  padding: 8px 13px;
-  border-radius: 30px;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 0;
-  text-align: center;
-  overflow-wrap: anywhere;
-}
-
-/* Especie: azul */
-#especie {
-  background: #E7F2FC;
-  color: #1769AA;
-  border: 1px solid #D3E6F7;
-}
-
-/* Raza: lila */
-#razaPrincipal {
-  background: #F1EAFE;
-  color: #8054B8;
-  border: 1px solid #E5D9F8;
-}
-
-/* Edad: verde */
-#edad {
-  background: #E7F5ED;
-  color: #278653;
-  border: 1px solid #D3EBDD;
-}
-
-    /* =========================================
-   ETIQUETAS DE INFORMACIÓN DE LA MASCOTA
-   ========================================= */
-
-/* Especie: azul */
-#especie {
-  background: #E7F2FC;
-  color: #1769AA;
-  border: 1px solid #D3E6F7;
-}
-
-/* Raza: lila */
-#razaPrincipal {
-  background: #F1EAFE;
-  color: #8054B8;
-  border: 1px solid #E5D9F8;
-}
-
-/* Edad: verde */
-#edad {
-  background: #E7F5ED;
-  color: #278653;
-  border: 1px solid #D3EBDD;
-}
     .etiqueta {
       color: var(--azul);
       font-size: 12px;
@@ -413,41 +339,60 @@
 
 
 
+
+/* =========================================
+   ETIQUETAS DE INFORMACIÓN DE LA MASCOTA
+   ========================================= */
+
 #ficha .datosPrincipales {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   margin: 0 -10px 26px;
 }
 
-
-#ficha .especie,
-#ficha .datoPrincipal {
+/* Estilo general de las tres etiquetas */
+#ficha #especie,
+#ficha #razaPrincipal,
+#ficha #edad {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: fit-content;
   margin: 0;
-  padding: 7px 13px;
+  padding: 8px 13px;
   border-radius: 30px;
   font-size: 13px;
   font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
-#ficha .especie {
-  background: #e8f2fb;
-  color: #1769aa;
+/* Especie: azul */
+#ficha #especie {
+  background: #E7F2FC;
+  color: #1769AA;
+  border: 1px solid #D3E6F7;
 }
 
-#ficha .datoPrincipal {
-  background: #f1f4f7;
-  color: #536477;
-  white-space: nowrap;
-  font-size: 12px;
-  padding: 7px 10px;
+/* Raza: lila */
+#ficha #razaPrincipal {
+  background: #F1EAFE;
+  color: #8054B8;
+  border: 1px solid #E5D9F8;
 }
+
+/* Edad: verde */
+#ficha #edad {
+  background: #E7F5ED;
+  color: #278653;
+  border: 1px solid #D3EBDD;
+}
+
 
 #ficha .datoPrincipal.oculto {
   display: none !important;
