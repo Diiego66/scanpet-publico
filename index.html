@@ -70,17 +70,63 @@
       padding: 24px;
     }
 
-/* Fotografía principal del perfil */
+/* =========================================
+   FOTOGRAFÍA CIRCULAR DEL PERFIL NEXOPAWS
+   ========================================= */
+
+.foto-contenedor {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 28px 16px 34px;
+}
+
+/* Fondo decorativo detrás de la fotografía */
+.fondo-foto {
+  position: absolute;
+  z-index: -1;
+  top: calc(28px + clamp(105px, 31vw, 125px));
+  left: 16px;
+  right: 16px;
+  bottom: 0;
+
+  border-radius: 22px;
+
+  background: linear-gradient(
+    180deg,
+    #1769aa 0%,
+    #dcecf8 55%,
+    #ffffff 100%
+  );
+}
+
+/* Fotografía circular */
 .foto {
   display: block;
-  width: 100%;
-  height: clamp(240px, 62vw, 340px);
+  flex-shrink: 0;
+
+  width: clamp(210px, 62vw, 250px);
+  aspect-ratio: 1 / 1;
+  height: auto;
+
   object-fit: cover;
   object-position: center;
-  border: none;
-  border-radius: 0;
-  margin: 0;
+
+  border: 7px solid #ffffff;
+  border-radius: 50%;
+
   background: var(--fondo);
+
+  box-shadow:
+    0 0 0 3px rgba(23, 105, 170, 0.28),
+    0 12px 28px rgba(16, 75, 122, 0.20);
+}
+
+/* No mostrar el fondo si la mascota no tiene fotografía */
+.foto-contenedor:has(.foto.oculto) {
+  display: none;
 }
 
     h1 {
@@ -885,12 +931,18 @@
    
 <section id="ficha" class="tarjeta oculto">
 
-  <!-- Fotografía protagonista -->
+<!-- Fotografía circular protagonista -->
+<div class="foto-contenedor">
+
+  <div class="fondo-foto"></div>
+
   <img
     id="foto"
     class="foto oculto"
     alt="Foto de la mascota"
   >
+
+</div>
 
   <div class="contenido">
 
