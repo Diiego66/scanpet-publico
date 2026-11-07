@@ -70,6 +70,7 @@
       padding: 24px;
     }
 
+
 /* =========================================
    FOTOGRAFÍA CIRCULAR DEL PERFIL NEXOPAWS
    ========================================= */
@@ -83,10 +84,34 @@
   padding: 28px 16px 34px;
 }
 
-/* Fondo decorativo detrás de la fotografía */
+/* Halo luminoso detrás de la fotografía */
+.foto-contenedor::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: min(100%, 390px);
+  height: 270px;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(23, 105, 170, 0.20) 0%,
+    rgba(76, 158, 215, 0.12) 38%,
+    rgba(255, 255, 255, 0) 75%
+  );
+
+  pointer-events: none;
+}
+
+/* Fondo decorativo con transición suave */
 .fondo-foto {
   position: absolute;
   z-index: -1;
+
   top: calc(28px + clamp(105px, 31vw, 125px));
   left: 16px;
   right: 16px;
@@ -96,14 +121,17 @@
 
   background: linear-gradient(
     180deg,
-    #1769aa 0%,
-    #dcecf8 55%,
+    #dcecf8 0%,
+    #edf5fb 45%,
     #ffffff 100%
   );
 }
 
 /* Fotografía circular */
 .foto {
+  position: relative;
+  z-index: 1;
+
   display: block;
   flex-shrink: 0;
 
@@ -120,14 +148,15 @@
   background: var(--fondo);
 
   box-shadow:
-    0 0 0 3px rgba(23, 105, 170, 0.28),
-    0 12px 28px rgba(16, 75, 122, 0.20);
+    0 0 0 3px rgba(23, 105, 170, 0.20),
+    0 12px 28px rgba(16, 75, 122, 0.16);
 }
 
-/* No mostrar el fondo si la mascota no tiene fotografía */
+/* Ocultar toda la zona si no existe fotografía */
 .foto-contenedor:has(.foto.oculto) {
   display: none;
 }
+
 
     h1 {
       text-align: center;
