@@ -305,6 +305,10 @@
   order: 2;
 }
 
+#btnCancelarReporte {
+  order: 3;
+}
+
 .contenido-modal-reporte h2 {
   margin: 0 0 11px;
   color: var(--texto);
@@ -2161,6 +2165,11 @@ function mostrarIconoReporte(tipo) {
       '<circle cx="12" cy="12" r="3"/>' +
       '<path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22"/>',
 
+    ubicacionError:
+      '<circle cx="12" cy="12" r="9"/>' +
+      '<path d="M12 7v5"/>' +
+      '<path d="M12 16h.01"/>',
+
     gracias:
       '<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>' +
       '<path d="m8.5 12.5 2.2 2.2 4.8-4.8"/>'
@@ -2226,12 +2235,12 @@ function mostrarErrorUbicacionReporte() {
     "Después, vuelve a intentarlo. Si lo prefieres, " +
     "puedes enviar el aviso sin compartir tu ubicación.";
 
-  mostrarIconoReporte("ubicacion");
+  // Icono de alerta: indica que no fue posible obtener la ubicación.
+  mostrarIconoReporte("ubicacionError");
 
   btnCompartirUbicacion.classList.add("oculto");
-  btnEnviarSinUbicacion.classList.remove("oculto");
-
   btnReintentarUbicacion.classList.remove("oculto");
+  btnEnviarSinUbicacion.classList.remove("oculto");
   btnCerrarReporte.classList.add("oculto");
   btnCancelarReporte.classList.remove("oculto");
 }
