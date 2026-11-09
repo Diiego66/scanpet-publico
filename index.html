@@ -1099,6 +1099,73 @@
   }
 }
 
+
+/* Separadores entre campos relacionados */
+#activacionCorrecta #formRegistroMascota .separador-campo {
+  height: 1px;
+  margin: 7px 0 17px;
+  background: linear-gradient(to right, #dce5ed, #edf2f6 75%, transparent);
+}
+
+/* Año de nacimiento y edad en una misma fila */
+#activacionCorrecta #formRegistroMascota .fila-anio-edad {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  align-items: end;
+  gap: 12px;
+  margin: 3px 0 14px;
+}
+
+#activacionCorrecta #formRegistroMascota .campo-anio label {
+  display: block;
+}
+
+#activacionCorrecta #formRegistroMascota .campo-anio input {
+  margin-bottom: 0 !important;
+}
+
+#activacionCorrecta #formRegistroMascota .campo-edad {
+  min-height: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 9px 12px;
+  border: 1px solid #d8e8f5;
+  border-radius: 11px;
+  background: #f1f8fe;
+}
+
+#activacionCorrecta #formRegistroMascota .titulo-edad {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--gris);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+#activacionCorrecta #formRegistroMascota #edadCalculada {
+  margin: 0 !important;
+  color: var(--azul-oscuro);
+  font-size: 14px !important;
+  font-weight: 800;
+  line-height: 1.35 !important;
+}
+
+@media (max-width: 360px) {
+  #activacionCorrecta #formRegistroMascota .fila-anio-edad {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  #activacionCorrecta #formRegistroMascota .campo-edad {
+    padding: 8px;
+  }
+
+  #activacionCorrecta #formRegistroMascota #edadCalculada {
+    font-size: 12px !important;
+  }
+}
+
 </style>
 </head>
 
@@ -1243,16 +1310,20 @@
 
 
      
-<label for="anioMascota">Año de nacimiento</label>
-<input id="anioMascota" name="anioNacimiento" type="number"
-  min="1990" max="2100" step="1"
-  placeholder="Ej. 2022"
-  style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 6px;">
+<div class="fila-anio-edad">
+  <div class="campo-anio">
+    <label for="anioMascota">Año de nacimiento</label>
+    <input id="anioMascota" name="anioNacimiento" type="number"
+      min="1990" max="2100" step="1"
+      placeholder="Ej. 2022"
+      style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 6px;">
+  </div>
 
-<p id="edadCalculada" aria-live="polite"
-  style="margin:0 0 14px;font-size:13px;color:var(--gris);">
- Edad aproximada:
-</p>
+  <div class="campo-edad">
+    <span class="titulo-edad">Edad aproximada</span>
+    <p id="edadCalculada" aria-live="polite">Ingresa el año de nacimiento</p>
+  </div>
+</div>
 
 
 
@@ -1271,6 +1342,7 @@
  Describe su color, manchas, cicatrices u otras características que ayuden a identificarla.
 </p>
 
+<div class="separador-campo" aria-hidden="true"></div>
 
 <label for="zonaMascota">Ubicación de referencia</label>
 <input id="zonaMascota" name="municipioZona" maxlength="150"
@@ -1300,6 +1372,7 @@
   Incluye alergias, medicamentos, necesidades especiales u otras recomendaciones importantes para su bienestar.
 </p>
 
+<div class="separador-campo" aria-hidden="true"></div>
 
 <label for="mensajeMascota">Un mensaje para quien encuentre a tu mascota</label>
 <textarea id="mensajeMascota" name="mensajePersonal"
