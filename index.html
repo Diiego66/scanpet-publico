@@ -286,6 +286,16 @@
   font-size: 30px;
 }
 
+.icono-modal-reporte svg {
+  width: 31px;
+  height: 31px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .contenido-modal-reporte h2 {
   margin: 0 0 11px;
   color: var(--texto);
@@ -1317,8 +1327,11 @@
              aria-labelledby="tituloModalReporte"
              aria-describedby="mensajeModalReporte">
 
-          <div id="iconoModalReporte" class="icono-modal-reporte">
-            📍
+          <div id="iconoModalReporte" class="icono-modal-reporte" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/>
+              <circle cx="12" cy="10" r="2.5"/>
+            </svg>
           </div>
 
           <h2 id="tituloModalReporte">
@@ -2123,6 +2136,16 @@ const btnCancelarReporte =
   document.getElementById("btnCancelarReporte");
 
 
+// Mostrar un icono vectorial moderno de ubicación.
+function mostrarIconoUbicacionReporte() {
+  iconoModalReporte.innerHTML =
+    '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+      '<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/>' +
+      '<circle cx="12" cy="10" r="2.5"/>' +
+    '</svg>';
+}
+
+
 // Mostrar el modal.
 function abrirModalReporteEncontrada() {
   tituloModalReporte.textContent =
@@ -2132,7 +2155,7 @@ function abrirModalReporteEncontrada() {
     "Si compartes tu ubicación, ayudarás a la familia a saber " +
     "dónde fue encontrada su mascota. Compartirla es opcional.";
 
-  iconoModalReporte.textContent = "📍";
+  mostrarIconoUbicacionReporte();
 
   btnCompartirUbicacion.classList.remove("oculto");
   btnEnviarSinUbicacion.classList.remove("oculto");
@@ -2176,7 +2199,7 @@ function mostrarErrorUbicacionReporte() {
     "Después, vuelve a intentarlo. Si lo prefieres, " +
     "puedes enviar el aviso sin compartir tu ubicación.";
 
-  iconoModalReporte.textContent = "📍";
+  mostrarIconoUbicacionReporte();
 
   btnCompartirUbicacion.classList.add("oculto");
   btnEnviarSinUbicacion.classList.remove("oculto");
