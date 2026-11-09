@@ -1016,7 +1016,90 @@
   }
 }
 
-  </style>
+  
+/* Organización por bloques del formulario de registro */
+#activacionCorrecta #formRegistroMascota .grupo-registro {
+  margin: 0 0 18px;
+  padding: 18px 16px 8px;
+  border: 1px solid var(--borde);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(25, 55, 85, .045);
+}
+
+#activacionCorrecta #formRegistroMascota .encabezado-grupo {
+  margin: 0 0 18px;
+  padding: 0 0 13px;
+  border-bottom: 1px solid #edf1f5;
+}
+
+#activacionCorrecta #formRegistroMascota .encabezado-grupo h2 {
+  margin: 0 0 5px;
+  color: var(--azul-oscuro);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+#activacionCorrecta #formRegistroMascota .encabezado-grupo p {
+  margin: 0;
+  color: var(--gris);
+  font-size: 12px !important;
+}
+
+#activacionCorrecta #formRegistroMascota .grupo-registro .etiqueta {
+  display: none;
+}
+
+#activacionCorrecta #formRegistroMascota .vista-previa-foto {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 12px 0 14px;
+  padding: 11px;
+  border: 1px solid #dce8f2;
+  border-radius: 13px;
+  background: #f7fbff;
+}
+
+#activacionCorrecta #formRegistroMascota .vista-previa-foto.oculto {
+  display: none;
+}
+
+#activacionCorrecta #imagenPreviaMascota {
+  display: block;
+  width: 76px;
+  height: 76px;
+  flex: 0 0 76px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #e8eef4;
+}
+
+#activacionCorrecta #vistaPreviaFotoMascota strong,
+#activacionCorrecta #vistaPreviaFotoMascota span {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+#activacionCorrecta #vistaPreviaFotoMascota strong {
+  color: var(--texto);
+  font-size: 13px;
+}
+
+#activacionCorrecta #vistaPreviaFotoMascota span {
+  margin-top: 4px;
+  color: var(--gris);
+  font-size: 11px;
+}
+
+@media (max-width: 480px) {
+  #activacionCorrecta #formRegistroMascota .grupo-registro {
+    padding: 16px 13px 7px;
+    border-radius: 14px;
+  }
+}
+
+</style>
 </head>
 
 <body>
@@ -1127,6 +1210,11 @@
     </p>
 
 <form id="formRegistroMascota">
+<div class="grupo-registro">
+  <div class="encabezado-grupo">
+    <h2>Conozcamos a tu mascota</h2>
+    <p>Cuéntanos quién es y cuáles son sus características principales.</p>
+  </div>
       <div class="etiqueta">Información de la mascota</div>
 
       <label for="nombreMascota">Nombre *</label>
@@ -1167,6 +1255,14 @@
 </p>
 
 
+
+</div>
+
+<div class="grupo-registro">
+  <div class="encabezado-grupo">
+    <h2>¿Cómo podemos identificarla?</h2>
+    <p>Describe sus señas particulares y la zona general donde suele estar.</p>
+  </div>
       <label for="colorMascota">Características físicas y señas particulares</label>
       <textarea id="colorMascota" name="colorSenas" rows="2" maxlength="1000"  placeholder="Ej. Pelaje blanco con manchas negras, una mancha en la oreja derecha y una cicatriz en la pata."
         style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;"></textarea>
@@ -1185,6 +1281,14 @@
   Indica una zona general donde suele estar tu mascota.
   No escribas tu dirección exacta ni datos de ubicación de tu vivienda.
 </p>
+
+</div>
+
+<div class="grupo-registro">
+  <div class="encabezado-grupo">
+    <h2>Información para protegerla</h2>
+    <p>Comparte los cuidados importantes y un mensaje para quien la encuentre.</p>
+  </div>
 
 
 <label for="cuidadosMascota">Cuidados e información importante</label>
@@ -1205,6 +1309,14 @@
 <p style="margin:0 0 14px;font-size:12px;color:var(--gris);line-height:1.5;">
   Puedes escribir un mensaje personal, explicar cómo ayudar a tu mascota o pedir que contacten a tu familia.
 </p>
+</div>
+
+<div class="grupo-registro">
+  <div class="encabezado-grupo">
+    <h2>Fotografía de tu mascota</h2>
+    <p>Una buena fotografía facilita que otras personas puedan reconocerla.</p>
+  </div>
+
 
 
       <label for="fotoMascota">Fotografía de la mascota</label>
@@ -1213,9 +1325,24 @@
       <p style="font-size:12px;color:var(--gris);">
         Opcional. Se recomienda una imagen clara de hasta 2 MB.
       </p>
+      <div id="vistaPreviaFotoMascota" class="vista-previa-foto oculto" aria-live="polite">
+        <img id="imagenPreviaMascota" alt="Vista previa de la fotografía seleccionada">
+        <div>
+          <strong id="nombreArchivoMascota"></strong>
+          <span>Vista previa de la fotografía</span>
+        </div>
+      </div>
 
+
+</div>
+
+<div class="grupo-registro">
+  <div class="encabezado-grupo">
+    <h2>Datos de contacto</h2>
+    <p>Estos datos permitirán que su familia reciba avisos si alguien la encuentra.</p>
+  </div>
      
-<div class="etiqueta">Datos de contacto</div>
+
 
 <label for="nombreContacto">Nombre del responsable *</label>
 <input id="nombreContacto" name="nombreContacto" required maxlength="120"
@@ -1241,6 +1368,9 @@
 <input id="correoContacto" name="correoPropietario" type="email"
   required maxlength="254" autocomplete="email"
   style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
+</div>
+
+
 
 
 
@@ -2690,6 +2820,41 @@ function calcularEdadMascota() {
 anioMascota.addEventListener("input", calcularEdadMascota);
 calcularEdadMascota();
 
-  </script>
+  
+/* Vista previa local de la fotografía del registro */
+(function configurarVistaPreviaFotoMascota() {
+  const campoFotoMascota = document.getElementById("fotoMascota");
+  const contenedorVistaPrevia = document.getElementById("vistaPreviaFotoMascota");
+  const imagenPrevia = document.getElementById("imagenPreviaMascota");
+  const nombreArchivo = document.getElementById("nombreArchivoMascota");
+  let urlPreviaFoto = null;
+
+  if (!campoFotoMascota || !contenedorVistaPrevia || !imagenPrevia || !nombreArchivo) {
+    return;
+  }
+
+  campoFotoMascota.addEventListener("change", function() {
+    const archivo = this.files && this.files[0];
+
+    if (urlPreviaFoto) {
+      URL.revokeObjectURL(urlPreviaFoto);
+      urlPreviaFoto = null;
+    }
+
+    if (!archivo || !archivo.type.startsWith("image/")) {
+      imagenPrevia.removeAttribute("src");
+      nombreArchivo.textContent = "";
+      contenedorVistaPrevia.classList.add("oculto");
+      return;
+    }
+
+    urlPreviaFoto = URL.createObjectURL(archivo);
+    imagenPrevia.src = urlPreviaFoto;
+    nombreArchivo.textContent = archivo.name;
+    contenedorVistaPrevia.classList.remove("oculto");
+  });
+})();
+
+</script>
 </body>
 </html>
