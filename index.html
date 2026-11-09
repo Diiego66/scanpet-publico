@@ -1327,6 +1327,40 @@
   }
 }
 
+
+/* Etiqueta y valor de edad en líneas separadas */
+#activacionCorrecta #formRegistroMascota .campo-edad {
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3px;
+}
+
+#activacionCorrecta #formRegistroMascota .campo-edad .titulo-edad {
+  margin: 0;
+  color: var(--gris);
+  font-size: 10px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+#activacionCorrecta #formRegistroMascota #edadCalculada {
+  margin: 0 !important;
+  color: var(--azul-oscuro);
+  font-size: 14px !important;
+  font-weight: 800;
+  line-height: 1.3 !important;
+}
+
+@media (max-width: 480px) {
+  #activacionCorrecta #formRegistroMascota .campo-edad .titulo-edad {
+    font-size: 10px;
+  }
+
+  #activacionCorrecta #formRegistroMascota #edadCalculada {
+    font-size: 12px !important;
+  }
+}
+
 </style>
 </head>
 
@@ -1483,7 +1517,8 @@
   </div>
 
   <div class="campo-edad">
-    <p id="edadCalculada" aria-live="polite">Edad aproximada: ingresa el año de nacimiento</p>
+    <span class="titulo-edad">Edad aproximada</span>
+    <p id="edadCalculada" aria-live="polite">Ingresa el año de nacimiento</p>
   </div>
 </div>
 
@@ -3017,7 +3052,7 @@ function calcularEdadMascota() {
 
   if (valor === "") {
     edadCalculada.textContent =
-      "Edad aproximada:";
+      "Ingresa el año de nacimiento";
     return;
   }
 
@@ -3036,13 +3071,11 @@ function calcularEdadMascota() {
   const edad = anioActual - anioNacimiento;
 
   if (edad === 0) {
-    edadCalculada.textContent =
-      "Edad aproximada: menos de 1 año.";
+    edadCalculada.textContent = "Menos de 1 año.";
   } else if (edad === 1) {
-    edadCalculada.textContent = "Edad aproximada: 1 año.";
+    edadCalculada.textContent = "1 año.";
   } else {
-    edadCalculada.textContent =
-      "Edad aproximada: " + edad + " años.";
+    edadCalculada.textContent = edad + " años.";
   }
 }
 
