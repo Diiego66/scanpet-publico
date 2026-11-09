@@ -648,24 +648,88 @@
   height: 27px;
 }
 
-/* Reportar mascota encontrada */
+/* Sección para reportar una mascota encontrada */
+#ficha .bloque-reporte-encontrada {
+  display: grid;
+  gap: 11px;
+  margin-top: 22px;
+  padding: 18px;
+  background: #fffaf2;
+  border: 1px solid #f0e3ce;
+  border-radius: 16px;
+}
+
+#ficha .encabezado-reporte-encontrada {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+#ficha .icono-reporte-encontrada {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #fff1df;
+  color: #a66a19;
+}
+
+#ficha .icono-reporte-encontrada svg {
+  width: 23px;
+  height: 23px;
+}
+
+#ficha .titulo-reporte-encontrada {
+  margin: 0;
+  color: var(--texto);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+#ficha .descripcion-reporte-encontrada {
+  margin: 0;
+  color: var(--gris);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
 #ficha .botonEncontrada {
   width: 100%;
-  min-height: 52px;
-  margin-top: 13px;
+  min-height: 50px;
+  margin: 2px 0 0;
   padding: 12px 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
-  background: #fff4df;
-  color: #946018;
-  border: 1px solid #efd9ad;
+  background: var(--azul);
+  color: #ffffff;
+  border: 1px solid var(--azul);
   border-radius: 12px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1.4;
   text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#ficha .botonEncontrada:hover {
+  background: var(--azul-oscuro);
+  border-color: var(--azul-oscuro);
+}
+
+#ficha .botonEncontrada:active {
+  transform: scale(0.99);
+}
+
+#ficha .botonEncontrada:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 /* Interacción */
@@ -1127,20 +1191,41 @@
   </div>
 </div>
 
-<!-- Reportar mascota encontrada: fuera del bloque azul -->
-<button
-  id="botonEncontrada"
-  type="button"
-  class="boton botonEncontrada oculto">
+<!-- Sección para reportar una mascota encontrada -->
+<div class="bloque-reporte-encontrada">
 
-  <svg class="icono-boton" viewBox="0 0 24 24"
-       aria-hidden="true" focusable="false">
-    <path fill="currentColor"
-      d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/>
-  </svg>
+  <div class="encabezado-reporte-encontrada">
+    <div class="icono-reporte-encontrada" aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path fill="currentColor"
+          d="M12 21s-8-4.8-8-11a4.5 4.5 0 0 1 8-2.9A4.5 4.5 0 0 1 20 10c0 6.2-8 11-8 11Z"/>
+      </svg>
+    </div>
 
-  <span>Reportar que encontré esta mascota</span>
-</button>
+    <h2 class="titulo-reporte-encontrada">
+      ¿Encontraste a esta mascota?
+    </h2>
+  </div>
+
+  <p class="descripcion-reporte-encontrada">
+    Si la encontraste, avisa a su familia para ayudarla a regresar a casa.
+  </p>
+
+  <button
+    id="botonEncontrada"
+    type="button"
+    class="boton botonEncontrada oculto">
+
+    <svg class="icono-boton" viewBox="0 0 24 24"
+         aria-hidden="true" focusable="false">
+      <path fill="currentColor"
+        d="M2.5 12 21 3l-5.5 18-4-7-9-2Zm9.8 1.1 2.5 4.4 3.7-11.9-12.2 5.9 6 .8Z"/>
+    </svg>
+
+    <span>Avisar a su familia</span>
+  </button>
+
+</div>
 
 
 
