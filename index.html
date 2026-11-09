@@ -865,6 +865,157 @@
   margin: 0 auto;
 }
 
+
+/* =========================================
+   FORMULARIO DE REGISTRO NEXOPAWS
+   Mejora visual sin alterar la lógica
+   ========================================= */
+#activacionCorrecta > .contenido {
+  padding: 24px 20px;
+}
+
+#activacionCorrecta #formRegistroMascota {
+  margin-top: 24px;
+  text-align: left;
+}
+
+#activacionCorrecta #formRegistroMascota > .etiqueta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 28px 0 17px;
+  padding: 13px 14px;
+  border: 1px solid #d9eafa;
+  border-radius: 13px;
+  background: #edf6ff;
+  color: var(--azul-oscuro);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .1px;
+}
+
+#activacionCorrecta #formRegistroMascota > .etiqueta:first-child {
+  margin-top: 0;
+}
+
+#activacionCorrecta #formRegistroMascota label:not([style*="display:flex"]) {
+  display: block;
+  margin: 0 0 6px;
+  color: #34465a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#activacionCorrecta #formRegistroMascota input:not([type="checkbox"]):not([type="file"]),
+#activacionCorrecta #formRegistroMascota select,
+#activacionCorrecta #formRegistroMascota textarea {
+  width: 100%;
+  min-height: 46px;
+  margin: 0 0 16px !important;
+  padding: 12px 13px !important;
+  border: 1px solid var(--borde) !important;
+  border-radius: 11px !important;
+  background: #fff;
+  color: var(--texto);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.45;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+#activacionCorrecta #formRegistroMascota textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+#activacionCorrecta #formRegistroMascota input:focus,
+#activacionCorrecta #formRegistroMascota select:focus,
+#activacionCorrecta #formRegistroMascota textarea:focus {
+  outline: none;
+  border-color: var(--azul) !important;
+  box-shadow: 0 0 0 3px rgba(23, 105, 170, .12);
+}
+
+#activacionCorrecta #formRegistroMascota input::placeholder,
+#activacionCorrecta #formRegistroMascota textarea::placeholder {
+  color: #9aa8b7;
+  opacity: 1;
+}
+
+#activacionCorrecta #formRegistroMascota p {
+  color: var(--gris);
+  font-size: 12px !important;
+  line-height: 1.55 !important;
+}
+
+#activacionCorrecta #edadCalculada {
+  margin-top: -9px !important;
+}
+
+#activacionCorrecta #fotoMascota {
+  min-height: auto !important;
+  padding: 13px !important;
+  border: 1px dashed #a9c9e4 !important;
+  border-radius: 13px !important;
+  background: #f7fbff !important;
+}
+
+#activacionCorrecta #consentimientoRegistro {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--azul);
+}
+
+#activacionCorrecta #formRegistroMascota > label:has(#consentimientoRegistro) {
+  padding: 15px;
+  border: 1px solid var(--borde);
+  border-radius: 13px;
+  background: #f8fafc;
+}
+
+#activacionCorrecta #botonEnviarRegistro {
+  min-height: 51px;
+  margin-top: 8px;
+  border-radius: 12px;
+  background: var(--azul);
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+  box-shadow: 0 5px 13px rgba(23, 105, 170, .18);
+}
+
+#activacionCorrecta #botonEnviarRegistro:hover {
+  background: var(--azul-oscuro);
+}
+
+#activacionCorrecta #botonEnviarRegistro:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+#activacionCorrecta #mensajeRegistro {
+  color: var(--gris);
+  font-size: 13px;
+}
+
+@media (max-width: 480px) {
+  #activacionCorrecta > .contenido {
+    padding: 21px 15px;
+  }
+
+  #activacionCorrecta #formRegistroMascota > .etiqueta {
+    margin-top: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #activacionCorrecta #formRegistroMascota input,
+  #activacionCorrecta #formRegistroMascota select,
+  #activacionCorrecta #formRegistroMascota textarea {
+    transition: none;
+  }
+}
+
   </style>
 </head>
 
