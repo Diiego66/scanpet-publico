@@ -1201,11 +1201,13 @@
       <div class="contenido">
 
         
-        <h1 style="font-size: 24px;">Activa tu llavero NexoPaws</h1>
+        <div id="bloqueIntroActivacion">
+          <h1 style="font-size: 24px;">Activa tu llavero NexoPaws</h1>
 
-        <p style="text-align: center; line-height: 1.6;">
-         Estás a un paso de crear la identificación de tu mascota. Ingresa el código de activación que recibiste con tu llavero para continuar con el registro.
-        </p>
+          <p style="text-align: center; line-height: 1.6;">
+           Estás a un paso de crear la identificación de tu mascota. Ingresa el código de activación que recibiste con tu llavero para continuar con el registro.
+          </p>
+        </div>
 
         <form id="formActivacion">
           <label for="codigoActivacion"
@@ -1320,8 +1322,7 @@
   </div>
 
   <div class="campo-edad">
-    <span class="titulo-edad">Edad aproximada</span>
-    <p id="edadCalculada" aria-live="polite">Ingresa el año de nacimiento</p>
+    <p id="edadCalculada" aria-live="polite">Edad aproximada: ingresa el año de nacimiento</p>
   </div>
 </div>
 
@@ -1983,6 +1984,7 @@ if (!/^[a-fA-F0-9]{64}$/.test(tokenAutorizacionScanPet)) {
 }
 
 document.getElementById("formActivacion").classList.add("oculto");
+document.getElementById("bloqueIntroActivacion").classList.add("oculto");
 resultado.classList.remove("oculto");
 
       } catch (error) {
