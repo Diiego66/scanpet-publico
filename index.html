@@ -345,31 +345,50 @@
    ========================================= */
 
 #ficha .datosPrincipales {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin: 0 -10px 26px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 26px;
 }
 
-/* Estilo general de las tres etiquetas */
+/* Tarjetas de especie, raza y edad */
 #ficha #especie,
 #ficha #razaPrincipal,
 #ficha #edad {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: fit-content;
+  min-width: 0;
+  min-height: 76px;
   margin: 0;
-  padding: 8px 13px;
-  border-radius: 30px;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.2;
+  padding: 11px 6px;
+  border-radius: 14px;
   text-align: center;
   overflow-wrap: anywhere;
   white-space: normal;
+}
+
+/* Título superior de cada tarjeta */
+#ficha .dato-principal-titulo {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* Valor inferior de cada tarjeta */
+#ficha .dato-principal-valor {
+  display: block;
+  max-width: 100%;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 
 /* Especie: azul */
@@ -391,6 +410,23 @@
   background: #E7F5ED;
   color: #278653;
   border: 1px solid #D3EBDD;
+}
+
+/* Ajustes para nombres de raza largos en móviles */
+@media (max-width: 380px) {
+  #ficha .datosPrincipales {
+    gap: 7px;
+  }
+
+  #ficha #especie,
+  #ficha #razaPrincipal,
+  #ficha #edad {
+    padding: 10px 4px;
+  }
+
+  #ficha .dato-principal-valor {
+    font-size: 12px;
+  }
 }
 
 
@@ -1007,11 +1043,20 @@
     <h1 id="nombre"></h1>
 
     <div class="datosPrincipales">
-      <div id="especie" class="especie"></div>
+      <div id="especie" class="especie">
+        <span class="dato-principal-titulo">Especie</span>
+        <span class="dato-principal-valor"></span>
+      </div>
 
-      <div id="razaPrincipal" class="datoPrincipal oculto"></div>
+      <div id="razaPrincipal" class="datoPrincipal oculto">
+        <span class="dato-principal-titulo">Raza</span>
+        <span class="dato-principal-valor"></span>
+      </div>
 
-      <div id="edad" class="datoPrincipal oculto"></div>
+      <div id="edad" class="datoPrincipal oculto">
+        <span class="dato-principal-titulo">Edad</span>
+        <span class="dato-principal-valor"></span>
+      </div>
     </div>
 
     <!-- Características físicas -->
@@ -1233,7 +1278,7 @@ document.getElementById("nombre").textContent =
   "¡Hola, soy " + nombreFicha + "!";
 
           // Mostrar la especie debajo del nombre.
-      document.getElementById("especie").textContent =
+      document.querySelector("#especie .dato-principal-valor").textContent =
         m.especie || "Ficha de identificación";
 
       // Mostrar la raza debajo de la especie.
@@ -1241,7 +1286,7 @@ document.getElementById("nombre").textContent =
       const raza = String(m.raza || "").trim();
 
       if (raza) {
-        elementoRaza.textContent = "Raza: " + raza;
+        elementoRaza.querySelector(".dato-principal-valor").textContent = raza;
         elementoRaza.classList.remove("oculto");
       }
 
@@ -1259,11 +1304,11 @@ document.getElementById("nombre").textContent =
         const edad = anioActual - anioNacimiento;
 
         if (edad === 0) {
-          elementoEdad.textContent = "Edad: Menos de 1 año";
+          elementoEdad.querySelector(".dato-principal-valor").textContent = "Menos de 1 año";
         } else if (edad === 1) {
-          elementoEdad.textContent = "Edad: 1 año";
+          elementoEdad.querySelector(".dato-principal-valor").textContent = "1 año";
         } else {
-          elementoEdad.textContent = "Edad: " + edad + " años";
+          elementoEdad.querySelector(".dato-principal-valor").textContent = edad + " años";
         }
 
         elementoEdad.classList.remove("oculto");
