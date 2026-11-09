@@ -296,6 +296,15 @@
   stroke-linejoin: round;
 }
 
+/* Priorizar reintentar la ubicación antes de enviar sin ella */
+#btnReintentarUbicacion {
+  order: 1;
+}
+
+#btnEnviarSinUbicacion {
+  order: 2;
+}
+
 .contenido-modal-reporte h2 {
   margin: 0 0 11px;
   color: var(--texto);
@@ -2136,12 +2145,25 @@ const btnCancelarReporte =
   document.getElementById("btnCancelarReporte");
 
 
-// Mostrar un icono vectorial moderno de ubicación.
-function mostrarIconoUbicacionReporte() {
+// Mostrar iconos SVG modernos según el estado del reporte.
+function mostrarIconoReporte(tipo) {
+  const iconos = {
+    ubicacion:
+      '<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/>' +
+      '<circle cx="12" cy="10" r="2.5"/>',
+
+    envio:
+      '<path d="m22 2-7 20-4-9-9-4Z"/>' +
+      '<path d="M22 2 11 13"/>',
+
+    gracias:
+      '<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>' +
+      '<path d="m8.5 12.5 2.2 2.2 4.8-4.8"/>'
+  };
+
   iconoModalReporte.innerHTML =
     '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
-      '<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/>' +
-      '<circle cx="12" cy="10" r="2.5"/>' +
+      (iconos[tipo] || iconos.ubicacion) +
     '</svg>';
 }
 
@@ -2155,7 +2177,7 @@ function abrirModalReporteEncontrada() {
     "Si compartes tu ubicación, ayudarás a la familia a saber " +
     "dónde fue encontrada su mascota. Compartirla es opcional.";
 
-  mostrarIconoUbicacionReporte();
+  mostrarIconoReporte("ubicacion");
 
   btnCompartirUbicacion.classList.remove("oculto");
   btnEnviarSinUbicacion.classList.remove("oculto");
@@ -2176,7 +2198,7 @@ function mostrarProcesandoReporte(mensaje, icono) {
 
   mensajeModalReporte.textContent = mensaje;
 
-  iconoModalReporte.textContent = icono;
+  mostrarIconoReporte(icono);
 
   btnCompartirUbicacion.classList.add("oculto");
   btnEnviarSinUbicacion.classList.add("oculto");
@@ -2199,7 +2221,7 @@ function mostrarErrorUbicacionReporte() {
     "Después, vuelve a intentarlo. Si lo prefieres, " +
     "puedes enviar el aviso sin compartir tu ubicación.";
 
-  mostrarIconoUbicacionReporte();
+  mostrarIconoReporte("ubicacion");
 
   btnCompartirUbicacion.classList.add("oculto");
   btnEnviarSinUbicacion.classList.remove("oculto");
@@ -2218,7 +2240,7 @@ function mostrarExitoReporteEncontrada() {
     "El aviso fue enviado correctamente a la familia de esta mascota. " +
     "Gracias por contribuir a que pueda regresar a casa.";
 
-  iconoModalReporte.textContent = "🐾";
+  mostrarIconoReporte("gracias");
 
   btnCompartirUbicacion.classList.add("oculto");
   btnEnviarSinUbicacion.classList.add("oculto");
@@ -2254,7 +2276,7 @@ async function ejecutarEnvioReporteEncontrada(latitud, longitud) {
 
   mostrarProcesandoReporte(
     "Estamos enviando el aviso a la familia de esta mascota...",
-    "✉️"
+    "envio"
   );
 
   try {
@@ -2289,7 +2311,7 @@ async function ejecutarEnvioReporteEncontrada(latitud, longitud) {
 async function compartirUbicacionYEnviarReporte() {
   mostrarProcesandoReporte(
     "Estamos intentando obtener tu ubicación. Por favor, espera...",
-    "📍"
+    "ubicacion"
   );
 
   try {
