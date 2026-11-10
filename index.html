@@ -2610,11 +2610,8 @@ formularioRegistroScanPet.addEventListener("submit", async function(event) {
   
 tokenAutorizacionScanPet = "";
 
-// Ocultar el encabezado y el mensaje de activación.
-document.querySelector("#activacion > .contenido > h1")
-  .classList.add("oculto");
-
-document.querySelector("#activacion > .contenido > p")
+// Ocultar el bloque introductorio de activación.
+document.getElementById("bloqueIntroActivacion")
   .classList.add("oculto");
 
 // Ocultar el formulario de activación.
