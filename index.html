@@ -2033,11 +2033,16 @@
         <div class="icono-cargando-mascota" aria-hidden="true">
           <svg viewBox="0 0 48 48" focusable="false">
             <circle class="anillo-cargando" cx="24" cy="24" r="18"></circle>
-            <path class="huella-cargando" d="M24 28c-5.2 0-9 3.2-9 6.8 0 2.7 2.2 4.2 5 3.5 2.6-.7 5.4-.7 8 0 2.8.7 5-0.8 5-3.5 0-3.6-3.8-6.8-9-6.8ZM13.5 21.5c-2.2 0-3.8-2.2-3.5-4.8.3-2.3 1.8-3.8 3.7-3.6 2 .2 3.2 2.3 2.8 4.7-.4 2.3-1.5 3.7-3 3.7Zm21 0c-1.5 0-2.6-1.4-3-3.7-.4-2.4.8-4.5 2.8-4.7 1.9-.2 3.4 1.3 3.7 3.6.3 2.6-1.3 4.8-3.5 4.8ZM21 23c-2 0-3.4-2.1-3.2-4.8.2-2.6 1.7-4.3 3.6-4.1 1.9.2 3 2.3 2.8 4.8-.2 2.4-1.4 4.1-3.2 4.1Zm6 0c-1.8 0-3-1.7-3.2-4.1-.2-2.5.9-4.6 2.8-4.8 1.9-.2 3.4 1.5 3.6 4.1.2 2.7-1.2 4.8-3.2 4.8Z"></path>
+            <g class="huella-cargando">
+              <ellipse cx="24" cy="32.5" rx="8.2" ry="6.2"></ellipse>
+              <ellipse cx="13.5" cy="21" rx="3.2" ry="4.2" transform="rotate(-18 13.5 21)"></ellipse>
+              <ellipse cx="21" cy="16.5" rx="3.1" ry="4.2" transform="rotate(-5 21 16.5)"></ellipse>
+              <ellipse cx="28" cy="16.5" rx="3.1" ry="4.2" transform="rotate(5 28 16.5)"></ellipse>
+              <ellipse cx="34.5" cy="21" rx="3.2" ry="4.2" transform="rotate(18 34.5 21)"></ellipse>
+            </g>
           </svg>
         </div>
         <strong>Preparando la ficha de tu mascota</strong>
-        <span>Estamos conectando con NexoPaws para consultar su información.</span>
         <div class="texto-cargando-pista"><span></span> Un momento, por favor</div>
       </div>
     </section>
@@ -2950,7 +2955,7 @@ const mensajes = {
   Rechazado: "La solicitud de registro de esta mascota no fue aprobada. Comunícate con NexoPaws para obtener más información.",
   Activo: "Este llavero ya está activado, pero no pudimos cargar su ficha.",
   Bloqueado: "Este llavero está bloqueado. Contacta con NexoPaws.",
-  Baja: "Este llavero ya no está disponible.",
+  Baja: "Si necesitas más información sobre este estado, comunícate con NexoPaws.",
   NoEncontrado: "No se encontró este llavero."
 };
         const titulosEstado = {
