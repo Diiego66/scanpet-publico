@@ -1813,6 +1813,209 @@
   }
 }
 
+
+/* =========================================
+   PANTALLA DE CARGA DE FICHA
+   ========================================= */
+#cargando .estado-cargando {
+  padding: 37px 24px 32px;
+  background: linear-gradient(155deg, #eef6fd 0%, #ffffff 58%, #f8fbfe 100%);
+}
+
+#cargando .icono-cargando-mascota {
+  display: flex;
+  width: 76px;
+  height: 76px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 19px;
+  border: 1px solid #d8eaf7;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #e3f1fb, #f8fbff);
+  box-shadow: 0 7px 19px rgba(23, 105, 170, .09);
+}
+
+#cargando .icono-cargando-mascota svg {
+  width: 49px;
+  height: 49px;
+}
+
+#cargando .anillo-cargando {
+  fill: none;
+  stroke: #c9dfef;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+  transform-origin: 24px 24px;
+  animation: girarCargandoMascota 2.8s linear infinite;
+}
+
+#cargando .huella-cargando {
+  fill: #1769aa;
+  opacity: .9;
+}
+
+#cargando .estado-cargando strong {
+  margin-bottom: 8px;
+  color: var(--azul-oscuro);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+#cargando .estado-cargando > span {
+  display: block;
+  max-width: 330px;
+  margin: 0 auto;
+  color: #60778c;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+#cargando .texto-cargando-pista {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 19px;
+  padding: 8px 13px;
+  border: 1px solid #dceaf6;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #648098;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+#cargando .texto-cargando-pista span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4c9ed7;
+  animation: pulsoCargandoMascota 1.4s ease-in-out infinite;
+}
+
+@keyframes girarCargandoMascota {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulsoCargandoMascota {
+  50% { opacity: .35; transform: scale(.75); }
+}
+
+/* =========================================
+   ESTADOS BLOQUEADO, RECHAZADO Y BAJA
+   ========================================= */
+#error.estado-rechazado .estado,
+#error.estado-bloqueado .estado,
+#error.estado-baja .estado {
+  padding: 34px 24px 31px;
+}
+
+#error.estado-rechazado .icono-estado-pendiente,
+#error.estado-bloqueado .icono-estado-pendiente,
+#error.estado-baja .icono-estado-pendiente {
+  display: flex;
+  width: 70px;
+  height: 70px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 19px;
+  border-radius: 22px;
+}
+
+#error.estado-rechazado .icono-estado-pendiente {
+  border: 1px solid #f2dada;
+  background: linear-gradient(145deg, #fff0f0, #fffafa);
+  box-shadow: 0 7px 18px rgba(180, 65, 65, .08);
+}
+
+#error.estado-rechazado .icono-estado-pendiente svg {
+  stroke: #c34d55;
+}
+
+#error.estado-bloqueado .icono-estado-pendiente {
+  border: 1px solid #f0e1c8;
+  background: linear-gradient(145deg, #fff6e8, #fffdf8);
+  box-shadow: 0 7px 18px rgba(172, 119, 43, .08);
+}
+
+#error.estado-bloqueado .icono-estado-pendiente svg {
+  stroke: #b27a2e;
+}
+
+#error.estado-baja .icono-estado-pendiente {
+  border: 1px solid #dce2e8;
+  background: linear-gradient(145deg, #edf1f5, #fafbfd);
+  box-shadow: 0 7px 18px rgba(75, 93, 110, .07);
+}
+
+#error.estado-baja .icono-estado-pendiente svg {
+  stroke: #687b8d;
+}
+
+#error.estado-rechazado .icono-estado-pendiente svg,
+#error.estado-bloqueado .icono-estado-pendiente svg,
+#error.estado-baja .icono-estado-pendiente svg {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#error.estado-rechazado #errorTitulo,
+#error.estado-bloqueado #errorTitulo,
+#error.estado-baja #errorTitulo {
+  margin-bottom: 10px;
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+#error.estado-rechazado #errorTitulo { color: #a83e49; }
+#error.estado-bloqueado #errorTitulo { color: #98651f; }
+#error.estado-baja #errorTitulo { color: #526578; }
+
+#error.estado-rechazado #errorMensaje,
+#error.estado-bloqueado #errorMensaje,
+#error.estado-baja #errorMensaje {
+  display: block;
+  max-width: 345px;
+  margin: 0 auto;
+  color: #607184;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+@media (max-width: 480px) {
+  #cargando .estado-cargando {
+    padding: 30px 18px 26px;
+  }
+
+  #cargando .estado-cargando strong {
+    font-size: 19px;
+  }
+
+  #error.estado-rechazado .estado,
+  #error.estado-bloqueado .estado,
+  #error.estado-baja .estado {
+    padding: 29px 18px 25px;
+  }
+
+  #error.estado-rechazado #errorTitulo,
+  #error.estado-bloqueado #errorTitulo,
+  #error.estado-baja #errorTitulo {
+    font-size: 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #cargando .anillo-cargando,
+  #cargando .texto-cargando-pista span {
+    animation: none;
+  }
+}
+
 </style>
 </head>
 
@@ -1825,10 +2028,17 @@
 </header>
 
   <main>
-    <section id="cargando" class="tarjeta">
-      <div class="estado">
-        <strong>Buscando ficha...</strong>
-        Estamos consultando la información de la mascota.
+    <section id="cargando" class="tarjeta tarjeta-cargando">
+      <div class="estado estado-cargando">
+        <div class="icono-cargando-mascota" aria-hidden="true">
+          <svg viewBox="0 0 48 48" focusable="false">
+            <circle class="anillo-cargando" cx="24" cy="24" r="18"></circle>
+            <path class="huella-cargando" d="M24 28c-5.2 0-9 3.2-9 6.8 0 2.7 2.2 4.2 5 3.5 2.6-.7 5.4-.7 8 0 2.8.7 5-0.8 5-3.5 0-3.6-3.8-6.8-9-6.8ZM13.5 21.5c-2.2 0-3.8-2.2-3.5-4.8.3-2.3 1.8-3.8 3.7-3.6 2 .2 3.2 2.3 2.8 4.7-.4 2.3-1.5 3.7-3 3.7Zm21 0c-1.5 0-2.6-1.4-3-3.7-.4-2.4.8-4.5 2.8-4.7 1.9-.2 3.4 1.3 3.7 3.6.3 2.6-1.3 4.8-3.5 4.8ZM21 23c-2 0-3.4-2.1-3.2-4.8.2-2.6 1.7-4.3 3.6-4.1 1.9.2 3 2.3 2.8 4.8-.2 2.4-1.4 4.1-3.2 4.1Zm6 0c-1.8 0-3-1.7-3.2-4.1-.2-2.5.9-4.6 2.8-4.8 1.9-.2 3.4 1.5 3.6 4.1.2 2.7-1.2 4.8-3.2 4.8Z"></path>
+          </svg>
+        </div>
+        <strong>Preparando la ficha de tu mascota</strong>
+        <span>Estamos conectando con NexoPaws para consultar su información.</span>
+        <div class="texto-cargando-pista"><span></span> Un momento, por favor</div>
       </div>
     </section>
 
@@ -1846,14 +2056,14 @@
         </span>
         <div class="detalle-estado-pendiente">
           <span class="punto-estado-pendiente"></span>
-          Solicitud en proceso de revisión
+          Solicitud en proceso de aprobación
         </div>
         <div class="plazo-estado-pendiente">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"></path>
             <circle cx="12" cy="12" r="5"></circle>
           </svg>
-          <span>Tiempo máximo de revisión: <strong>24 horas</strong></span>
+          <span>Tiempo máximo de aprobación: <strong>24 horas</strong></span>
         </div>
       </div>
     </section>
@@ -2446,9 +2656,45 @@ const API_URL =
       document.getElementById("ficha").classList.add("oculto");
 
       const seccionError = document.getElementById("error");
-      seccionError.classList.toggle("estado-pendiente", estado === "Pendiente");
-      seccionError.classList.remove("oculto");
+      const estadosVisuales = [
+        "estado-pendiente",
+        "estado-rechazado",
+        "estado-bloqueado",
+        "estado-baja"
+      ];
 
+      seccionError.classList.remove(...estadosVisuales);
+
+      const configuracionVisual = {
+        Pendiente: {
+          clase: "estado-pendiente",
+          icono: '<circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>'
+        },
+        Rechazado: {
+          clase: "estado-rechazado",
+          icono: '<circle cx="12" cy="12" r="9"></circle><path d="m9 9 6 6m0-6-6 6"></path>'
+        },
+        Bloqueado: {
+          clase: "estado-bloqueado",
+          icono: '<rect x="5" y="10" width="14" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"></path>'
+        },
+        Baja: {
+          clase: "estado-baja",
+          icono: '<path d="M4 7h16M10 11v6m4-6v6M6 7l1 14h10l1-14M9 7V4h6v3"></path>'
+        }
+      };
+
+      const visual = configuracionVisual[estado];
+      const iconoEstado = seccionError.querySelector(".icono-estado-pendiente svg");
+
+      if (visual) {
+        seccionError.classList.add(visual.clase);
+        iconoEstado.innerHTML = visual.icono;
+      } else {
+        iconoEstado.innerHTML = '<circle cx="12" cy="12" r="9"></circle><path d="M8 12h8"></path>';
+      }
+
+      seccionError.classList.remove("oculto");
       document.getElementById("errorTitulo").textContent = titulo;
       document.getElementById("errorMensaje").textContent = mensaje;
     }
@@ -2707,10 +2953,17 @@ const mensajes = {
   Baja: "Este llavero ya no está disponible.",
   NoEncontrado: "No se encontró este llavero."
 };
-        const estaEnRevision = respuesta.estado === "Pendiente";
+        const titulosEstado = {
+          Pendiente: "Estamos revisando el registro",
+          Rechazado: "La solicitud no fue aprobada",
+          Bloqueado: "Este llavero está bloqueado",
+          Baja: "Este llavero ya no está disponible",
+          Activo: "No pudimos cargar la ficha",
+          NoEncontrado: "No encontramos este llavero"
+        };
 
         mostrarError(
-          estaEnRevision ? "Estamos revisando el registro" : "Llavero no disponible",
+          titulosEstado[respuesta.estado] || "Llavero no disponible",
           mensajes[respuesta.estado] ||
             respuesta.mensaje ||
             "No fue posible consultar el llavero.",
