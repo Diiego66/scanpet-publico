@@ -1527,6 +1527,163 @@
   }
 }
 
+
+/* =========================================
+   CONFIRMACIÓN DE REGISTRO RECIBIDO
+   ========================================= */
+#activacionCorrecta #registroExitoso {
+  width: 100%;
+  margin: 8px auto 4px;
+  animation: entradaConfirmacionRegistro .38s ease both;
+}
+
+#activacionCorrecta .tarjeta-exito-registro {
+  padding: 30px 24px 25px;
+  border: 1px solid #dceaf6;
+  border-radius: 20px;
+  background: linear-gradient(155deg, #f0f7fd 0%, #ffffff 52%, #f9fcff 100%);
+  text-align: center;
+  box-shadow: 0 10px 28px rgba(16, 75, 122, .07);
+}
+
+#activacionCorrecta .icono-exito-registro {
+  display: flex;
+  width: 66px;
+  height: 66px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 17px;
+  border: 1px solid #ccebdd;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #e5f8ef, #f3fcf7);
+  box-shadow: 0 5px 14px rgba(32, 145, 91, .10);
+}
+
+#activacionCorrecta .icono-exito-registro svg {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: #16834a;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#activacionCorrecta .etiqueta-exito-registro {
+  display: inline-block;
+  margin-bottom: 9px;
+  color: #16834a;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.15px;
+}
+
+#activacionCorrecta .tarjeta-exito-registro h2 {
+  margin: 0 0 11px;
+  color: var(--azul-oscuro);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -.35px;
+}
+
+#activacionCorrecta .descripcion-exito-registro {
+  max-width: 350px;
+  margin: 0 auto 17px;
+  color: #5e7183;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+#activacionCorrecta .plazo-exito-registro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto 20px;
+  padding: 11px 12px;
+  border: 1px solid #dceaf6;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, .8);
+  color: #526b80;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+#activacionCorrecta .plazo-exito-registro svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  fill: none;
+  stroke: var(--azul);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#activacionCorrecta .plazo-exito-registro strong {
+  color: var(--azul-oscuro);
+}
+
+#activacionCorrecta .numero-solicitud-registro {
+  padding: 15px 12px 13px;
+  border: 1px dashed #a9cce6;
+  border-radius: 13px;
+  background: #ffffff;
+}
+
+#activacionCorrecta .numero-solicitud-registro > span {
+  display: block;
+  margin-bottom: 6px;
+  color: #72869a;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .9px;
+}
+
+#activacionCorrecta #numeroSolicitud {
+  margin: 0;
+  color: var(--azul-oscuro);
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: .7px;
+  overflow-wrap: anywhere;
+}
+
+#activacionCorrecta .nota-exito-registro {
+  margin: 13px 0 0;
+  color: #8494a3;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+@keyframes entradaConfirmacionRegistro {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  #activacionCorrecta .tarjeta-exito-registro {
+    padding: 25px 17px 21px;
+    border-radius: 17px;
+  }
+
+  #activacionCorrecta .tarjeta-exito-registro h2 {
+    font-size: 20px;
+  }
+
+  #activacionCorrecta #numeroSolicitud {
+    font-size: 21px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #activacionCorrecta #registroExitoso {
+    animation: none;
+  }
+}
+
 </style>
 </head>
 
@@ -1867,19 +2024,37 @@
 
   </div>
 </div> 
-<div id="registroExitoso" class="oculto">
-  <div class="estado" style="padding:20px 0;">
-    <strong>¡Solicitud recibida correctamente!</strong>
+<div id="registroExitoso" class="oculto confirmacion-registro-exitosa">
+  <div class="tarjeta-exito-registro">
+    <div class="icono-exito-registro" aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path d="M20 7 10 17l-5-5"></path>
+      </svg>
+    </div>
 
-    <p style="margin:10px 0;">
-      Tu solicitud está pendiente de revisión. La aprobaremos
-      lo antes posible, en un plazo máximo de 24 horas.
+    <span class="etiqueta-exito-registro">REGISTRO COMPLETADO</span>
+    <h2>¡Solicitud recibida correctamente!</h2>
+
+    <p class="descripcion-exito-registro">
+      La información de tu mascota fue enviada a NexoPaws.
+      Ahora pasará a revisión y te notificaremos cuando esté aprobada.
     </p>
 
-    <p style="margin:10px 0 5px;">Número de solicitud:</p>
+    <div class="plazo-exito-registro">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 7v5l3 2"></path>
+      </svg>
+      <span>Plazo máximo de revisión: <strong>24 horas</strong></span>
+    </div>
 
-    <p id="numeroSolicitud"
-       style="font-weight:bold;font-size:20px;margin:5px 0;">
+    <div class="numero-solicitud-registro">
+      <span>NÚMERO DE SOLICITUD</span>
+      <p id="numeroSolicitud"></p>
+    </div>
+
+    <p class="nota-exito-registro">
+      Conserva este número para cualquier consulta sobre tu registro.
     </p>
   </div>
 </div>
