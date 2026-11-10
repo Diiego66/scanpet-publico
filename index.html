@@ -1717,7 +1717,7 @@
 }
 
 #error.estado-pendiente #errorTitulo {
-  display: none;
+  display: block;
   margin-bottom: 10px;
   color: var(--azul-oscuro);
   font-size: 21px;
@@ -2960,7 +2960,7 @@ const mensajes = {
   NoEncontrado: "No se encontró este llavero."
 };
         const titulosEstado = {
-          Pendiente: "",
+          Pendiente: "El registro de esta mascota está en revisión.",
           Rechazado: "La solicitud no fue aprobada",
           Bloqueado: "Este llavero está bloqueado",
           Baja: "Este llavero ya no está disponible",
@@ -2970,9 +2970,11 @@ const mensajes = {
 
         mostrarError(
           titulosEstado[respuesta.estado] || "Llavero no disponible",
-          mensajes[respuesta.estado] ||
-            respuesta.mensaje ||
-            "No fue posible consultar el llavero.",
+          respuesta.estado === "Pendiente"
+            ? ""
+            : (mensajes[respuesta.estado] ||
+               respuesta.mensaje ||
+               "No fue posible consultar el llavero."),
           respuesta.estado
         );
       };
