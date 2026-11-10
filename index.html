@@ -1836,9 +1836,23 @@
   box-shadow: 0 7px 19px rgba(23, 105, 170, .09);
 }
 
+#cargando .icono-cargando-mascota {
+  position: relative;
+}
+
 #cargando .icono-cargando-mascota svg {
   width: 49px;
   height: 49px;
+}
+
+#cargando .logo-cargando-nexopaws {
+  position: absolute;
+  z-index: 1;
+  width: 31px;
+  height: 31px;
+  object-fit: contain;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
 }
 
 #cargando .anillo-cargando {
@@ -2034,14 +2048,8 @@
         <div class="icono-cargando-mascota" aria-hidden="true">
           <svg viewBox="0 0 48 48" focusable="false">
             <circle class="anillo-cargando" cx="24" cy="24" r="18"></circle>
-            <g class="huella-cargando">
-              <ellipse cx="24" cy="32.5" rx="8.2" ry="6.2"></ellipse>
-              <ellipse cx="13.5" cy="21" rx="3.2" ry="4.2" transform="rotate(-18 13.5 21)"></ellipse>
-              <ellipse cx="21" cy="16.5" rx="3.1" ry="4.2" transform="rotate(-5 21 16.5)"></ellipse>
-              <ellipse cx="28" cy="16.5" rx="3.1" ry="4.2" transform="rotate(5 28 16.5)"></ellipse>
-              <ellipse cx="34.5" cy="21" rx="3.2" ry="4.2" transform="rotate(18 34.5 21)"></ellipse>
-            </g>
           </svg>
+          <img class="logo-cargando-nexopaws" src="/Logo_solo.png" alt="">
         </div>
         <strong>Preparando la ficha de la mascota</strong>
         <div class="texto-cargando-pista"><span></span> Un momento, por favor</div>
