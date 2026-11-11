@@ -2821,12 +2821,13 @@ document.getElementById("nombre").textContent =
 
       if (numeroWhatsApp.length >= 12 && numeroWhatsApp.length <= 13) {
         const boton = document.getElementById("botonWhatsApp");
-        boton.href =
-          "https://wa.me/" + numeroWhatsApp +
-          "?text=" + encodeURIComponent(
-            "Hola, encontré la ficha de " + (m.nombre || "tu mascota") +
-            " en NexoPaws y quisiera comunicarme contigo."
-          );
+       
+boton.href =
+  "https://wa.me/" + numeroWhatsApp +
+  "?text=" + encodeURIComponent(
+    "Hola, encontré la ficha de " + (m.nombre || "tu mascota") +
+    " en NexoPaws y quisiera ayudarte a que vuelva a casa. ¿Podemos comunicarnos?"
+  );
         boton.classList.remove("oculto");
       }
     }
