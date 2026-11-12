@@ -241,6 +241,14 @@
       overflow-wrap: anywhere;
     }
 
+    .mensaje-reintento-rechazo {
+      margin: 18px 0 0;
+      color: var(--texto);
+      font-size: 14px;
+      line-height: 1.65;
+      text-align: left;
+    }
+
     .boton-reintentar-registro {
       width: 100%;
       margin-top: 20px;
@@ -2121,9 +2129,13 @@
         </span>
 
         <div id="panelMotivoRechazo" class="panel-motivo-rechazo oculto">
-          <strong class="titulo-motivo-rechazo">Qué debes corregir</strong>
+          <strong class="titulo-motivo-rechazo">Motivo del rechazo</strong>
           <p id="textoMotivoRechazo"></p>
         </div>
+
+        <p id="mensajeReintentoRechazo" class="mensaje-reintento-rechazo oculto">
+          Puedes corregir la información indicada y volver a registrar a tu mascota utilizando el mismo llavero.
+        </p>
         <div class="detalle-estado-pendiente">
           <span class="punto-estado-pendiente"></span>
           Solicitud en proceso de aprobación
@@ -2741,6 +2753,8 @@ const API_URL =
       botonVolverRegistrar.classList.add("oculto");
       panelMotivoRechazo.classList.add("oculto");
       document.getElementById("textoMotivoRechazo").textContent = "";
+      document.getElementById("mensajeReintentoRechazo")
+        .classList.add("oculto");
 
       const estadosVisuales = [
         "estado-pendiente",
@@ -3036,8 +3050,8 @@ resultado.classList.remove("oculto");
           if (motivoRechazo) {
 
             mostrarError(
-              "Tu solicitud anterior no fue aprobada",
-              "Revisa la observación de nuestro equipo y corrige esa información antes de enviar nuevamente el registro.",
+              "Necesitamos revisar tu registro",
+              "Hemos revisado la información de tu mascota, pero por el momento no podemos aprobar su registro.",
               "Rechazado"
             );
 
@@ -3046,6 +3060,9 @@ resultado.classList.remove("oculto");
               motivoRechazo;
 
             document.getElementById("panelMotivoRechazo")
+              .classList.remove("oculto");
+
+            document.getElementById("mensajeReintentoRechazo")
               .classList.remove("oculto");
 
             const botonVolverRegistrar =
