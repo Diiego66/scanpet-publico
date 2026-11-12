@@ -213,6 +213,29 @@
       background: var(--azul-oscuro);
     }
 
+    .boton-reintentar-registro {
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px 16px;
+      border: 0;
+      border-radius: 11px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--azul);
+      color: #ffffff;
+    }
+
+    .boton-reintentar-registro:hover {
+      background: var(--azul-oscuro);
+    }
+
+    .boton-reintentar-registro:focus-visible {
+      outline: 3px solid #8ec5f0;
+      outline-offset: 3px;
+    }
+
     .oculto {
       display: none !important;
     }
@@ -2079,6 +2102,14 @@
           </svg>
           <span>Tiempo máximo de aprobación: <strong>24 horas</strong></span>
         </div>
+
+        <button
+          id="botonVolverRegistrar"
+          type="button"
+          class="boton boton-reintentar-registro oculto"
+        >
+          Volver a registrar mi mascota
+        </button>
       </div>
     </section>
 
@@ -2670,6 +2701,11 @@ const API_URL =
       document.getElementById("ficha").classList.add("oculto");
 
       const seccionError = document.getElementById("error");
+      const botonVolverRegistrar = document.getElementById("botonVolverRegistrar");
+
+      // El botón de reintento solo debe aparecer en el rechazo anterior.
+      botonVolverRegistrar.classList.add("oculto");
+
       const estadosVisuales = [
         "estado-pendiente",
         "estado-rechazado",
@@ -2956,6 +2992,32 @@ resultado.classList.remove("oculto");
         }
 
         if (respuesta.estado === "Disponible") {
+
+          const motivoRechazo = String(
+            respuesta.motivoRechazo || ""
+          ).trim();
+
+          if (motivoRechazo) {
+
+            mostrarError(
+              "Tu solicitud anterior no fue aprobada",
+              "Motivo: " + motivoRechazo +
+              ". Puedes corregir la información y volver a registrar tu mascota con este mismo llavero.",
+              "Rechazado"
+            );
+
+            const botonVolverRegistrar =
+              document.getElementById("botonVolverRegistrar");
+
+            botonVolverRegistrar.classList.remove("oculto");
+
+            botonVolverRegistrar.onclick = function() {
+              mostrarActivacion();
+            };
+
+            return;
+          }
+
           mostrarActivacion();
           return;
         }
