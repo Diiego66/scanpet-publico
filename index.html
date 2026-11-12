@@ -213,6 +213,34 @@
       background: var(--azul-oscuro);
     }
 
+    .panel-motivo-rechazo {
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 18px;
+      padding: 16px 18px;
+      border: 1px solid #fed7aa;
+      border-left: 4px solid #ea580c;
+      border-radius: 10px;
+      background: #fff7ed;
+      color: #7c2d12;
+      text-align: left;
+    }
+
+    .titulo-motivo-rechazo {
+      display: block;
+      margin-bottom: 7px;
+      color: #9a3412;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .panel-motivo-rechazo p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+    }
+
     .boton-reintentar-registro {
       width: 100%;
       margin-top: 20px;
@@ -2091,6 +2119,11 @@
         <span id="errorMensaje">
           No fue posible encontrar la información.
         </span>
+
+        <div id="panelMotivoRechazo" class="panel-motivo-rechazo oculto">
+          <strong class="titulo-motivo-rechazo">Qué debes corregir</strong>
+          <p id="textoMotivoRechazo"></p>
+        </div>
         <div class="detalle-estado-pendiente">
           <span class="punto-estado-pendiente"></span>
           Solicitud en proceso de aprobación
@@ -2702,9 +2735,12 @@ const API_URL =
 
       const seccionError = document.getElementById("error");
       const botonVolverRegistrar = document.getElementById("botonVolverRegistrar");
+      const panelMotivoRechazo = document.getElementById("panelMotivoRechazo");
 
-      // El botón de reintento solo debe aparecer en el rechazo anterior.
+      // Estos elementos solo aparecen cuando existe un rechazo anterior.
       botonVolverRegistrar.classList.add("oculto");
+      panelMotivoRechazo.classList.add("oculto");
+      document.getElementById("textoMotivoRechazo").textContent = "";
 
       const estadosVisuales = [
         "estado-pendiente",
@@ -3001,10 +3037,16 @@ resultado.classList.remove("oculto");
 
             mostrarError(
               "Tu solicitud anterior no fue aprobada",
-              "Motivo: " + motivoRechazo +
-              ". Puedes corregir la información y volver a registrar tu mascota con este mismo llavero.",
+              "Revisa la observación de nuestro equipo y corrige esa información antes de enviar nuevamente el registro.",
               "Rechazado"
             );
+
+            // El motivo se presenta en un bloque independiente y destacado.
+            document.getElementById("textoMotivoRechazo").textContent =
+              motivoRechazo;
+
+            document.getElementById("panelMotivoRechazo")
+              .classList.remove("oculto");
 
             const botonVolverRegistrar =
               document.getElementById("botonVolverRegistrar");
