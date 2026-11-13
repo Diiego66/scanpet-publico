@@ -2396,8 +2396,8 @@
   oninput="this.value = this.value.replace(/[^0-9]/g, '')"
   style="width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:6px 0 14px;">
 
-<label for="whatsappContacto">WhatsApp</label>
-<input id="whatsappContacto" name="whatsapp" type="tel"
+<label for="whatsappContacto">WhatsApp *</label>
+<input id="whatsappContacto" name="whatsapp" type="tel" required
   maxlength="15" inputmode="numeric" pattern="[0-9]{7,15}"
   title="Ingresa únicamente números, entre 7 y 15 dígitos."
   oninput="this.value = this.value.replace(/[^0-9]/g, '')"
@@ -3861,7 +3861,8 @@ const razasPerros = [
 ];
 
 const razasGatos = [
-  "Criollo (Gato doméstico)",
+  "Criollo",
+  "Mestizo",
   "Persa",
   "Siamés",
   "Angora Turco",
