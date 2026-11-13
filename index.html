@@ -296,8 +296,8 @@
     footer {
       position: relative;
       overflow: hidden;
-      margin-top: 52px;
-      padding: 34px 20px 27px;
+      margin-top: 38px;
+      padding: 25px 20px 20px;
       background: linear-gradient(135deg, #104b7a 0%, #1769aa 58%, #247dbb 100%);
       color: rgba(255, 255, 255, .82);
       text-align: center;
@@ -325,20 +325,20 @@
       align-items: center;
       justify-content: center;
       gap: 11px;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .pie-logo {
       display: flex;
-      width: 42px;
-      height: 42px;
+      width: 35px;
+      height: 35px;
       align-items: center;
       justify-content: center;
-      padding: 7px;
-      border: 1px solid rgba(255, 255, 255, .5);
-      border-radius: 14px;
-      background: #ffffff;
-      box-shadow: 0 5px 16px rgba(5, 35, 61, .18);
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
     }
 
     .pie-logo img {
@@ -350,30 +350,23 @@
 
     .pie-nombre {
       color: #ffffff;
-      font-size: 21px;
+      font-size: 19px;
       font-weight: 800;
       letter-spacing: .2px;
     }
 
     .pie-descripcion {
-      max-width: 340px;
+      max-width: 360px;
       margin: 0 auto;
-      color: rgba(255, 255, 255, .88);
-      font-size: 13px;
-      line-height: 1.65;
-    }
-
-    .pie-lema {
-      margin: 8px auto 0;
-      color: rgba(255, 255, 255, .7);
-      font-size: 11px;
-      line-height: 1.5;
+      color: rgba(255, 255, 255, .86);
+      font-size: 12px;
+      line-height: 1.55;
     }
 
     .pie-separador {
-      width: 54px;
+      width: 46px;
       height: 1px;
-      margin: 21px auto 14px;
+      margin: 15px auto 11px;
       background: rgba(255, 255, 255, .3);
     }
 
@@ -386,16 +379,21 @@
 
     @media (max-width: 480px) {
       footer {
-        margin-top: 38px;
-        padding: 30px 18px 24px;
+        margin-top: 30px;
+        padding: 22px 16px 18px;
+      }
+
+      .pie-logo {
+        width: 32px;
+        height: 32px;
       }
 
       .pie-nombre {
-        font-size: 19px;
+        font-size: 18px;
       }
 
       .pie-descripcion {
-        font-size: 12px;
+        font-size: 11px;
       }
     }
 
@@ -2976,17 +2974,13 @@
     <div class="pie-contenido">
       <div class="pie-marca">
         <span class="pie-logo" aria-hidden="true">
-          <img src="/Logo_solo.png" alt="">
+          <img src="/logo_cuadrado_borde_blanco-05.png" alt="">
         </span>
         <span class="pie-nombre">NexoPaws</span>
       </div>
 
       <p class="pie-descripcion">
-        Identificación y protección de mascotas.
-      </p>
-
-      <p class="pie-lema">
-        Cada reencuentro comienza con una identificación.
+        Una forma sencilla de ayudar a que tu mascota regrese a casa.
       </p>
 
       <div class="pie-separador" aria-hidden="true"></div>
