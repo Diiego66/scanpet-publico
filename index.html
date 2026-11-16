@@ -2363,7 +2363,7 @@
           No fue posible encontrar la información.
         </span>
         <p id="errorAyuda" class="oculto">
-          Revisa que hayas escaneado el código QR de tu llavero NexoPaws
+          Revisa que hayas escaneado el código QR de tu placa identificadora NexoPaws
           o verifica que el enlace esté completo.
         </p>
 
@@ -2373,7 +2373,7 @@
         </div>
 
         <p id="mensajeReintentoRechazo" class="mensaje-reintento-rechazo oculto">
-          Puedes corregir la información indicada y volver a registrar a tu mascota utilizando el mismo llavero.
+          Puedes corregir la información indicada y volver a registrar a tu mascota utilizando la misma placa.
         </p>
         <div class="detalle-estado-pendiente">
           <span class="punto-estado-pendiente"></span>
@@ -2405,10 +2405,10 @@
 
         
         <div id="bloqueIntroActivacion">
-          <h1 style="font-size: 24px;">Activa tu llavero NexoPaws</h1>
+          <h1 style="font-size: 24px;">Activa tu placa identificadora NexoPaws</h1>
 
           <p style="text-align: center; line-height: 1.6;">
-           Estás a un paso de crear la identificación de tu mascota. Ingresa el código de activación que recibiste con tu llavero para continuar con el registro.
+           Estás a un paso de crear la identificación de tu mascota. Ingresa el código de activación que recibiste con tu placa para continuar con el registro.
           </p>
         </div>
 
@@ -3229,7 +3229,7 @@ campo.value = codigoActivacion;
       ).trim().toUpperCase();
 
       if (!/^NP-[A-Z0-9]{8}$/.test(codigo)) {
-        mensaje.textContent = "El enlace del llavero no es válido.";
+        mensaje.textContent = "El enlace de la placa no es válido.";
         return;
       }
 
@@ -3295,7 +3295,7 @@ resultado.classList.remove("oculto");
 
         if (!respuesta || !respuesta.ok) {
           mostrarError(
-            "No pudimos consultar el llavero",
+            "No pudimos consultar la placa",
             respuesta && respuesta.mensaje
               ? respuesta.mensaje
               : "Inténtalo nuevamente más tarde."
@@ -3346,27 +3346,27 @@ resultado.classList.remove("oculto");
 const mensajes = {
   Pendiente: "El registro de esta mascota está en revisión.",
   Rechazado: "La solicitud de registro de esta mascota no fue aprobada. Comunícate con NexoPaws para obtener más información.",
-  Activo: "Este llavero ya está activado, pero no pudimos cargar su ficha.",
-  Bloqueado: "Este llavero está bloqueado. Contacta con NexoPaws.",
+  Activo: "Esta placa ya está activada, pero no pudimos cargar su ficha.",
+  Bloqueado: "Esta placa está bloqueada. Contacta con NexoPaws.",
   Baja: "Si necesitas más información sobre este estado, comunícate con NexoPaws.",
-  NoEncontrado: "No se encontró este llavero."
+  NoEncontrado: "No se encontró esta placa."
 };
         const titulosEstado = {
           Pendiente: "El registro de esta mascota está en revisión.",
           Rechazado: "La solicitud no fue aprobada",
-          Bloqueado: "Este llavero está bloqueado",
-          Baja: "Este llavero ya no está disponible",
+          Bloqueado: "Esta placa está bloqueada",
+          Baja: "Esta placa ya no está disponible",
           Activo: "No pudimos cargar la ficha",
-          NoEncontrado: "No encontramos este llavero"
+          NoEncontrado: "No encontramos esta placa"
         };
 
         mostrarError(
-          titulosEstado[respuesta.estado] || "Llavero no disponible",
+          titulosEstado[respuesta.estado] || "Placa no disponible",
           respuesta.estado === "Pendiente"
             ? ""
             : (mensajes[respuesta.estado] ||
                respuesta.mensaje ||
-               "No fue posible consultar el llavero."),
+               "No fue posible consultar la placa."),
           respuesta.estado
         );
       };
@@ -3383,7 +3383,7 @@ const mensajes = {
         delete window[callback];
 
         mostrarError(
-          "No pudimos consultar el llavero",
+          "No pudimos consultar la placa",
           "Comprueba tu conexión e inténtalo nuevamente."
         );
       };
@@ -3506,7 +3506,7 @@ formularioRegistroScanPet.addEventListener("submit", async function(event) {
 
     if (!tokenAutorizacionScanPet) {
       mensaje.textContent =
-        "La autorización no está disponible. Valida nuevamente tu llavero.";
+        "La autorización no está disponible. Valida nuevamente tu placa.";
       return;
     }
 
@@ -3523,7 +3523,7 @@ formularioRegistroScanPet.addEventListener("submit", async function(event) {
     ).trim().toUpperCase();
 
     if (!/^NP-[A-Z0-9]{8}$/.test(codigo)) {
-      mensaje.textContent = "El enlace del llavero no es válido.";
+      mensaje.textContent = "El enlace de la placa no es válido.";
       return;
     }
 
@@ -3658,7 +3658,7 @@ botonConfirmarEnvio.addEventListener("click", function() {
 
       if (!/^NP-[A-Z0-9]{8}$/.test(codigo)) {
         mostrarError(
-          "Escanea el código de tu llavero",
+          "Escanea el código QR de tu placa identificadora",
           "Este enlace no contiene un código de mascota válido.",
           "EnlaceInvalido"
         );
@@ -3710,7 +3710,7 @@ async function enviarReporteEncontradaScanPet(latitud, longitud) {
   const codigo = codigoLlaveroFichaScanPet;
 
   if (!/^NP-[A-Z0-9]{8}$/.test(codigo)) {
-    throw new Error("No se pudo identificar el llavero.");
+    throw new Error("No se pudo identificar la placa.");
   }
 
   const respuesta = await fetch(REPORTAR_ENCONTRADA_URL, {
