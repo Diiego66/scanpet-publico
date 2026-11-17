@@ -124,10 +124,199 @@
         font-size: 18px;
       }
     }
+  
+    /* Identidad visual compartida con index.html */
+    :root {
+      --azul: #1769aa;
+      --azul-oscuro: #104b7a;
+      --fondo: #f2f6fa;
+      --texto: #203040;
+      --gris: #65758b;
+      --borde: #e1e8ef;
+    }
+
+    body {
+      padding: 0;
+      background: var(--fondo);
+      color: var(--texto);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--borde);
+      padding: 18px 20px;
+      text-align: center;
+    }
+
+    .marca {
+      color: var(--azul);
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .submarca {
+      margin-top: 5px;
+      color: var(--gris);
+      font-size: 13px;
+    }
+
+    .logo-nexopaws {
+      display: block;
+      width: min(300px, 85%);
+      height: auto;
+      max-height: 110px;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+
+    .contenedor {
+      width: min(100% - 28px, 850px);
+      margin: 30px auto 38px;
+      padding: 35px;
+      border: 1px solid var(--borde);
+      border-radius: 20px;
+      box-shadow: 0 8px 28px rgba(26, 57, 86, 0.07);
+      line-height: 1.7;
+    }
+
+    .volver {
+      color: var(--azul);
+    }
+
+    h1, h2 {
+      color: var(--azul);
+    }
+
+    .datos-documento,
+    .nota,
+    .contacto {
+      background: #f4f8fc;
+      border-color: #e2ebf4;
+    }
+
+    /* Pie de página — mismo diseño de index.html */
+    footer {
+      position: relative;
+      overflow: hidden;
+      margin-top: 38px;
+      padding: 25px 20px 20px;
+      background: linear-gradient(135deg, #104b7a 0%, #1769aa 58%, #247dbb 100%);
+      color: rgba(255, 255, 255, .82);
+      text-align: center;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #8bc7ed 0%, #ffffff 50%, #8bc7ed 100%);
+      opacity: .85;
+    }
+
+    .pie-contenido {
+      position: relative;
+      width: min(100%, 480px);
+      margin: 0 auto;
+    }
+
+    .pie-marca {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      margin-bottom: 8px;
+    }
+
+    .pie-logo {
+      display: flex;
+      width: 54px;
+      height: 54px;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .pie-logo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .pie-descripcion {
+      max-width: 360px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, .86);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .pie-separador {
+      width: 46px;
+      height: 1px;
+      margin: 15px auto 11px;
+      background: rgba(255, 255, 255, .3);
+    }
+
+    .pie-cierre {
+      margin: 0;
+      color: rgba(255, 255, 255, .68);
+      font-size: 10px;
+      letter-spacing: .2px;
+    }
+
+    @media (max-width: 600px) {
+      .contenedor {
+        width: calc(100% - 20px);
+        padding: 22px 18px;
+        margin: 18px auto 30px;
+      }
+
+      h1 {
+        font-size: 23px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      footer {
+        margin-top: 30px;
+        padding: 22px 16px 18px;
+      }
+
+      .pie-logo {
+        width: 46px;
+        height: 46px;
+      }
+
+      .pie-descripcion {
+        font-size: 11px;
+      }
+    }
+
   </style>
 </head>
 
 <body>
+
+<header>
+  <div class="marca">
+    <img src="/logo_bannerNP.png" alt="NexoPaws" class="logo-nexopaws">
+  </div>
+  <div class="submarca">Conectando mascotas con su hogar</div>
+</header>
+
+
 
 <main class="contenedor">
 
@@ -384,6 +573,28 @@
   </div>
 
 </main>
+
+
+<footer>
+  <div class="pie-contenido">
+    <div class="pie-marca">
+      <span class="pie-logo" aria-hidden="true">
+        <img src="/logo_cuadrado_borde_blanco-05.png" alt="">
+      </span>
+    </div>
+
+    <p class="pie-descripcion">
+      Una forma sencilla de ayudar a que tu mascota regrese a casa.
+    </p>
+
+    <div class="pie-separador" aria-hidden="true"></div>
+
+    <p class="pie-cierre">
+      © NexoPaws · Todos los derechos reservados.
+    </p>
+  </div>
+</footer>
+
 
 </body>
 </html>
