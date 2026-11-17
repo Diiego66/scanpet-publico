@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1769aa">
+  <meta name="description" content="Términos y condiciones de uso de NexoPaws y sus placas identificadoras QR y NFC.">
+  <title>Términos y Condiciones de Uso | NexoPaws</title>
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #f4f7fb;
+      color: #263445;
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    .contenedor {
+      max-width: 850px;
+      margin: 30px auto;
+      padding: 35px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 3px 15px rgba(0,0,0,.07);
+    }
+
+    h1 {
+      color: #1769aa;
+      text-align: center;
+      font-size: 27px;
+      line-height: 1.3;
+      margin: 15px 0 25px;
+    }
+
+    h2 {
+      color: #1769aa;
+      font-size: 19px;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid #e5edf5;
+    }
+
+    p, li {
+      font-size: 15px;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    ul, ol {
+      padding-left: 25px;
+      margin: 10px 0 18px;
+    }
+
+    li {
+      margin-bottom: 7px;
+    }
+
+    .volver {
+      display: inline-block;
+      margin-bottom: 15px;
+      color: #1769aa;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .volver:hover {
+      text-decoration: underline;
+    }
+
+    .datos-documento {
+      background: #f4f8fc;
+      border: 1px solid #e2ebf4;
+      border-radius: 10px;
+      padding: 15px 18px;
+      margin-bottom: 25px;
+    }
+
+    .datos-documento p {
+      margin: 3px 0;
+      font-size: 14px;
+    }
+
+    .nota {
+      background: #f4f8fc;
+      border-left: 4px solid #1769aa;
+      padding: 12px 16px;
+      margin: 15px 0;
+      border-radius: 5px;
+    }
+
+    .contacto {
+      background: #f4f8fc;
+      padding: 18px;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
+    @media(max-width:600px) {
+      body {
+        padding: 10px;
+      }
+
+      .contenedor {
+        padding: 20px;
+        margin: 10px auto;
+      }
+
+      h1 {
+        font-size: 23px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+    }
+  
+    /* Identidad visual compartida con index.html */
+    :root {
+      --azul: #1769aa;
+      --azul-oscuro: #104b7a;
+      --fondo: #f2f6fa;
+      --texto: #203040;
+      --gris: #65758b;
+      --borde: #e1e8ef;
+    }
+
+    body {
+      padding: 0;
+      background: var(--fondo);
+      color: var(--texto);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--borde);
+      padding: 18px 20px;
+      text-align: center;
+    }
+
+    .marca {
+      color: var(--azul);
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .submarca {
+      margin-top: 5px;
+      color: var(--gris);
+      font-size: 13px;
+    }
+
+    .logo-nexopaws {
+      display: block;
+      width: min(300px, 85%);
+      height: auto;
+      max-height: 110px;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+
+    .contenedor {
+      width: min(100% - 28px, 850px);
+      margin: 30px auto 38px;
+      padding: 35px;
+      border: 1px solid var(--borde);
+      border-radius: 20px;
+      box-shadow: 0 8px 28px rgba(26, 57, 86, 0.07);
+      line-height: 1.7;
+    }
+
+    .volver {
+      color: var(--azul);
+    }
+
+    h1, h2 {
+      color: var(--azul);
+    }
+
+    .datos-documento,
+    .nota,
+    .contacto {
+      background: #f4f8fc;
+      border-color: #e2ebf4;
+    }
+
+    /* Pie de página — mismo diseño de index.html */
+    footer {
+      position: relative;
+      overflow: hidden;
+      margin-top: 38px;
+      padding: 25px 20px 20px;
+      background: linear-gradient(135deg, #104b7a 0%, #1769aa 58%, #247dbb 100%);
+      color: rgba(255, 255, 255, .82);
+      text-align: center;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #8bc7ed 0%, #ffffff 50%, #8bc7ed 100%);
+      opacity: .85;
+    }
+
+    .pie-contenido {
+      position: relative;
+      width: min(100%, 480px);
+      margin: 0 auto;
+    }
+
+    .pie-marca {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      margin-bottom: 8px;
+    }
+
+    .pie-logo {
+      display: flex;
+      width: 54px;
+      height: 54px;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .pie-logo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .pie-descripcion {
+      max-width: 360px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, .86);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .pie-separador {
+      width: 46px;
+      height: 1px;
+      margin: 15px auto 11px;
+      background: rgba(255, 255, 255, .3);
+    }
+
+    .pie-cierre {
+      margin: 0;
+      color: rgba(255, 255, 255, .68);
+      font-size: 10px;
+      letter-spacing: .2px;
+    }
+
+    @media (max-width: 600px) {
+      .contenedor {
+        width: calc(100% - 20px);
+        padding: 22px 18px;
+        margin: 18px auto 30px;
+      }
+
+      h1 {
+        font-size: 23px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      footer {
+        margin-top: 30px;
+        padding: 22px 16px 18px;
+      }
+
+      .pie-logo {
+        width: 46px;
+        height: 46px;
+      }
+
+      .pie-descripcion {
+        font-size: 11px;
+      }
+    }
+
+  
+    .enlace-documento {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--azul);
+      font-weight: bold;
+    }
+
+    .lista-compacta li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="marca">
+    <img src="/logo_bannerNP.png" alt="NexoPaws" class="logo-nexopaws">
+  </div>
+  <div class="submarca">Conectando mascotas con su hogar</div>
+</header>
+
+<main class="contenedor">
+
+  <a class="volver" href="/">← Volver a NexoPaws</a>
+
+  <h1>Términos y Condiciones de Uso de NexoPaws</h1>
+
+  <div class="datos-documento">
+    <p><strong>Fecha provisional de entrada en vigencia:</strong> 16/11/2026</p>
+    <p><strong>Versión:</strong> 1.0</p>
+    <p><strong>Ámbito:</strong> uso de la plataforma NexoPaws y de los servicios digitales asociados a las placas identificadoras QR y NFC.</p>
+  </div>
+
+  <p>Te invitamos a leer estos términos antes de registrar una mascota o utilizar los servicios de NexoPaws. Al marcar la casilla de aceptación correspondiente durante el registro, manifiestas que has leído y aceptas estas condiciones.</p>
+
+  <div class="nota">
+    <strong>Importante:</strong> NexoPaws es un servicio de identificación y contacto. La placa QR/NFC no es un dispositivo GPS, no rastrea la ubicación de la mascota y no garantiza que una mascota extraviada sea encontrada o recuperada.
+  </div>
+
+  <h2>1. Identificación del servicio</h2>
+
+  <p>NexoPaws es una plataforma de identificación de mascotas que utiliza placas físicas con códigos QR y tecnología NFC para permitir el acceso a una ficha digital asociada a cada placa. La ficha puede contener información de identificación de la mascota y medios de contacto autorizados por su responsable.</p>
+
+  <p>El servicio está diseñado para facilitar que una persona que encuentre una mascota pueda consultar la información disponible y comunicarse con su responsable. NexoPaws es una herramienta de apoyo y no reemplaza la supervisión, el cuidado, las medidas de seguridad ni otras formas de identificación que el responsable considere necesarias.</p>
+
+  <h2>2. Aceptación de los términos</h2>
+
+  <p>La aceptación de estos Términos y Condiciones es independiente de la autorización para el tratamiento de datos personales y de la autorización específica para publicar los datos de contacto del responsable.</p>
+
+  <ul>
+    <li>La Política de Tratamiento de Datos Personales informa cómo se recolecta y utiliza la información personal.</li>
+    <li>La autorización de tratamiento permite gestionar los datos necesarios para prestar y administrar el servicio.</li>
+    <li>La autorización de publicación permite mostrar los datos de contacto indicados en la ficha pública.</li>
+    <li>La aceptación de estos términos establece las condiciones de uso de la plataforma y sus funciones.</li>
+  </ul>
+
+  <p>Ninguna de estas manifestaciones sustituye a las demás. Las casillas de aceptación y autorización deberán presentarse por separado y no deberán estar premarcadas.</p>
+
+  <h2>3. Registro, activación y aprobación de mascotas</h2>
+
+  <p>Para activar una placa, el responsable deberá utilizar el código de activación entregado con el producto y completar el formulario de registro con la información solicitada.</p>
+
+  <p>El envío del formulario constituye una solicitud de registro, pero no significa que la ficha pública quede activada inmediatamente. NexoPaws podrá revisar la información y aprobar o rechazar la solicitud. La ficha se habilitará cuando el proceso de revisión y aprobación haya finalizado satisfactoriamente.</p>
+
+  <p>El responsable se compromete a:</p>
+  <ul>
+    <li>Proporcionar información veraz, completa y suficientemente precisa.</li>
+    <li>Registrar únicamente información relacionada con la identificación y atención de la mascota.</li>
+    <li>Contar con autorización o derechos suficientes sobre las fotografías y contenidos que suministre.</li>
+    <li>Actualizar la información cuando cambien los datos de la mascota o de contacto.</li>
+    <li>No utilizar el servicio para publicar contenido ilegal, engañoso, ofensivo o que vulnere derechos de terceros.</li>
+  </ul>
+
+  <p>NexoPaws podrá solicitar aclaraciones o correcciones cuando la información esté incompleta, sea inconsistente o no resulte adecuada para la finalidad de identificación.</p>
+
+  <h2>4. Información visible en la ficha pública</h2>
+
+  <p>La ficha asociada a una placa puede ser consultada por cualquier persona que escanee el código QR o utilice la tecnología NFC desde un dispositivo compatible. No se requiere una cuenta de usuario para consultar la ficha.</p>
+
+  <p>La ficha puede mostrar información de la mascota como nombre, fotografía, especie, raza, características físicas, municipio o zona general, cuidados especiales y mensaje de su familia.</p>
+
+  <p>El responsable debe tener presente que los campos de cuidados especiales y mensaje personal son visibles públicamente. No debe incluir allí direcciones exactas, documentos de identidad, información privada de personas ni datos que no desee divulgar.</p>
+
+  <p>El correo electrónico del responsable no se muestra en la ficha pública. El nombre, teléfono y WhatsApp podrán mostrarse y habilitar botones de contacto cuando el responsable haya otorgado la autorización expresa correspondiente.</p>
+
+  <div class="nota">
+    <strong>Exposición pública:</strong> cualquier persona que acceda a la ficha puede consultar la información publicada. NexoPaws no puede controlar que terceros la copien, capturen, almacenen o compartan por fuera de la plataforma.
+  </div>
+
+  <h2>5. Publicación de teléfono y WhatsApp</h2>
+
+  <p>Para utilizar el servicio de identificación y contacto de NexoPaws, el registro requiere que el responsable suministre un número de teléfono y un número de WhatsApp válidos y otorgue autorización expresa para publicar ambos en la ficha de la mascota.</p>
+
+  <p>Estos datos se publican con la finalidad de facilitar la comunicación cuando una persona encuentre la mascota. El responsable comprende que los números podrán ser consultados por cualquier persona que acceda a la ficha y utilizados para iniciar una llamada o una conversación por WhatsApp.</p>
+
+  <p>La autorización para publicar los datos de contacto se solicita de forma separada de la aceptación de estos términos y de la autorización general para el tratamiento de datos personales. El responsable podrá solicitar posteriormente el retiro de esos datos de la ficha, de acuerdo con el procedimiento descrito en la Política de Tratamiento de Datos Personales. La solicitud puede afectar la disponibilidad de las funciones de contacto del servicio.</p>
+
+  <h2>6. Funcionamiento de los códigos QR y la tecnología NFC</h2>
+
+  <p>El código QR y la tecnología NFC permiten abrir el enlace de la ficha digital. Para utilizarlos se requiere, según el método de acceso, un dispositivo con cámara o lector NFC compatible, un navegador y conexión a internet.</p>
+
+  <ul>
+    <li>La lectura NFC puede no estar disponible en todos los teléfonos o dispositivos.</li>
+    <li>El funcionamiento puede verse afectado por la configuración del dispositivo, el navegador, la conexión a internet o el estado físico de la placa.</li>
+    <li>La placa no contiene un sistema de posicionamiento GPS ni transmite automáticamente la ubicación de la mascota.</li>
+    <li>El acceso a la ficha depende de que el enlace y los servicios tecnológicos necesarios se encuentren disponibles.</li>
+  </ul>
+
+  <p>NexoPaws no garantiza que todos los dispositivos puedan leer la placa de la misma manera ni que el acceso a la ficha esté libre de interrupciones.</p>
+
+  <h2>7. Reportes de mascotas encontradas</h2>
+
+  <p>Cuando una persona encuentra una mascota y utiliza la función de reporte, puede enviar información al responsable mediante los mecanismos habilitados en la plataforma.</p>
+
+  <p>La persona que realiza el reporte puede decidir si comparte la ubicación de su dispositivo. La ubicación es opcional. Si no la comparte, el reporte puede enviarse igualmente, pero no incluirá las coordenadas ni el enlace de ubicación.</p>
+
+  <p>Los reportes dependen de que una persona encuentre la mascota, tenga acceso a internet, pueda leer la placa y decida utilizar la función. Por tanto, NexoPaws no garantiza que se genere un reporte, que la información suministrada sea exacta, que el responsable reciba el aviso inmediatamente ni que la mascota sea recuperada.</p>
+
+  <p>NexoPaws no controla la conducta, identidad, disponibilidad o veracidad de la información proporcionada por las personas que realizan reportes. El responsable deberá evaluar cualquier comunicación recibida y actuar con prudencia al coordinar un encuentro o la recuperación de la mascota.</p>
+
+  <h2>8. Responsabilidades del responsable de la mascota</h2>
+
+  <p>El responsable se compromete a:</p>
+
+  <ol>
+    <li>Mantener actualizados los datos de identificación y contacto registrados.</li>
+    <li>Verificar que el teléfono y WhatsApp publicados sean correctos y estén disponibles.</li>
+    <li>Colocar y conservar la placa de manera adecuada para facilitar su lectura.</li>
+    <li>Revisar periódicamente que la información de la ficha sea correcta y pertinente.</li>
+    <li>Evitar publicar información privada o datos personales de terceros sin autorización.</li>
+    <li>Utilizar la plataforma de forma lícita y sin intentar afectar su seguridad o funcionamiento.</li>
+    <li>Informar a NexoPaws cuando la placa se pierda, sea sustraída, se dañe o deje de estar bajo su control.</li>
+  </ol>
+
+  <h2>9. Pérdida, daño o deterioro de la placa</h2>
+
+  <p>La placa es un elemento físico que puede perderse, deteriorarse o sufrir daños por golpes, desgaste, humedad, manipulación inadecuada u otras circunstancias relacionadas con su uso.</p>
+
+  <p>El responsable debe revisar periódicamente el estado de la placa y comprobar que el código QR sea legible y que la función NFC pueda utilizarse cuando corresponda. Si la placa se pierde o se daña, deberá comunicarse con NexoPaws para consultar las opciones disponibles.</p>
+
+  <p>La pérdida o el daño físico de la placa no implica por sí solo que la información almacenada en la ficha se elimine. NexoPaws podrá orientar sobre la gestión del estado de la placa y de la ficha para evitar usos no autorizados o confusiones.</p>
+
+  <p>Las condiciones específicas de garantía legal, reparación, reposición, entrega, retracto, cambios y devoluciones del producto físico se regirán por la legislación colombiana aplicable y por las condiciones comerciales informadas al momento de la compra. Este documento no establece plazos, cobros ni exclusiones adicionales de garantía.</p>
+
+  <h2>10. Disponibilidad y mantenimiento de la plataforma</h2>
+
+  <p>NexoPaws procurará mantener disponibles la página pública, las fichas y las funciones de registro y reporte. Sin embargo, el servicio puede presentar interrupciones por mantenimiento, actualizaciones, fallos técnicos, problemas de conectividad, indisponibilidad de proveedores tecnológicos, incidentes de seguridad o circunstancias ajenas al control de NexoPaws.</p>
+
+  <p>Por lo anterior, no se garantiza disponibilidad permanente ni funcionamiento ininterrumpido. Cuando sea razonablemente posible, NexoPaws procurará restablecer el servicio y corregir los problemas que estén bajo su control.</p>
+
+  <h2>11. Servicios y actuaciones de terceros</h2>
+
+  <p>El funcionamiento de NexoPaws puede depender de servicios prestados por terceros, como proveedores de alojamiento web, conectividad, almacenamiento, correo electrónico, navegadores, dispositivos móviles y aplicaciones de mensajería.</p>
+
+  <p>NexoPaws no controla las políticas, cambios, interrupciones, condiciones de uso ni decisiones de esos terceros. El uso de servicios externos, incluidos los enlaces a WhatsApp y los servicios de correo, puede estar sujeto a sus propias condiciones y políticas.</p>
+
+  <p>El responsable y las personas que consultan una ficha deben utilizar los canales externos bajo su propio criterio y observar las medidas de seguridad y precaución correspondientes.</p>
+
+  <h2>12. Alcance del servicio y responsabilidad</h2>
+
+  <p>NexoPaws facilita la identificación de una mascota y el contacto con su responsable, pero no presta un servicio de rastreo, vigilancia, búsqueda física, custodia, transporte o recuperación de animales.</p>
+
+  <p>En consecuencia, NexoPaws no puede garantizar:</p>
+  <ul>
+    <li>Que la mascota sea encontrada o que permanezca cerca de una persona que pueda leer la placa.</li>
+    <li>Que quien encuentre la mascota tenga un dispositivo compatible o conexión a internet.</li>
+    <li>Que la persona que consulte la ficha o envíe un reporte actúe de buena fe.</li>
+    <li>Que los datos proporcionados por terceros sean exactos o completos.</li>
+    <li>Que la mascota sea recuperada como resultado del uso de la placa o de la plataforma.</li>
+    <li>Que los servicios tecnológicos externos estén disponibles de forma permanente.</li>
+  </ul>
+
+  <p>NexoPaws responderá por las obligaciones que le correspondan conforme a la legislación colombiana. Ninguna disposición de estos términos pretende excluir o limitar derechos irrenunciables de los consumidores ni responsabilidades que legalmente no puedan excluirse o limitarse.</p>
+
+  <h2>13. Uso adecuado y suspensión del servicio</h2>
+
+  <p>No está permitido utilizar NexoPaws para actividades ilícitas, suplantar a otra persona, registrar mascotas sin autorización o legitimidad para hacerlo, introducir información falsa deliberadamente, intentar acceder a datos o sistemas no autorizados, interferir con la plataforma o utilizar sus funciones para acosar, amenazar o perjudicar a terceros.</p>
+
+  <p>NexoPaws podrá revisar, limitar, suspender o desactivar una ficha o una placa cuando existan indicios razonables de uso indebido, riesgo para la seguridad, información fraudulenta, incumplimiento de estos términos o requerimiento de autoridad competente. Cuando corresponda y sea posible, se informará al responsable la razón de la medida y los pasos para solicitar una revisión.</p>
+
+  <h2>14. Solicitudes de soporte y contacto</h2>
+
+  <p>Para solicitar ayuda relacionada con el registro, la activación, la actualización de una ficha, la pérdida o daño de una placa o el funcionamiento de la plataforma, el responsable podrá comunicarse mediante el siguiente canal:</p>
+
+  <div class="contacto">
+    <p><strong>Correo electrónico:</strong></p>
+    <p><a href="mailto:nexopaws@gmail.com">nexopaws@gmail.com</a></p>
+    <p><strong>Ubicación de referencia:</strong> Pasto, Nariño, Colombia.</p>
+  </div>
+
+  <p>Las solicitudes serán revisadas de acuerdo con su naturaleza y la información suministrada. La recepción de una solicitud no implica que una gestión, reposición o modificación se encuentre aprobada hasta que NexoPaws lo confirme.</p>
+
+  <h2>15. Condiciones comerciales del producto</h2>
+
+  <p>Estos términos regulan principalmente el uso de la plataforma y de los servicios digitales asociados a la placa. La información comercial específica del producto físico —como precio, medios de pago, entrega, garantía legal, derecho de retracto, cambios y devoluciones— deberá informarse al consumidor antes de concretar la compra y se regirá por las normas colombianas aplicables.</p>
+
+  <p>Ninguna disposición de estos términos reduce la garantía legal ni los derechos que correspondan al consumidor conforme a la legislación vigente.</p>
+
+  <h2>16. Modificaciones de los términos</h2>
+
+  <p>NexoPaws podrá actualizar estos términos cuando cambien las características de la plataforma, los servicios ofrecidos, las condiciones tecnológicas o las disposiciones legales aplicables.</p>
+
+  <p>La versión vigente estará disponible en la página pública de NexoPaws. Cuando una modificación requiera una nueva aceptación, NexoPaws solicitará al usuario que la manifieste mediante el mecanismo correspondiente antes de continuar utilizando la función afectada.</p>
+
+  <h2>17. Legislación aplicable</h2>
+
+  <p>Estos términos se interpretarán conforme a las leyes de la República de Colombia. Su aplicación se realizará respetando las normas de protección al consumidor, protección de datos personales y demás disposiciones imperativas que resulten aplicables.</p>
+
+  <h2>18. Vigencia y documentos relacionados</h2>
+
+  <p>Estos términos entrarán en vigencia en la fecha indicada en el encabezado y permanecerán aplicables mientras el usuario utilice la plataforma o mantenga una placa y una ficha asociadas a NexoPaws, sin perjuicio de las actualizaciones que se realicen.</p>
+
+  <p>La Política de Tratamiento de Datos Personales complementa estos términos y explica el tratamiento de la información personal. Ambos documentos son independientes y deben consultarse por separado.</p>
+
+  <p><a class="enlace-documento" href="/politica-datos.html">Consultar la Política de Tratamiento de Datos Personales de NexoPaws →</a></p>
+
+  <div class="contacto">
+    <p><strong>Canal de contacto de NexoPaws:</strong></p>
+    <p><a href="mailto:nexopaws@gmail.com">nexopaws@gmail.com</a></p>
+    <p><strong>Domicilio de referencia:</strong> Pasto, Nariño, Colombia.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="pie-contenido">
+    <div class="pie-marca">
+      <span class="pie-logo" aria-hidden="true">
+        <img src="/logo_cuadrado_borde_blanco-05.png" alt="">
+      </span>
+    </div>
+
+    <p class="pie-descripcion">
+      Una forma sencilla de ayudar a que tu mascota regrese a casa.
+    </p>
+
+    <div class="pie-separador" aria-hidden="true"></div>
+
+    <p class="pie-cierre">
+      © NexoPaws · Todos los derechos reservados.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
