@@ -314,6 +314,36 @@
     .lista-compacta li {
       margin-bottom: 5px;
     }
+  
+    .pie-enlaces {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin: 13px auto 0;
+      white-space: nowrap;
+    }
+
+    .pie-enlaces a {
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, .55);
+      text-underline-offset: 3px;
+      transition: opacity .2s ease;
+    }
+
+    .pie-enlaces a:hover {
+      opacity: .78;
+    }
+
+    .pie-enlaces a:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
   </style>
 </head>
 
@@ -541,7 +571,13 @@
       Una forma sencilla de ayudar a que tu mascota regrese a casa.
     </p>
 
-    <div class="pie-separador" aria-hidden="true"></div>
+    
+      <nav class="pie-enlaces" aria-label="Documentos legales">
+        <a href="/politica-datos.html">Política de datos</a>
+        <a href="/terminos-uso.html">Términos de uso</a>
+      </nav>
+
+      <div class="pie-separador" aria-hidden="true"></div>
 
     <p class="pie-cierre">
       © NexoPaws · Todos los derechos reservados.
