@@ -1,4 +1,3 @@
-
 export async function onRequestPost(context) {
   const { request, env } = context;
 
@@ -43,7 +42,7 @@ export async function onRequestPost(context) {
     }, 400);
   }
 
-  // Mantener compatibilidad con el formulario de activación actual.
+  // Mantener compatibilidad con la validación de activación actual.
   const operacion = datos.operacion ||
     (datos.codigoActivacion ? "validarActivacion" : "");
 
@@ -73,19 +72,30 @@ export async function onRequestPost(context) {
     if (!/^[a-fA-F0-9]{64}$/.test(token)) {
       return respuesta({
         ok: false,
-        mensaje: "La autorización no es válida. Valida nuevamente tu llavero."
+        mensaje: "La autorización no es válida. Valida nuevamente tu placa."
       }, 400);
     }
 
     if (
       !datos.mascota ||
       typeof datos.mascota !== "object" ||
-      Array.isArray(datos.mascota) ||
-      datos.consentimiento !== true
+      Array.isArray(datos.mascota)
     ) {
       return respuesta({
         ok: false,
-        mensaje: "Faltan los datos del registro o el consentimiento."
+        mensaje: "Los datos del registro no son válidos."
+      }, 400);
+    }
+
+    // Validar las tres aceptaciones independientes.
+    if (
+      datos.aceptaPolitica !== true ||
+      datos.aceptaTerminos !== true ||
+      datos.autorizaPublicacion !== true
+    ) {
+      return respuesta({
+        ok: false,
+        mensaje: "Debes aceptar la Política de Tratamiento de Datos, los Términos y Condiciones y la autorización de publicación."
       }, 400);
     }
 
@@ -132,7 +142,15 @@ export async function onRequestPost(context) {
       codigo: codigo,
       tokenAutorizacion: token,
       mascota: mascota,
+
+      // Tres aceptaciones independientes.
+      aceptaPolitica: true,
+      aceptaTerminos: true,
+      autorizaPublicacion: true,
+
+      // Se conserva por compatibilidad con la columna Consentimiento.
       consentimiento: true,
+
       foto: foto
     };
 
