@@ -1120,17 +1120,36 @@
   background: #f7fbff !important;
 }
 
-#activacionCorrecta #consentimientoRegistro {
+#activacionCorrecta #aceptacionesRegistro input[type="checkbox"] {
   width: 18px;
   height: 18px;
+  margin-top: 3px;
+  flex-shrink: 0;
   accent-color: var(--azul);
 }
 
-#activacionCorrecta #formRegistroMascota > label:has(#consentimientoRegistro) {
-  padding: 15px;
+#activacionCorrecta #aceptacionesRegistro {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+#activacionCorrecta .aceptacion-registro {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0;
+  padding: 14px;
   border: 1px solid var(--borde);
   border-radius: 13px;
   background: #f8fafc;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+#activacionCorrecta .aceptacion-registro a {
+  color: var(--azul);
+  font-weight: 700;
 }
 
 #activacionCorrecta #botonEnviarRegistro {
@@ -2682,20 +2701,45 @@
 
 
 
-<label style="display:flex;gap:10px;align-items:flex-start;margin:18px 0;">
-  <input id="consentimientoRegistro" type="checkbox" required
-    style="margin-top:4px;flex-shrink:0;">
+<div id="aceptacionesRegistro" aria-label="Aceptaciones y autorización obligatorias">
+  <label class="aceptacion-registro" for="aceptaPolitica">
+    <input id="aceptaPolitica" type="checkbox" required>
+    <span>
+      He leído y acepto la
+      <a href="/politica-datos.html" target="_blank" rel="noopener noreferrer">
+        Política de Tratamiento de Datos Personales de NexoPaws
+      </a>.
+    </span>
+  </label>
 
-  <span style="font-size:13px;line-height:1.5;">
-    Autorizo el tratamiento de mis datos personales para gestionar
-    el registro y la identificación de mi mascota, de acuerdo con la
-    <a href="/politica-datos.html" target="_blank" rel="noopener noreferrer">
-      Política de Tratamiento de Datos Personales de NexoPaws
-    </a>.
-    Declaro que he leído la información sobre el uso de mis datos
-    y mis derechos como titular.
-  </span>
-</label>
+  <label class="aceptacion-registro" for="aceptaTerminos">
+    <input id="aceptaTerminos" type="checkbox" required>
+    <span>
+      He leído y acepto los
+      <a href="/terminos-uso.html" target="_blank" rel="noopener noreferrer">
+        Términos y Condiciones de NexoPaws
+      </a>.
+    </span>
+  </label>
+
+  <label class="aceptacion-registro" for="autorizaPublicacion">
+    <input id="autorizaPublicacion" type="checkbox" required>
+    <span>
+      Autorizo expresamente a NexoPaws para publicar mi nombre,
+      teléfono y WhatsApp en la ficha pública de mi mascota, con la
+      finalidad de facilitar el contacto si es encontrada. Entiendo
+      que estos datos podrán ser consultados por cualquier persona que
+      acceda a la ficha. Mi correo electrónico no será publicado.
+      Esta autorización se explica en la
+      <a href="/politica-datos.html" target="_blank" rel="noopener noreferrer">
+        Política de Tratamiento de Datos Personales
+      </a> y en los
+      <a href="/terminos-uso.html" target="_blank" rel="noopener noreferrer">
+        Términos y Condiciones
+      </a>.
+    </span>
+  </label>
+</div>
 
 
       <button id="botonEnviarRegistro" class="boton" type="submit"
@@ -3599,8 +3643,16 @@ formularioRegistroScanPet.addEventListener("submit", async function(event) {
           codigo: codigo,
           tokenAutorizacion: tokenAutorizacionScanPet,
           mascota: mascota,
+          aceptaPolitica:
+            document.getElementById("aceptaPolitica").checked,
+          aceptaTerminos:
+            document.getElementById("aceptaTerminos").checked,
+          autorizaPublicacion:
+            document.getElementById("autorizaPublicacion").checked,
           consentimiento:
-            document.getElementById("consentimientoRegistro").checked,
+            document.getElementById("aceptaPolitica").checked &&
+            document.getElementById("aceptaTerminos").checked &&
+            document.getElementById("autorizaPublicacion").checked,
           foto: foto
         })
       });
