@@ -87,15 +87,16 @@ export async function onRequestPost(context) {
       }, 400);
     }
 
-    // Validar las tres aceptaciones independientes.
+    // Validar las manifestaciones recogidas en las tres casillas.
     if (
       datos.aceptaPolitica !== true ||
+      datos.autorizaTratamiento !== true ||
       datos.aceptaTerminos !== true ||
       datos.autorizaPublicacion !== true
     ) {
       return respuesta({
         ok: false,
-        mensaje: "Debes aceptar la Política de Tratamiento de Datos, los Términos y Condiciones y la autorización de publicación."
+        mensaje: "Debes leer y autorizar el tratamiento de datos, aceptar los Términos y Condiciones y autorizar la publicación de los datos de contacto."
       }, 400);
     }
 
@@ -143,8 +144,9 @@ export async function onRequestPost(context) {
       tokenAutorizacion: token,
       mascota: mascota,
 
-      // Tres aceptaciones independientes.
+      // Manifestaciones registradas mediante las tres casillas.
       aceptaPolitica: true,
+      autorizaTratamiento: true,
       aceptaTerminos: true,
       autorizaPublicacion: true,
 
