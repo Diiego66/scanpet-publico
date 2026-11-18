@@ -2705,10 +2705,13 @@
   <label class="aceptacion-registro" for="aceptaPolitica">
     <input id="aceptaPolitica" type="checkbox" required>
     <span>
-      He leído y acepto la
+      He leído la
       <a href="/politica-datos.html" target="_blank" rel="noopener noreferrer">
         Política de Tratamiento de Datos Personales de NexoPaws
-      </a>.
+      </a>
+      y autorizo expresamente a NexoPaws a tratar mis datos personales
+      para gestionar mi registro, administrar la placa, mantener la ficha
+      de mi mascota y prestar las funciones del servicio.
     </span>
   </label>
 
@@ -3644,6 +3647,8 @@ formularioRegistroScanPet.addEventListener("submit", async function(event) {
           tokenAutorizacion: tokenAutorizacionScanPet,
           mascota: mascota,
           aceptaPolitica:
+            document.getElementById("aceptaPolitica").checked,
+          autorizaTratamiento:
             document.getElementById("aceptaPolitica").checked,
           aceptaTerminos:
             document.getElementById("aceptaTerminos").checked,
