@@ -138,11 +138,23 @@ export async function onRequestPost(context) {
       };
     }
 
+    // Datos técnicos obtenidos desde la solicitud recibida por Cloudflare.
+    // No se toman del formulario ni del JSON enviado por el navegador.
+    const ipPublica = String(request.headers.get("CF-Connecting-IP") || "")
+      .trim()
+      .slice(0, 100);
+
+    const userAgent = String(request.headers.get("User-Agent") || "")
+      .trim()
+      .slice(0, 1000);
+
     solicitudServidor = {
       api: "registrarMascota",
       codigo: codigo,
       tokenAutorizacion: token,
       mascota: mascota,
+      ipPublica: ipPublica,
+      userAgent: userAgent,
 
       // Manifestaciones registradas mediante las tres casillas.
       aceptaPolitica: true,
