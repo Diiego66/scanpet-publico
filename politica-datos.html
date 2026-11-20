@@ -424,7 +424,11 @@
 
   <p>NexoPaws no solicita una dirección exacta de residencia como requisito del registro. Se recomienda utilizar únicamente una ubicación general que no exponga innecesariamente la privacidad del responsable.</p>
 
-  <p><strong>Datos sensibles:</strong> NexoPaws no solicita como requisito ordinario datos sensibles de los responsables de las mascotas. Si una persona decide incluir voluntariamente información que pueda constituir un dato sensible, su suministro será facultativo y se tratará únicamente cuando exista una finalidad legítima y la autorización explícita que resulte exigible. No se deben incluir datos sensibles de personas en los campos destinados a la información pública de la mascota.
+  <p><strong>Datos sensibles:</strong> NexoPaws no solicita como requisito ordinario datos sensibles de los responsables de las mascotas. Si una persona decide incluir voluntariamente información que pueda constituir un dato sensible, su suministro será facultativo y se tratará únicamente cuando exista una finalidad legítima y la autorización explícita que resulte exigible. No se deben incluir datos sensibles de personas en los campos destinados a la información pública de la mascota.</p>
+
+  <p><strong>Información técnica asociada al registro:</strong> al enviar una solicitud de registro de una mascota, NexoPaws recopila la dirección IP pública desde la que se recibe la solicitud y el identificador técnico del navegador o aplicación utilizado (User-Agent). La dirección IP se obtiene de la cabecera <code>CF-Connecting-IP</code> proporcionada por la infraestructura de Cloudflare y el User-Agent de la cabecera HTTP <code>User-Agent</code> de la solicitud. Estos datos no se solicitan en los campos del formulario ni se toman de valores declarados por el usuario en el contenido enviado por el navegador.</p>
+
+  <p>La IP pública puede permitir identificar la conexión o red desde la que se realizó el envío; el User-Agent puede informar características técnicas como el tipo y la versión del navegador, el sistema operativo o el dispositivo, según la información que proporcione el cliente. Estos datos se asocian a la solicitud de registro y a su evidencia de autorización.</p>
 
 
   <h2>4. Finalidades del tratamiento</h2>
@@ -442,6 +446,9 @@
     <li>Cuando la persona que realiza el reporte decida compartir su ubicación, transmitirla al correo del responsable para facilitar la localización de la mascota.</li>
     <li>Atender consultas, reclamos, solicitudes de actualización, revocatoria y supresión de datos personales.</li>
     <li>Prevenir usos abusivos de las funciones de la plataforma, mantener la seguridad y garantizar su funcionamiento.</li>
+    <li>Complementar la evidencia de las autorizaciones otorgadas durante el registro, asociando la solicitud con información técnica de la conexión y del navegador desde el que se realizó el envío.</li>
+    <li>Facilitar la trazabilidad de las solicitudes y autorizaciones, permitir su consulta y contribuir a la atención de consultas, reclamaciones o controversias relacionadas con el registro.</li>
+    <li>Verificar la integridad de las constancias de autorización mediante mecanismos de generación y encadenamiento de hashes criptográficos, como SHA-256.</li>
     <li>Cumplir obligaciones legales y atender requerimientos de autoridades competentes.</li>
   </ol>
 
@@ -551,6 +558,10 @@
 
   <p>La información administrativa y los registros internos se protegen mediante controles de acceso restringido. Las fotografías se administran en espacios de almacenamiento con acceso controlado; sin embargo, los archivos individuales utilizados en las fichas pueden ser visualizados por cualquier persona que disponga del enlace correspondiente, conforme a lo explicado en el apartado 6.</p>
 
+  <p>La dirección IP pública y el User-Agent recopilados al enviar una solicitud se remiten desde la infraestructura de Cloudflare a los sistemas de NexoPaws y se almacenan en el registro de evidencia de autorización asociado a esa solicitud. El acceso a estos datos se restringe a las personas autorizadas que los necesiten para administrar la plataforma, consultar la evidencia, atender solicitudes o proteger los derechos e intereses legítimos relacionados con el servicio.</p>
+
+  <p>La evidencia puede incluir, además de esos datos técnicos, el identificador de la solicitud y de la placa, la fecha y hora, las versiones de los documentos informativos, las manifestaciones de autorización y las referencias a las constancias correspondientes. Para contribuir a detectar modificaciones posteriores, determinados elementos de la evidencia se incorporan a un cálculo de hash SHA-256 y a una secuencia de hashes relacionados entre sí. Estos mecanismos permiten comprobar si el contenido verificado coincide con el contenido registrado, pero no constituyen una garantía de inmutabilidad absoluta ni sustituyen las demás medidas de seguridad y control de acceso.</p>
+
   <p>NexoPaws adopta medidas técnicas, organizativas y administrativas razonables para proteger los datos personales contra pérdida, alteración, consulta, uso o acceso no autorizado. Estas medidas pueden incluir controles de acceso, mecanismos de autenticación, medidas de protección durante el almacenamiento y la transmisión de información, así como acciones de revisión y mantenimiento de los servicios utilizados, de acuerdo con las características y necesidades de la plataforma.</p>
 
   <p>La prestación de servicios tecnológicos puede implicar que cierta información sea almacenada o procesada en infraestructura ubicada en Colombia o en otros países. Cuando, por la naturaleza de la operación, se configure una transmisión o transferencia internacional de datos personales, NexoPaws procurará cumplir las condiciones, garantías y demás requisitos previstos en la legislación colombiana aplicable.</p>
@@ -560,6 +571,8 @@
   <h2>11. Conservación y eliminación de datos</h2>
 
   <p>NexoPaws conservará los datos durante el tiempo necesario para cumplir las finalidades informadas, gestionar el servicio, mantener la trazabilidad de las placas, atender solicitudes de los titulares y cumplir obligaciones legales o contractuales. No se establece un único plazo fijo para todas las categorías de información, pues su necesidad de conservación puede variar según el estado del registro y las circunstancias de cada caso.</p>
+
+  <p><strong>Evidencias de autorización e información técnica:</strong> la IP pública y el User-Agent asociados a una solicitud se conservarán como parte de su evidencia de autorización durante el tiempo en que resulte necesario mantener la trazabilidad del registro, demostrar las manifestaciones de voluntad, atender consultas o reclamaciones y cumplir obligaciones legales. Su conservación se someterá a criterios de necesidad y proporcionalidad; cuando dejen de ser necesarios y no exista una obligación o causa legítima para mantenerlos, se evaluará su eliminación o anonimización. La supresión de estos datos podrá requerir una evaluación de la integridad y trazabilidad de la evidencia relacionada.</p>
 
   <p><strong>Solicitudes pendientes o incompletas:</strong> podrán conservarse mientras sean necesarias para realizar la revisión, solicitar aclaraciones, hacer seguimiento o permitir que el proceso pueda reanudarse. Cuando dejen de ser necesarias, se evaluará la eliminación o anonimización de los datos que no deban conservarse.</p>
 
@@ -582,7 +595,13 @@
 
   <p>La ubicación enviada por correo puede permanecer en el buzón del destinatario y estar sujeta a las condiciones de almacenamiento, seguridad y conservación del servicio de correo utilizado. NexoPaws no puede garantizar la eliminación de copias o registros técnicos que puedan conservar los proveedores tecnológicos conforme a sus propias condiciones y obligaciones.</p>
 
-  <p><strong>Datos técnicos de navegación:</strong> al acceder a una página web pueden generarse datos técnicos necesarios para entregar el contenido, mantener la seguridad, prevenir abusos y diagnosticar fallos, como información del navegador, dispositivo, dirección IP, fecha y hora de acceso o registros del servicio de alojamiento. Estos datos pueden ser tratados por los proveedores tecnológicos conforme a sus políticas y condiciones. NexoPaws no tiene activada una herramienta propia de analítica web en la página pública.</p>
+  <p><strong>Datos técnicos de navegación y datos asociados al registro:</strong> al acceder a una página web pueden generarse datos técnicos necesarios para entregar el contenido, mantener la seguridad, prevenir abusos y diagnosticar fallos, como información del navegador, dispositivo, dirección IP, fecha y hora de acceso o registros del servicio de alojamiento. Estos datos pueden ser tratados por los proveedores tecnológicos conforme a sus políticas y condiciones.</p>
+
+  <p>De manera específica, cuando se envía el formulario de registro de una mascota, la función de Cloudflare que recibe la solicitud obtiene la IP pública desde la cabecera <code>CF-Connecting-IP</code> y el User-Agent desde la cabecera HTTP <code>User-Agent</code>. La función transmite esos valores a los sistemas de NexoPaws para incorporarlos a la evidencia de autorización. Esta recopilación se realiza en el envío de la solicitud de registro; no se utiliza la ubicación GPS del dispositivo para obtener la IP y no se solicita al usuario que escriba esos datos en el formulario.</p>
+
+  <p>La IP y el User-Agent descritos en este apartado se utilizan para las finalidades de trazabilidad, verificación y conservación de evidencia indicadas en los apartados 3, 4, 10 y 11. No forman parte de la información mostrada en la ficha pública de la mascota.</p>
+
+  <p>NexoPaws no tiene activada una herramienta propia de analítica web en la página pública.</p>
 
   <p>La página pública de NexoPaws no tiene configurada una herramienta propia de analítica web ni utiliza deliberadamente almacenamiento local del navegador para crear perfiles o guardar preferencias del usuario. Tampoco ofrece actualmente un panel propio para configurar preferencias de cookies.</p>
 
