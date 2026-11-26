@@ -1561,10 +1561,11 @@
 #activacion #bloqueIntroActivacion h1 {
   margin: 0 0 10px;
   color: var(--azul-oscuro);
-  font-size: clamp(22px, 5.5vw, 26px) !important;
+  font-size: clamp(16px, 5.2vw, 24px) !important;
   font-weight: 800;
   line-height: 1.25;
   letter-spacing: -0.45px;
+  white-space: nowrap;
 }
 
 #activacion #bloqueIntroActivacion p {
@@ -2456,7 +2457,7 @@
       
 <div id="bloqueIntroActivacion">
     <h1 style="font-size: 24px; text-align: center;">
-        Activa tu placa identificadora
+        Activa tu placa NexoPaws
     </h1>
 
     <p style="text-align: center; line-height: 1.7;">
@@ -2467,10 +2468,6 @@
     <p style="text-align: center; line-height: 1.7;">
         <strong>Importante:</strong> conserva tu código hasta que
         NexoPaws apruebe el registro de tu mascota.
-    </p>
-
-    <p style="text-align: center; line-height: 1.7;">
-        ¿No recibiste tu código? Comunícate con NexoPaws para recibir ayuda.
     </p>
 </div>
 
@@ -2527,6 +2524,11 @@
           >
             Validar código
           </button>
+
+          <p id="ayudaCodigoActivacion"
+             style="margin:13px 0 0; text-align:center; line-height:1.5; color:#5d7185; font-size:12px;">
+            ¿No recibiste tu código? Comunícate con NexoPaws para recibir ayuda.
+          </p>
 
           <p id="mensajeActivacion"
              role="status"
